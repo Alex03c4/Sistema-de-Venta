@@ -1,7 +1,17 @@
 <?php
+/* 
+*   Controlador @Auth se encargara de la Tabla User
+*   Permitirá la conexión de Login Registro 
+*   Y modificación de dicha  tabla  
+*/
 class AuthController {
+    private $id;   
     public function __construct() {
         require_once 'models/AuthModel.php';
+        if (isset($_SESSION['id'])) {
+           $this->id = $_SESSION['id']; 
+        }
+         
     }
     
     public function index(){
@@ -33,5 +43,17 @@ class AuthController {
         $registro =new AuthModel();
         $registro->RegistroUser();
            
+    }
+
+    /* Update Tabla User */
+    public function update(){
+        $dato = array(
+            'id' => $this->id,
+            'email' =>  $_POST['email'],           
+            
+        );        
+        $perfil = new AuthModel();
+        $perfil->update($dato);
+        		
     }
 }

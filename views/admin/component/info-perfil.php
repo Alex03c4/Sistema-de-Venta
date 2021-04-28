@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form name="login-User-form" id="Updates" method="post" action="index.php?controllers=Perfil&a=update">
+                <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Perfil&a=update">
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6 ">
                             <div class="grid grid-cols-6 gap-6">

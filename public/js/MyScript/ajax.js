@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#Updates").on("submit", function (e) {
+    $(".Updates").on("submit", function (e) {
         e.preventDefault();
         var datos = new FormData(this);
         console.log(datos);

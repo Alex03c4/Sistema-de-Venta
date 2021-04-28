@@ -8,9 +8,7 @@ class AuthModel {
         $this->db = Conectar::conexion();
         /* $this->auth = array(); */
     }
-/* 
-    * getUser() Funcion usada para el Login
-*/
+
     public function getUser(){
         $email=$_POST["email"];        
         $password =$_POST["pass"];
@@ -54,14 +52,6 @@ class AuthModel {
         $stmt->close();
         die(json_encode($respuesta));
     }
-
-
-
-
-/* 
-    * Registro() Funcion Para el registro de Usuario
-*/
-
 
     public function RegistroUser(){
         $email=$_POST["email"];        
@@ -139,11 +129,37 @@ class AuthModel {
         die(json_encode($respuesta2));
     }
 
-   /*  public function Perfil(); */
-   public function RegistroPelfil(){
-    
-}
+    public function update($dato){
+        try {                        
+            $sql  = " UPDATE `users` SET  ";
+            $sql .= " `email`= ? ";
+            $sql .= " WHERE id = ? ";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param ("si", $dato["email"], $dato["id"]);
+            $estado =   $stmt->execute();            
 
+            if ($stmt->affected_rows >= 0) {
+                $respuesta = array(
+                    'respuesta' => 'exito',
+                    'id_actualizado' => $stmt->insert_id
+                );
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error1'
+                );
+            }
 
+        } catch (\Throwable $e) {
+            $respuesta = array(
+                'respuesta' => 'error',
+                'Msm' => $e->GetMessage(),
+                'Lugar' => 'catch ',
+                'Linea' . $e->getLine()
+            );
+        }
+        $stmt->close();
+        die(json_encode($respuesta));   
+    }
 
 }

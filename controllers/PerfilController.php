@@ -22,7 +22,7 @@ class PerfilController
         $user =null;
         require_once "views\admin\Perfil.php";  
     }
-
+/* Update Tabla Perfil */
     public function update(){
         $dato = array(
             'id' => $this->id,
