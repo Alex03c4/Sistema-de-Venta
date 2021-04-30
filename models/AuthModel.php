@@ -1,5 +1,4 @@
 <?php
-
 class AuthModel {
    private $db;
    private $id;
@@ -52,6 +51,8 @@ class AuthModel {
         $stmt->close();
         die(json_encode($respuesta));
     }
+
+    
 
     public function RegistroUser(){
         $email=$_POST["email"];        

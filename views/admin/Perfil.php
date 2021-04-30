@@ -4,6 +4,7 @@
 
 <?php
     require_once 'views\admin\component\info-user.php';
+    require_once 'views\admin\component\Img-user.php';
     require_once 'views\admin\component\info-perfil.php';
     require_once 'views\admin\component\Delete-Account.php';
 ?>

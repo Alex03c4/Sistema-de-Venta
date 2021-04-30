@@ -7,11 +7,8 @@ $menu = array(
 
   'Ventas' =>  array(
     'icono' =>  'fas fa-calculator',
-    'url'   =>  '#'
+    'url'   =>  'index.php?controllers=Perfil&a=ViewDashboard'
   ),
-
-
-
 );
 
 $menuAdmin = array(
@@ -24,7 +21,6 @@ $menuAdmin = array(
     'icono' =>  'fas fa-people-carry',
     'url'   =>  '#'
   ),
-
 );
 
 ?>
@@ -46,12 +42,27 @@ $menuAdmin = array(
   </div><!-- #sidebar-brand -->
 
   <div id="User" class="border-b border-gray-500">
-    <div id="img" class="float-left w-14 h-14 p-0.5 mx-3 mt-2 border-ra overflow-hidden rounded-full">
-      <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-    </div>
+    <?php
+    if (isset($data["img"]["url"])) { ?>
+      <div id="img" class="float-left w-14 h-14 p-0.5 mx-3 mt-2 border-ra overflow-hidden rounded-full">
+        <img class="h-14 w-14 rounded-full" src="public/img/User/<?php echo $_SESSION['id'] . '/' . $data["img"]["url"] ?>" alt="">
+      </div>
+
+    <?php
+    } else { ?>
+      <div id="img" class="float-left w-14 h-14 p-0.5 mx-3 mt-2 border-ra overflow-hidden rounded-full">
+        <img class="h-14 w-14 rounded-full" src="public\img\User\defaul\user-male.png" alt="">
+      </div>
+    <?php
+    }
+    ?>
+
+
+
+
     <div class="p-3">
       <div id="user-info">
-        <span>Naudis <strong>Garcia</strong></span>
+        <span><?php echo $data["profiles"]["nombre"] . " "; ?><strong> <?php echo $data["profiles"]["apellido"]; ?></strong></span>
       </div>
       <div id="user-role">
         <span>Administrator</span>
@@ -195,20 +206,20 @@ $menuAdmin = array(
     <h2>
       <label for="">
         <span>
-        <?php 
-         if (isset($menu[$data['titulo']])) { ?>
-          
-         <i class="<?php echo $menu[$data['titulo']]['icono']?>"></i>
-        <?php
-         } else { ?>
+          <?php
+          if (isset($menu[$data['titulo']])) { ?>
 
-          <i class="<?php echo $menuAdmin[$data['titulo']]['icono']?>"></i>
-        <?php
-        }
-        ?>          
+            <i class="<?php echo $menu[$data['titulo']]['icono'] ?>"></i>
+          <?php
+          } else { ?>
+
+            <i class="<?php echo $menuAdmin[$data['titulo']]['icono'] ?>"></i>
+          <?php
+          }
+          ?>
         </span>
       </label>
-      <?php echo $data['titulo']?>
+      <?php echo $data['titulo'] ?>
     </h2>
 
     <div class="border-solid border-gray-600">
@@ -221,7 +232,18 @@ $menuAdmin = array(
       <div>
         <button x-on:click="open = true" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
           <span class="sr-only">Open user menu</span>
-          <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <?php
+          if (isset($data["img"]["url"])) { ?>
+            <img class="h-8 w-8 rounded-full" src="public/img/User/<?php echo $_SESSION['id'] . '/' . $data["img"]["url"] ?>" alt="">
+          <?php
+          } else { ?>
+            
+              <img class="h-8 w-8 rounded-full" src="public\img\User\defaul\user-male.png" alt="">
+           
+          <?php
+          }
+          ?>
+          
         </button>
       </div>
 

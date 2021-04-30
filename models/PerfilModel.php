@@ -1,8 +1,8 @@
 <?php
 class PerfilModel extends BaseModel  {
-   private $db;  
+   /* private $db; */  
     public function __construct(){
-        $this->db = Conectar::conexion();  
+       /*  $this->db = Conectar::conexion();  */ 
         parent::__construct();        
     }
 

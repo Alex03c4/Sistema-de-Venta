@@ -9,7 +9,11 @@ class PerfilController
     }
 
     public function ViewDashboard(){
+        $user = new PerfilModel();        
         $data['titulo'] = 'Dashboard';
+        $data['img'] = $user->img($this->id, 1);// var 1 es el modelo User
+        $data["profiles"] = $user->getById('profiles', $this->id);
+        $user =null;
         require_once "views\admin\Dashboard.php";   
     }
 
@@ -17,6 +21,7 @@ class PerfilController
     public function edit(){
         $user = new PerfilModel();
         $data["titulo"] = 'Perfil | Admin';
+        $data['img'] = $user->img($this->id, 1);
         $data["profiles"] = $user->getById('profiles', $this->id);
         $data["user"] = $user->getById('users', $this->id);
         $user =null;

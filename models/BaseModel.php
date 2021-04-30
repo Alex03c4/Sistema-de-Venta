@@ -1,7 +1,7 @@
 <?php
 class BaseModel {
 
-    private  $db;    
+    public  $db;    
     public function __construct() {        
         $this->db = Conectar::conexion();                  
     }    
@@ -29,6 +29,19 @@ class BaseModel {
     public function deleteById($tabla, $id){
         $query=$this->db->query("DELETE FROM $tabla WHERE id= $id"); 
         return $query;
+    }
+
+
+    public function img($img_id, $img_type){
+        $sql = "SELECT * FROM  `images` WHERE `img_id`= $img_id && `img_type`= $img_type";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+            
+        }else {
+            $resultSet=null;
+        }
+     return $resultSet;
     }
     
     
