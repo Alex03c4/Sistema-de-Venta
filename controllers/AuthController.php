@@ -17,9 +17,7 @@ class AuthController {
     public function index(){
       require_once "views\welcome\Welcome.php";  
     }
-    public function hola(){
-        echo "hola";
-    }
+
 
     /* Auth */
     public function ViewLogin(){

@@ -9,12 +9,16 @@ class PerfilController
     }
 
     public function ViewDashboard(){
-        $user = new PerfilModel();        
+        $user = new PerfilModel();              
         $data['titulo'] = 'Dashboard';
-        $data['img'] = $user->img($this->id, 1);// var 1 es el modelo User
-        $data["profiles"] = $user->getById('profiles', $this->id);
+        $_SESSION['img'] = $user->img($this->id, 1);// var 1 es el modelo User
+        $_SESSION['profiles'] = $user->getById('profiles', $this->id);        
         $user =null;
         require_once "views\admin\Dashboard.php";   
+    }
+    public function ViewDashboard2(){
+        $data['titulo'] = 'Dashboard';
+        require_once "views\admin\Dashboard.php"; 
     }
 
 
@@ -47,9 +51,12 @@ class PerfilController
     public function destroy()
     {
         $user = new PerfilModel();
+        
         /* $id   = $_POST["id"]; */
         $user->deleteById("profiles", $this->id) ;
         $user->deleteById("users", $this->id) ;
+        $user->deleteImg($this->id , 1);
+
     }
 
 

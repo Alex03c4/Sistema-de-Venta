@@ -9,11 +9,12 @@ class ImageController {
     
     public function imgUserInsert(){
        if ($_SESSION['aux']==='Insert') {
-           echo "Hola";
+          $img = new ImageModel();
+          $img->Insert($_SESSION['id'], 1);
+        
        } else {
            echo 'el uso de modification de las url pueden llevar a sanciones';
-       }
-        
+       }        
 
     }
 
@@ -24,6 +25,11 @@ class ImageController {
             echo 'el uso de modification de las url pueden llevar a sanciones';
         }
 
+    }
+
+
+    public function AllProducto(){
+        
     }
     
 }

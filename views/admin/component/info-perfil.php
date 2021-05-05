@@ -37,13 +37,24 @@
 
                                         <option><?php echo $data["profiles"]['sexo']; ?></option>
                                         <?php
-                                        if ($data["profiles"]['sexo'] === 'Femenino') { ?>
+                                        if (!isset($data["profiles"]['sexo'])) {
+                                            if ($data["profiles"]['sexo'] === 'Femenino') { ?>
+                                            
+                                                <option>Masculino</option>
+                                            <?php } else { ?>
+                                                <option>Femenino</option>
+                                            <?php
+                                            }?>
+                                            
+                                        <?php
+                                        } else { ?>
                                             <option>Masculino</option>
-                                        <?php } else { ?>
                                             <option>Femenino</option>
                                         <?php
                                         }
                                         ?>
+
+
 
                                     </select>
                                 </div>
