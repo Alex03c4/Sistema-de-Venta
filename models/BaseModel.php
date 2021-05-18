@@ -26,7 +26,9 @@ class BaseModel {
         
         return $resultSet;
     }
+    
 
+    
     public function deleteById($tabla, $id){
         $query=$this->db->query("DELETE FROM $tabla WHERE id= $id"); 
         return $query;
@@ -57,27 +59,29 @@ class BaseModel {
     }
 
 
-    public function InsertImg($img_id, $img_type, $file){        
-        
-        $directorio = "public/img/$file/"; 
+    public function InsertImg($img_id, $img_type, $file, $dato){        
+          /* die(json_encode($dato)); */
+       
+        $directorio = "public/img/$file/";
         if (!is_dir($directorio)) {
             mkdir($directorio, 0755, true);
         }         
         
-        $directorioUsuario = $directorio .  $img_id . "/";
-        if (!is_dir($directorioUsuario)) {
-            mkdir($directorioUsuario, 0755, true);
-            if (!($_FILES['ImgUser']['name']== "")) { 
-              if (move_uploaded_file($_FILES['ImgUser']['tmp_name'], $directorioUsuario . $_FILES['ImgUser']['name'])) {
+        $directorioFinal = $directorio .  $img_id . "/";
+        if (!is_dir($directorioFinal)) {
+            
+            mkdir($directorioFinal, 0755, true); 
+            if (!($dato['Img_nombre']== "")) { 
+              if (move_uploaded_file($dato['Img_urlTMP'], $directorioFinal . $dato['Img_nombre'])) {
  
-                $imagen_url = $_FILES['ImgUser']['name'];                   
+                $imagen_url = $dato['Img_nombre'];                   
 
                 } else {
                    $respuesta = array(
                        'respuesta' => 'error',
                        'Img' => error_get_last()
                    );            
-                   rmdir($directorioUsuario);
+                   rmdir($directorioFinal);
                    die(json_encode($respuesta));
                }
            }

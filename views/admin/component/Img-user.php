@@ -2,7 +2,7 @@
  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
  <script src="public\plugins\img-User\script.js"></script>
 
- <div class="container mx-auto mt-20">
+ <div class="container mx-auto mt-20"> 
      <div class="md:grid md:grid-cols-3 md:gap-6">
          <div class="md:col-span-1">
              <div class="px-4 sm:px-0">
@@ -22,8 +22,7 @@
                         $_SESSION['aux'] = 'Insert';
                         echo 'index.php?controllers=Image&a=imgUserInsert';
                     }
-                    ?>
-                        " enctype="multipart/form-data">
+                    ?>" enctype="multipart/form-data">
                  <div class="shadow sm:rounded-md sm:overflow-hidden">
                      <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                          <div class="grid grid-cols-3 gap-6">

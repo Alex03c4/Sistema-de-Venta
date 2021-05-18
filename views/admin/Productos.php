@@ -48,6 +48,8 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                 if (isset($data['producto'])) {
 
                   foreach ($data['producto'] as $key => $value) {
+
+                    echo $value->id;
                     ?>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
@@ -57,17 +59,18 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                             <?php
                             $img = "Producto.png";
                             $file = "defaul/";
-                            if (isset($data['img'] )) {                                                          
-                            foreach ($data['img'] as $imagen => $resultado) {
-                              if (($resultado->id) === $value->id) {
-                                $img = $resultado->url;
-                                $file = $resultado->id . "/";
+                            if (isset($data['img'])) {
+
+                            foreach ($data['img'] as $imagen => $resultado) {                             
+                              if ($resultado->img_id === $value->id) {                              
+                                $imgURL = $resultado->img_id."/".$resultado->url;                             
                                 break;
                               }
+
                             }
                             }
                             ?>
-                            <img class="h-10 w-10 rounded-full" src="public/img/Producto/<?php echo $file . $img ?>" alt="">
+                            <img class="h-10 w-10 rounded-full" src="public/img/Producto/<?php echo $imgURL; ?>" alt="">
                           </div>
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">

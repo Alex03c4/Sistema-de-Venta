@@ -18,8 +18,9 @@ class ProductoModel extends BaseModel {
                 'respuesta' => 'exito',                             
             ); 
             
-            /* $img = new ProductoModel();
-                $img->InsertImg($stmt->insert_id , 3 , 'Producto');  */           
+            
+            $img = new ProductoModel();
+                $img->InsertImg($stmt->insert_id , 3 , 'Producto' , $dato);            
            
        
         } else {

@@ -33,9 +33,12 @@ class ProductoController  extends BaseController {
             'marca' => $_POST['marca'],
             'stock' => $_POST['stock'],
             'descripcion' => $_POST['descripcion'],
-            'id_proveedor'=> $_POST['id_proveedor']
+            'id_proveedor'=> $_POST['id_proveedor'],
             /* 'estatus' => $_POST['estatus'], */
+            'Img_nombre' => $_FILES['Img']['name'],
+            'Img_urlTMP'=> $_FILES['Img']['tmp_name']
         );
+ 
         /*  var_dump($dato); */
         $producto->Insert($dato);      
 

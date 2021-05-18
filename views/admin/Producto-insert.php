@@ -9,8 +9,8 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
   <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
-  <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert">
-    <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert" enctype="multipart/form-data"> -->
+  <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"  enctype="multipart/form-data">
+    <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"> -->
       <div class="grid grid-cols-1 gap-y-5 gap-x-5 lg:grid-cols-2">
 
         <div class="bg-gray-100  rounded-2xl gap-y-5">
