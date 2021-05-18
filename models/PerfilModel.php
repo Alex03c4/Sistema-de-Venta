@@ -28,7 +28,7 @@ class PerfilModel extends BaseModel  {
                 );
             }
 
-        } catch (\Throwable $e) {
+        } catch (Exception $e) {
             $respuesta = array(
                 'respuesta' => 'error',
                 'Msm' => $e->GetMessage(),

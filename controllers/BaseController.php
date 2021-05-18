@@ -1,5 +1,5 @@
 <?php
-class BaseController {
+class BaseController  {
     public $id;   
    
     public function __construct() {        

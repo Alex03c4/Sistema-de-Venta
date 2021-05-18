@@ -1,7 +1,9 @@
 $(document).ready(function () {
     $(".Updates").on("submit", function (e) {
+        
         e.preventDefault();
-        var datos = new FormData(this);
+        var datos = new FormData(this); 
+
         console.log(datos);
         $.ajax({
           type: $(this).attr("method"),
@@ -20,7 +22,7 @@ $(document).ready(function () {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Actualización Exitosa',
+                    title: 'Operación Exitosa',
                     showConfirmButton: false,
                     timer: 1500,
                     backdrop: `
@@ -30,13 +32,6 @@ $(document).ready(function () {
                     no-repeat
                     `
                   })
-                  /* Usado para redirigir a una pagina  */
-                  /* .then((resultado) => {
-                    if (resultado.value) {
-                  var pagina = $("#Guardar-Actualizar").attr("pagina");
-                  window.location.href = pagina;
-                }
-                }); */
             } else {
                 Swal.fire({
                     position: 'top-end',
@@ -57,8 +52,7 @@ $(document).ready(function () {
       });
 
 
-
-      $("#Delete").on("submit", function (e) {
+      $('.Delete').on("submit", function (e) {
         e.preventDefault();
         Swal.fire({
           title: 'Are you sure?',
@@ -70,13 +64,13 @@ $(document).ready(function () {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "index.php?controllers=Perfil&a=destroy";
+            window.location.href = $(this).attr("action");
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success'
             )
-            window.location.href = "index.php";
+            window.location.href = $(this).attr("location");
           }
           
         })

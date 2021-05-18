@@ -23,6 +23,13 @@ $menuAdmin = array(
       'insert' => 'index.php?controllers=Producto&a=ViewInsert',
       'select' => 'index.php?controllers=Producto&a=ViewProducto'
     )
+  ),
+  'Proveedor' =>  array(
+    'icono' =>  'fas fa-parachute-box',
+    'Sub'   =>  array(
+      'insert' => 'index.php?controllers=Producto&a=ViewInsert',
+      'select' => 'index.php?controllers=Producto&a=ViewProducto'
+    )
 
   ),
 );

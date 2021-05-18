@@ -18,6 +18,12 @@ class ImageController {
 
     }
 
+
+    public function Insert($img_id, $img_type, $file){
+        $img = new ImageModel();
+        $img->Insert2($img_id, $img_type , $file);      
+    }
+
     public function imgUserUpdate(){
         if ($_SESSION['aux']==='Update') {
             echo "Hola2";

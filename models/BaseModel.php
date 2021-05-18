@@ -17,8 +17,9 @@ class BaseModel {
     }
 
     public function getAll($table){
+        $resultSet= null;
         $query=$this->db->query("SELECT * FROM $table ORDER BY id DESC");
-
+       
         while ($row = $query->fetch_object()) {
            $resultSet[]=$row;
         }
@@ -47,12 +48,69 @@ class BaseModel {
     }
 
     public function imgAll($img_type){
+        $resultSet= null;
         $query=$this->db->query("SELECT * FROM `images` WHERE `img_type` = $img_type");
-
         while ($row = $query->fetch_object()) {
            $resultSet[]=$row;
         }        
         return $resultSet;
+    }
+
+
+    public function InsertImg($img_id, $img_type, $file){        
+        
+        $directorio = "public/img/$file/"; 
+        if (!is_dir($directorio)) {
+            mkdir($directorio, 0755, true);
+        }         
+        
+        $directorioUsuario = $directorio .  $img_id . "/";
+        if (!is_dir($directorioUsuario)) {
+            mkdir($directorioUsuario, 0755, true);
+            if (!($_FILES['ImgUser']['name']== "")) { 
+              if (move_uploaded_file($_FILES['ImgUser']['tmp_name'], $directorioUsuario . $_FILES['ImgUser']['name'])) {
+ 
+                $imagen_url = $_FILES['ImgUser']['name'];                   
+
+                } else {
+                   $respuesta = array(
+                       'respuesta' => 'error',
+                       'Img' => error_get_last()
+                   );            
+                   rmdir($directorioUsuario);
+                   die(json_encode($respuesta));
+               }
+           }
+       }
+        try {
+            $sql = "INSERT INTO `images`( `url`, `img_id`, `img_type`) ";
+            $sql .= " VALUES ";             
+            $stmt = $this->db->prepare($sql. "(?, ?, ?)");
+            $stmt->bind_param('sii', $imagen_url , $img_id , $img_type);
+            $stmt->execute();               
+            
+            if ($stmt->affected_rows>0) {               
+                $respuesta = array(
+                    'respuesta' => 'exito'                    
+                );               
+                
+                die(json_encode($respuesta));    
+           
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error',
+                    'donde' => 'sql'
+                );
+            }          
+        
+        } catch (Exception $e) {
+            $respuesta = array(
+                'respuesta' => 'error',
+                'donde' => 'sql',
+                'e' => $e->getMessage()
+            );
+        }
+        die(json_encode($respuesta));   
     }
 
     public function deleteImg($img_id, $img_type){
