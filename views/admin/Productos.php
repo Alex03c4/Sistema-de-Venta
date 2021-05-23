@@ -50,7 +50,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                   foreach ($data['producto'] as $key => $value) {
 
                     echo $value->id;
-                    ?>
+                ?>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
                       <td class="px-6 py-4 whitespace-nowrap">
@@ -61,13 +61,12 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                             $file = "defaul/";
                             if (isset($data['img'])) {
 
-                            foreach ($data['img'] as $imagen => $resultado) {                             
-                              if ($resultado->img_id === $value->id) {                              
-                                $imgURL = $resultado->img_id."/".$resultado->url;                             
-                                break;
+                              foreach ($data['img'] as $imagen => $resultado) {
+                                if ($resultado->img_id === $value->id) {
+                                  $imgURL = $resultado->img_id . "/" . $resultado->url;
+                                  break;
+                                }
                               }
-
-                            }
                             }
                             ?>
                             <img class="h-10 w-10 rounded-full" src="public/img/Producto/<?php echo $imgURL; ?>" alt="">
@@ -116,10 +115,14 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
                           </div>
+
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                            </svg>
+                            <a href="index.php?controllers=Producto&a=getByID&id=<?php echo $value->id ?>">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                              </svg>
+                            </a>
+
                           </div>
 
                           <form class="Delete" location="index.php?controllers=Producto&a=ViewProducto" action="index.php?controllers=Producto&a=destroy&id=<?php echo $value->id ?>" method="post">
@@ -138,7 +141,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 
                     </tr>
-                 <?php }
+                <?php }
                 } ?>
                 <!-- More people... -->
               </tbody>

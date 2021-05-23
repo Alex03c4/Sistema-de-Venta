@@ -117,6 +117,10 @@ class BaseModel {
         die(json_encode($respuesta));   
     }
 
+    public function UpdateImg(){
+
+    }
+
     public function deleteImg($img_id, $img_type){
 
         

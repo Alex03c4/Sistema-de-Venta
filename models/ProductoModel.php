@@ -40,6 +40,48 @@ class ProductoModel extends BaseModel {
     die(json_encode($respuesta));    
        
     }
+    
+    public function update($dato){
+        try {
+                        
+            $sql  = " UPDATE `productos` SET  ";
+            $sql .= " `nombre`= ?, `precio`= ?, `marca`= ? , `stock`= ?  , `descripcion`= ?, `id_proveedor`= ?   ";
+            $sql .= " WHERE id = ? ";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param ("sdsisii", $dato["nombre"], $dato["precio"], $dato["marca"], $dato["stock"], $dato["descripcion"] , $dato["id_proveedor"] , $dato["id"]);
+            $estado =   $stmt->execute();
+
+            if ($stmt->affected_rows || $estado) {
+                $respuesta = array(
+                    'respuesta' => 'exito',
+                    'id_actualizado' => $stmt->insert_id
+                );
+
+               /*  $img = new ProductoModel();
+                    $img->InsertImg( $dato["id"] , 3 , 'Producto' , $dato);   */
+
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error1'
+                );
+            }
+
+        } catch (Exception $e) {
+            $respuesta = array(
+                'respuesta' => 'error',
+                'Msm' => $e->GetMessage(),
+                'Lugar' => 'catch ',
+                'Linea' . $e->getLine()
+            );
+        }
+        $stmt->close();
+        die(json_encode($respuesta));
+        	
+       /*  return $resultado; */
+    }
+
+
 }
 
 ?>
