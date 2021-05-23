@@ -3,10 +3,10 @@
 ?>
 
 <?php
-    require_once 'views\admin\component\info-user.php';
-    require_once 'views\admin\component\Img-user.php';
-    require_once 'views\admin\component\info-perfil.php';
-    require_once 'views\admin\component\Delete-Account.php';
+    require_once 'views\admin\component\perfil\info-user.php';
+    require_once 'views\admin\component\perfil\Img-user.php';
+    require_once 'views\admin\component\perfil\info-perfil.php';
+    require_once 'views\admin\component\perfil\Delete-Account.php';
 ?>
 
 <script src="public\js\MyScript\ajax.js" defer></script>

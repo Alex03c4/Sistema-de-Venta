@@ -2,7 +2,7 @@
 $menu = array(
   'Dashboard' => array(
     'icono' =>  'fas fa-tachometer-alt',
-    'url'   =>  'index.php?controllers=Perfil&a=ViewDashboard2'
+    'url'   =>  'index.php?controllers=Perfil&a=ViewDashboard'
   ),
 
   'Ventas' =>  array(
