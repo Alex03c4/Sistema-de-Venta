@@ -9,8 +9,8 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
   <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
-  <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Producto&a=update"  enctype="multipart/form-data">
-    <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"> -->
+    <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Producto&a=update" enctype="multipart/form-data">
+      <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"> -->
       <div class="grid grid-cols-1 gap-y-5 gap-x-5 lg:grid-cols-2">
 
         <div class="bg-gray-100  rounded-2xl gap-y-5">
@@ -37,25 +37,21 @@ require_once "views\admin\component\layouts\sidebarTW.php";
             </div>
           </div>
           <div>
-            
-   
-    
-
             <?php require_once 'views\admin\component\producto\edid-Proveedor.php'; ?>
+            <?php require_once 'views\admin\component\producto\info-tags.php'; ?>
             <?php require_once 'views\admin\component\producto\edid-Img.php'; ?>
 
-
-
+            <?php require_once 'views\admin\component\producto\info-estatus.php'; ?>
+            </div>
           </div>
-        </div>
 
-      </div>
-      <div class="px-4 py-3  text-right sm:px-6">
-        <input type="hidden" name="Update" value="actualizar">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Save
-        </button>
-      </div>
+        </div>
+        <div class="px-4 py-3  text-right sm:px-6">
+          <input type="hidden" name="id" value="<?php echo $data['producto']['id'];?>">
+          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Save
+          </button>
+        </div>
     </form>
   </div>
 </div>

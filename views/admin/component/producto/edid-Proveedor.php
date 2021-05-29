@@ -9,11 +9,11 @@
             if ($value->id === $data['producto']['id_proveedor']) { ?>
                 <option value="<?php echo $value->id ?>">
                     <?php
-                    echo $value->nombre;
-                    unset($data['proveedor'][$key]);
+                        echo $value->nombre;
+                        unset($data['proveedor'][$key]);
                     ?>
                 </option>
-        <?php
+            <?php
             }
         }
 

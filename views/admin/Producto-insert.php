@@ -38,7 +38,9 @@ require_once "views\admin\component\layouts\sidebarTW.php";
           </div>
           <div>
             <?php require_once 'views\admin\component\producto\info-Proveedor.php'; ?>
+            <?php require_once 'views\admin\component\producto\info-tags.php'; ?>
             <?php require_once 'views\admin\component\producto\Img.php'; ?>
+            <?php require_once 'views\admin\component\producto\info-estatus.php'; ?>
           </div>
         </div>
 

@@ -55,7 +55,7 @@ class PerfilController
         /* $id   = $_POST["id"]; */
         $user->deleteById("profiles", $this->id) ;
         $user->deleteById("users", $this->id) ;
-        $user->deleteImg($this->id , 1);
+        $user->deleteImg($this->id , 1, 'User');
 
     }
 

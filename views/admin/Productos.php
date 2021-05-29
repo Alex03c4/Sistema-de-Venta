@@ -47,20 +47,16 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                 <?php
                 if (isset($data['producto'])) {
 
-                  foreach ($data['producto'] as $key => $value) {
-
-                    echo $value->id;
-                ?>
+                  foreach ($data['producto'] as $key => $value) {?>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
                       <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                           <div class="flex-shrink-0 h-10 w-10">
                             <?php
-                            $img = "Producto.png";
-                            $file = "defaul/";
+                            $imgURL = "defaul/Producto.png";
+                           
                             if (isset($data['img'])) {
-
                               foreach ($data['img'] as $imagen => $resultado) {
                                 if ($resultado->img_id === $value->id) {
                                   $imgURL = $resultado->img_id . "/" . $resultado->url;
@@ -69,7 +65,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                               }
                             }
                             ?>
-                            <img class="h-10 w-10 rounded-full" src="public/img/Producto/<?php echo $imgURL; ?>" alt="">
+                            <img class="h-10 w-10 rounded-full" src="public/img/Producto/<?php echo $imgURL; ?>" alt="<?php echo $imgURL; ?>">
                           </div>
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">
@@ -87,8 +83,22 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                       </td>
 
                       <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full  bg-green-100 text-green-800">
-                          <?php echo $value->stock ?>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        <?php
+                        if ($value->stock <= 25) { ?>
+                            bg-red-200 text-red-600
+                           <?php
+                        } else{ ?>
+
+                          bg-green-100 text-green-800
+                         
+                         <?php
+
+                        }
+                        ?> ">
+
+                          <?php echo $value->stock; ?>
+
                         </span>
                       </td>
 
@@ -108,19 +118,16 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 
                       <td class="py-3 px-6 text-center">
-                        <div class="flex item-center justify-center">
+                        <div class="flex item-center justify-center m-1">
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
+                            <a href="#">
+                            <i class="far fa-eye"></i>
+                            </a>
                           </div>
 
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <a href="index.php?controllers=Producto&a=getByID&id=<?php echo $value->id ?>">
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                              </svg>
+                              <i class="fas fa-pencil-alt"></i>
                             </a>
 
                           </div>
@@ -130,7 +137,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
                               <input type="hidden" name="Eliminar-Producto" value="Eliminar">
                               <button type="submit">
-                                <i class="far fa-copyright"></i>
+                                <i class="fas fa-trash-alt"></i>
                               </button>
 
                             </div>

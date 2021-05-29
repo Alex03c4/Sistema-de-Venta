@@ -25,8 +25,7 @@ class BaseModel {
         }
         
         return $resultSet;
-    }
-    
+    }    
 
     
     public function deleteById($tabla, $id){
@@ -96,9 +95,9 @@ class BaseModel {
             if ($stmt->affected_rows>0) {               
                 $respuesta = array(
                     'respuesta' => 'exito'                    
-                );               
+                );          
                 
-                die(json_encode($respuesta));    
+               
            
             } else {
                 $respuesta = array(
@@ -113,28 +112,82 @@ class BaseModel {
                 'donde' => 'sql',
                 'e' => $e->getMessage()
             );
+            
         }
-        die(json_encode($respuesta));   
+        
     }
 
     public function UpdateImg(){
 
     }
 
-    public function deleteImg($img_id, $img_type){
-
-        
+    public function deleteImg($img_id, $img_type, $Model){        
         //Eliminar Img
-        $files = glob('public/img/User/'. $img_id . '/*'); //obtenemos todos los nombres de los ficheros
+        $files = glob('public/img/'.$Model."/". $img_id . '/*'); //obtenemos todos los nombres de los ficheros
         foreach ($files as $file) {
             if (is_file($file))
             unlink($file); //elimino el fichero
         }
-        rmdir("public/img/User/" . $img_id);
+        rmdir('public/img/'.$Model."/". $img_id);
 
         $query=$this->db->query("DELETE FROM `images` WHERE `img_id`= $img_id && `img_type`= $img_type");       
 
         return $query;
+    }
+
+
+
+/**
+ * Funciones para el Control del Tags
+ */
+
+    public function InserTaggables($tags_id, $tags_type, $Model){
+
+        try {
+            $sql = "INSERT INTO `taggables`(`taggable_id`, `tag_type`, `tag_id`)  ";
+            $sql .= " VALUES ";             
+            $stmt = $this->db->prepare($sql. "(?, ?, ?)");
+            $stmt->bind_param('iii', $tags_id , $tags_type , $Model);
+            $stmt->execute();               
+            
+            if ($stmt->affected_rows>0) {               
+                $respuesta = array(
+                    'respuesta' => 'exito'                    
+                );             
+
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error',
+                    'donde' => 'sql'
+                );
+                die(json_encode($respuesta));
+            }          
+        
+        } catch (Exception $e) {
+            $respuesta = array(
+                'respuesta' => 'error',
+                'donde' => 'sql',
+                'e' => $e->getMessage()
+            );
+            die(json_encode($respuesta));
+        }
+         
+    }
+
+    public function deleteTaggables($taggable_id, $tag_type){
+        $query=$this->db->query("DELETE FROM `taggables`  WHERE  `taggable_id` =$taggable_id && `tag_type`= $tag_type ");      
+        return $query;
+    }
+
+    public function TaggablesAll($taggable_id, $tag_type){
+        $resultSet= null;
+        $query=$this->db->query("SELECT * FROM taggables WHERE  `taggable_id` =$taggable_id && `tag_type`= $tag_type ");
+       
+        while ($row = $query->fetch_object()) {
+           $resultSet[]=$row;
+        }
+        
+        return $resultSet;
     }
 
 
