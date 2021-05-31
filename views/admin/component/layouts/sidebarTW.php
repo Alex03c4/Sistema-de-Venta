@@ -7,7 +7,7 @@ $menu = array(
 
   'Ventas' =>  array(
     'icono' =>  'fas fa-cash-register',
-    'url'   =>  'index.php?controllers=Perfil&a=ViewDashboard'
+    'url'   =>  'index.php?controllers=Venta&a=ViewVentas'
   ),
 );
 
@@ -25,7 +25,7 @@ $menuAdmin = array(
     )
   ),
   'Proveedor' =>  array(
-    'icono' =>  'fas fa-parachute-box',
+    'icono' =>  'fas fa-shipping-fast fa-fw',
     'Sub'   =>  array(
       'insert' => 'index.php?controllers=Producto&a=ViewInsert',
       'select' => 'index.php?controllers=Producto&a=ViewProducto'
@@ -187,14 +187,17 @@ $menuAdmin = array(
         <i class="fa fa-bell"></i>
 
       </a>
+
       <a href="#" class="px-5 hover:text-white">
         <i class="fa fa-envelope"></i>
 
       </a>
-      <a href="#" class="px-5 hover:text-white">
+
+      <a href="index.php?controllers=Empresa&a=ViewEmpresa" class="px-5 hover:text-white">
         <i class="fa fa-cog"></i>
 
       </a>
+
       <a href="#" class="px-5 hover:text-white">
         <i class="fa fa-power-off"></i>
       </a>

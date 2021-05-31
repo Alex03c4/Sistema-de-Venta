@@ -19,10 +19,13 @@ class BaseModel {
     public function getAll($table){
         $resultSet= null;
         $query=$this->db->query("SELECT * FROM $table ORDER BY id DESC");
-       
-        while ($row = $query->fetch_object()) {
-           $resultSet[]=$row;
+       //modificado no sabemos si pueda causar un defectos hay que herce pruebas  
+        if ($query) {
+           while ($row = $query->fetch_object()) {
+            $resultSet[]=$row;
+            }
         }
+            
         
         return $resultSet;
     }    
