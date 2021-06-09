@@ -50,14 +50,17 @@
                         <input type="text" name="direccion" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
-            </div>
-            <div class="m-2 ">
-                <label for="last_name" class="block text-base font-bold text-gray-700">Correo:</label>
-                <div class="flex justify-between">
-                    <i class="far fa-id-card mt-3 mr-1"></i>
-                    <input type="email" name="email" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                <div class="m-2 col-span-2">
+                    <label for="last_name" class="block text-base font-bold text-gray-700">Correo:</label>
+                    <div class="flex justify-between">
+                        <i class="far fa-id-card mt-3 mr-1"></i>
+                        <input type="email" name="email" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
                 </div>
+
             </div>
+
         </div>
 
 

@@ -32,25 +32,14 @@ class VentaController {
                 'apellido' => $_POST['apellido'],
                 'telefono' => $_POST['telefono'],
                 'direccion' => $_POST['direccion'],
-                'email'=> $_POST['email'],                
-            );  
-
+                'email'=> $_POST['email']                            
+            );
            $cliente = new ClienteController();
            $cliente->Insert($dato);
-
 
         } 
 
         
-        
-
-    }
-
-    public function GenerarVentas2(){
-        if (isset($_POST['nombre'])) {
-           $cliente = new ClienteController();
-           $cliente->update();
-        }
         
 
     }
