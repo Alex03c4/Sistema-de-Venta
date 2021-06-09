@@ -37,7 +37,13 @@ $menuAdmin = array(
 ?>
 
 
-<div id="sidebar" class="bg-gray-600 h-full w-60 fixed text-gray-400 border-r-2 border-gray-700 invisible lg:visible">
+<div id="sidebar" class="bg-gray-600 h-full w-60 fixed text-gray-400 border-r-2 border-gray-700 invisible 
+<?php if ($data['titulo'] === 'Ventas') {
+    echo " invisible ";
+} else {
+  echo " lg:visible ";
+}
+?>">
 
   <div id="sidebar-brand" class="flex justify-around p-4 bg-gray-800 text-lg border-b border-gray-500 ">
     <div class="hover:text-gray-100 cursor-pointer">
@@ -211,7 +217,14 @@ $menuAdmin = array(
 
 
 
-<div id="sidebar-movil" class="bg-gray-600 h-full w-14 fixed text-gray-400 border-r-2 border-gray-700 visible  lg:invisible">
+<div id="sidebar-movil" class="bg-gray-600 h-full w-14 fixed text-gray-400 border-r-2 border-gray-700 visible  
+
+<?php if ($data['titulo'] === 'Ventas') {
+    echo " visible ";
+} else {
+  echo " lg:invisible ";
+}
+?>">
   <div class="text-center py-3 hover:text-gray-300 cursor-pointer bg-gray-800 text-2xl  shadow-lg">
     <i class="fas fa-arrow-circle-right"></i>
   </div><!-- icono-movil -->
@@ -271,8 +284,15 @@ $menuAdmin = array(
 
 
 
-<div class="ml-14 lg:ml-60 bg-white shadow-lg text-lg text-gray-600
- overflow-hidden   rounded-2xl  dark:bg-gray-700 ">
+<div class="ml-14  bg-white shadow-lg text-lg text-gray-600
+ overflow-hidden   rounded-2xl  dark:bg-gray-700 
+
+<?php if ($data['titulo'] === 'Ventas') {
+   
+} else {
+  echo " lg:ml-60 ";
+}
+?>">
   <header class="flex justify-between py-3 px-6 ">
     <h2>
       <label for="">

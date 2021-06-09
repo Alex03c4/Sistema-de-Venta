@@ -48,8 +48,7 @@ class PerfilController
         		
     }
 
-    public function destroy()
-    {
+    public function destroy() {
         $user = new PerfilModel();
         
         /* $id   = $_POST["id"]; */

@@ -16,6 +16,17 @@ class BaseModel {
      return $resultSet;
     }
 
+
+    public function getByCedula($tabla, $cedula){
+     $resultSet= NULL; 
+        $sql = "SELECT * FROM  $tabla  WHERE `cedula` = $cedula";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+     return $resultSet; 
+    }
+
     public function getAll($table){
         $resultSet= null;
         $query=$this->db->query("SELECT * FROM $table ORDER BY id DESC");
@@ -192,6 +203,20 @@ class BaseModel {
         
         return $resultSet;
     }
+
+
+    //Tags
+    public function TagsAll($Modelo){
+        $resultSet= null;
+        $query=$this->db->query("SELECT `taggable_id`,`tag_type`, `nombre`, `color` FROM `taggables` INNER JOIN tags ON taggables.tag_id = tags.id WHERE `tag_type`= $Modelo");
+       
+        while ($row = $query->fetch_object()) {
+           $resultSet[]=$row;
+        }
+        
+        return $resultSet;
+    }
+
 
 
 
