@@ -20,9 +20,17 @@ class VentaController {
         require_once "views\admin\Ventas.php";   
     }
 
-    public function GenerarVentas(){
+    public function GenerarVentas(){      
         
         if (isset($_POST['Cliente'])) {
+            ?>
+                <pre>
+            <?php
+                    die(var_dump($_POST));
+            ?>
+                </pre>
+            <?php
+            
            
           
         } else {
@@ -35,13 +43,36 @@ class VentaController {
                 'email'=> $_POST['email']                            
             );
            $cliente = new ClienteController();
-           $cliente->Insert($dato);
+           $cliente->Insert($dato); 
 
         } 
 
         
         
 
+    }
+
+    public function Carrito(){
+  
+       $producto = json_decode($_SESSION['producto'])     ;
+
+        
+        foreach ($producto as $key) {        
+            if ($key->id == $_POST['Producto']) {
+                $data = array(
+                    'id' => $key->id,
+                    'nombre' => $key->nombre,
+                    'precio' => $key->precio,
+                    'stock' => $key->stock,
+                    'descripcion' => $key->descripcion,
+                    'img'=> $key->img 
+                );                    
+           }
+        }
+
+       
+        die(json_encode($data));  
+        
     }
 
 }

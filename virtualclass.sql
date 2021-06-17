@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2021 a las 19:30:13
+-- Tiempo de generación: 17-06-2021 a las 02:56:08
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -21,6 +21,57 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `virtualclass`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id` int(11) NOT NULL,
+  `cedula` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `cedula`, `nombre`, `apellido`, `telefono`, `direccion`, `email`) VALUES
+(1, '22200685', 'naudis', 'garcia', '04245366490', 'la orquideoa', 'naudisgarcia51@gmail.com'),
+(2, '24157055', 'Arianny', 'Cordero', '0426589521', 'Tostado', 'Ary@gmail.com'),
+(3, '9611145', 'Jaime Arturo', 'Garcia', '0251547896', 'Ruiz Pineda', 'JaimeGarcia51@Gmail.com'),
+(4, '', '', '', '', '', ''),
+(7, '6666666', 'naudis', 'garcia', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'PEPE@gmail.com'),
+(11, '23', 'naudis', 'garcia', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'naudisgarcia251@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresa`
+--
+
+CREATE TABLE `empresa` (
+  `Id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `documento` varchar(50) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `telefono2` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `direccion` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`Id`, `nombre`, `documento`, `telefono`, `telefono2`, `email`, `direccion`) VALUES
+(1, 'LaraMarket naudis', 'J-2253658455', '02519855490', '04246366480', 'LaraMarket@Gmail.com', 'La Orquidea ');
 
 -- --------------------------------------------------------
 
@@ -72,7 +123,8 @@ CREATE TABLE `models` (
 INSERT INTO `models` (`id`, `url`) VALUES
 (1, 'User'),
 (2, 'Perfil'),
-(3, 'Producto');
+(3, 'Producto'),
+(4, 'Empresa');
 
 -- --------------------------------------------------------
 
@@ -96,21 +148,21 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `precio`, `marca`, `stock`, `descripcion`, `estatus`, `id_proveedor`) VALUES
-(1, 'pepe pito dormilos', 2, '', 0, '', 2, 3),
-(2, 'pepito dormilos', 2, '', 0, '', 2, 3),
-(3, 'Mary 3', 20, '20', 20, '<p>20</p>', 2, 3),
-(4, 'Mary 3', 20, '20', 20, '<p>20</p>', 2, 3),
-(5, 'Mary 4', 20, '20', 20, '<p>20</p>', 2, 3),
-(6, 'Mary 4', 20, '20', 20, '<p>20</p>', 2, 3),
-(7, 'Mary 4', 20, '20', 20, '<p>20</p>', 2, 3),
-(8, 'Mary 4', 20, '20', 20, '<p>20</p>', 2, 3),
-(9, 'pepe', 20, '20', 20, '<p>20</p>', 2, 3),
-(10, 'pepe', 40, '2000', 2000, '<p>naudis</p>', 2, 3),
-(11, 'pepito 2 ', 50, '50', 50, '<p>50</p>', 2, 3),
+(1, 'Antonio', 2, '', 0, '', 2, 3),
+(2, 'klondy', 2, '', 0, '', 2, 3),
+(3, 'Mary ', 20, '20', 20, '<p>20</p>', 2, 3),
+(4, 'pepe', 20, '20', 20, '<p>20</p>', 1, 3),
+(5, 'vilma', 20, '20', 20, '<p>20</p>', 2, 3),
+(6, 'Aruto', 20, '20', 20, '<p>20</p>', 2, 3),
+(7, 'Cano', 20, '20', 20, '<p>20</p>', 2, 3),
+(8, 'Jose', 20, '20', 20, '<p>20</p>', 1, 3),
+(9, 'Sara', 20, '20', 20, '<p>20</p>', 1, 3),
+(10, 'Quinverli', 40, '2000', 2000, '<p>naudis</p>', 2, 3),
+(11, 'Reimar', 50, '50', 50, '<p>50</p>', 1, 3),
 (12, '2', 0, '', 0, '', 2, 3),
 (14, '3', 0, '', 0, '', 2, 3),
-(15, '1', 0, '', 0, '', 1, 2),
-(16, 'pepe pito dormilos', 2, '', 0, '', 2, 3),
+(15, '1', 50, '50', 5, '<p>0</p>', 1, 2),
+(16, 'pepe pito dormilos', 2, '', 0, '', 1, 3),
 (17, 'naudis garcia', 50, '50', 50, '<p>50</p>', 1, 3),
 (18, 'lolita', 50, '50', 50, '<p>50</p>', 2, 3);
 
@@ -136,7 +188,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `nombre`, `apellido`, `cedula`, `sexo`, `telefono`, `direccion`, `user_id`) VALUES
-(1, 'naudis', 'garcia', '', '', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 1);
+(1, 'naudis', 'garcia', '22200685', '', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 1);
 
 -- --------------------------------------------------------
 
@@ -202,19 +254,24 @@ CREATE TABLE `taggables` (
 INSERT INTO `taggables` (`id`, `taggable_id`, `tag_type`, `tag_id`) VALUES
 (1, 3, 3, 7),
 (2, 6, 3, 6),
-(3, 7, 3, 6),
-(4, 7, 3, 5),
-(5, 7, 3, 4),
-(6, 7, 3, 3),
 (40, 5, 3, 7),
 (41, 5, 3, 5),
 (96, 16, 3, 7),
 (97, 16, 3, 6),
-(98, 17, 3, 7),
 (99, 18, 3, 7),
-(100, 15, 3, 7),
-(101, 15, 3, 7),
-(102, 4, 3, 7);
+(102, 4, 3, 7),
+(103, 7, 3, 5),
+(107, 17, 3, 7),
+(108, 17, 3, 6),
+(109, 17, 3, 5),
+(110, 15, 3, 7),
+(111, 15, 3, 7),
+(112, 15, 3, 6),
+(113, 15, 3, 5),
+(114, 15, 3, 4),
+(115, 15, 3, 3),
+(116, 15, 3, 2),
+(117, 15, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -224,21 +281,22 @@ INSERT INTO `taggables` (`id`, `taggable_id`, `tag_type`, `tag_id`) VALUES
 
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `nombre` varchar(50) NOT NULL,
+  `color` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tags`
 --
 
-INSERT INTO `tags` (`id`, `nombre`) VALUES
-(1, 'Perro'),
-(2, 'Gato'),
-(3, 'Cochino'),
-(4, 'Loro'),
-(5, 'vaca'),
-(6, 'Pie Gande'),
-(7, 'Aguila');
+INSERT INTO `tags` (`id`, `nombre`, `color`) VALUES
+(1, 'Perro', 'red'),
+(2, 'Gato', 'green'),
+(3, 'Cochino', 'indigo'),
+(4, 'Loro', 'blue'),
+(5, 'vaca', 'indigo'),
+(6, 'Pie Gande', 'purple'),
+(7, 'Aguila', 'pink');
 
 -- --------------------------------------------------------
 
@@ -273,6 +331,20 @@ CREATE TABLE `user_role` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cedula` (`cedula`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indices de la tabla `empresa`
+--
+ALTER TABLE `empresa`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indices de la tabla `images`
@@ -346,6 +418,18 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de la tabla `empresa`
+--
+ALTER TABLE `empresa`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `images`
 --
 ALTER TABLE `images`
@@ -355,7 +439,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT de la tabla `models`
 --
 ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -379,7 +463,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `taggables`
 --
 ALTER TABLE `taggables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT de la tabla `tags`

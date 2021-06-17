@@ -32,7 +32,8 @@
 
         <?php
         if (isset($data['producto'])) {
-
+         $productor = array();
+          /* $_SESSION['producto'] = $data['producto']; */
           foreach ($data['producto'] as $key => $value) {
             if ($value->estatus == 1 && $value->stock > 0) { ?>
 
@@ -47,7 +48,17 @@
                       if (isset($data['img'])) {
                         foreach ($data['img'] as $imagen => $resultado) {
                           if ($resultado->img_id === $value->id) {
+                            $productor[] = [
+                              'id'=> $value->id,
+                              'nombre'=> $value->nombre,
+                              'precio'=> $value->precio,
+                              'marca'=> $value->marca,
+                              'stock'=> $value->stock,
+                              'descripcion'=> $value->descripcion,
+                              'img' => $resultado->img_id . "/" . $resultado->url
+                            ];                            
                             $imgURL = $resultado->img_id . "/" . $resultado->url;
+                            
                             break;
                           }
                         }
@@ -58,10 +69,7 @@
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-900">
                         <?php echo $value->nombre ?>
-                      </div>
-                      <!-- <div class="text-sm text-gray-500">
-                              jane.cooper@example.com
-                            </div> -->
+                      </div>                      
                     </div>
                   </div>
                 </td>
@@ -93,14 +101,14 @@
                   <?php
                   foreach ($data['tags'] as $llave => $resultado) {
 
-                    if ($resultado->taggable_id ==  $value->id) {?>
+                    if ($resultado->taggable_id ==  $value->id) { ?>
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                       
                       <?php
-                        echo " bg-".$resultado->color."-200 " . " text-".$resultado->color."-800 " ;
+                      echo " bg-" . $resultado->color . "-200 " . " text-" . $resultado->color . "-800 ";
                       ?>
                         "><?php echo $resultado->nombre ?></span>
-                    <?php 
+                  <?php
                     }
                   } ?>
                 </td>
@@ -109,23 +117,24 @@
                 <td class="py-3 px-6 text-center">
                   <div class="flex item-center justify-center m-1">
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                      <a href="#">
-                      <i class="fas fa-shopping-cart"></i>
-                      </a>
+                      <div>
+                        <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">
+                           <input type="hidden" name="Producto" value="<?php echo $value->id ?>">
+                           <button>
+                              <i class="fas fa-shopping-cart"></i>
+                           </button>
+                        </form>
+                      </div>
                     </div>
-
-                    
-                    </form>
-
                   </div>
                 </td>
-
-
               </tr>
 
 
         <?php }
-          }
+          }          
+          $_SESSION['producto'] = json_encode($productor);
+          
         } ?>
         <!-- More people... -->
       </tbody>

@@ -7,7 +7,8 @@
             <i class="fas fa-window-minimize"></i>
         </div>
     </div>
-    <div>
+    <div id="producto" >
+
 
     </div>
 </div>

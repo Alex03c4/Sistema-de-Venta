@@ -3,7 +3,7 @@ $(document).ready(function() {
     $("#Table").DataTable({
     paging: true,
     pageLength: 5,
-    lengthChange: false,
+    lengthChange: true,
     searching: true,
     ordering: true,
     info: true,
@@ -21,5 +21,6 @@ $(document).ready(function() {
       search: " Buscar",
     },
   });
+
 });
 
