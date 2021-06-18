@@ -97,14 +97,14 @@ class VentaController {
 
         if (!isset($_SESSION['C-Compra'])) {
             $p = array(
-                'id'=> $_POST['Producto'],
+                'id'=> $_POST['id'],
                 'can'=> 1
             );
             $_SESSION['C-Compra'][0]= json_encode($p);
         } else {
             $NumeroProducto = count($_SESSION['C-Compra']);
             $p = array(
-                'id'=> $_POST['Producto'],
+                'id'=> $_POST['id'],
                 'can'=> 1
             );           
             $_SESSION['C-Compra'][$NumeroProducto] = json_encode($p);
@@ -112,7 +112,7 @@ class VentaController {
 
 
 
-        $id = $_POST['Producto'];
+        $id = $_POST['id'];
         $producto = new ventaModel();
         $pro = $producto->getById('productos', $id);
         $img = $producto->img($id, 3);
