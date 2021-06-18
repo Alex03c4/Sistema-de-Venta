@@ -1,3 +1,7 @@
+<?php 
+  unset($_SESSION['C-Compra']);
+?>
+
 <?php
 require_once "views\components\admin\header.php";
 require_once "views\admin\component\layouts\sidebarTW.php";
@@ -12,7 +16,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <script src="public\js\MyScript\cliente\cliente.js" defer></script>
 
 <!-- Carito -->
-<script src="public\js\MyScript\ventas\ventas.js" defer></script>
+<script src="public\js\MyScript\ventas\ventas.jss" defer></script>
 
 <!-- <a href="index.php?controllers=Perfil&a=edit">Perfil</a> -->
 

@@ -32,8 +32,7 @@
 
         <?php
         if (isset($data['producto'])) {
-         $productor = array();
-          /* $_SESSION['producto'] = $data['producto']; */
+         
           foreach ($data['producto'] as $key => $value) {
             if ($value->estatus == 1 && $value->stock > 0) { ?>
 
@@ -48,15 +47,7 @@
                       if (isset($data['img'])) {
                         foreach ($data['img'] as $imagen => $resultado) {
                           if ($resultado->img_id === $value->id) {
-                            $productor[] = [
-                              'id'=> $value->id,
-                              'nombre'=> $value->nombre,
-                              'precio'=> $value->precio,
-                              'marca'=> $value->marca,
-                              'stock'=> $value->stock,
-                              'descripcion'=> $value->descripcion,
-                              'img' => $resultado->img_id . "/" . $resultado->url
-                            ];                            
+                                                
                             $imgURL = $resultado->img_id . "/" . $resultado->url;
                             
                             break;
@@ -119,7 +110,14 @@
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                       <div>
                         <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">
-                           <input type="hidden" name="Producto" value="<?php echo $value->id ?>">
+                           <input type="hidden" name="id"     value="<?php echo $value->id ?>">
+                           <input type="hidden" name="nombre" value="<?php echo $value->nombre ?>">
+                           <input type="hidden" name="precio" value="<?php echo $value->precio ?>">
+                           <input type="hidden" name="marca"  value="<?php echo $value->marca ?>">
+                           <input type="hidden" name="stock"  value="<?php echo $value->stock ?>"> 
+                           <input type="hidden" name="imgURL"   value="<?php echo $imgURL ?>">
+                           <input type="hidden" name="descrip"value="<?php echo $value->descripcion ?>">                          
+
                            <button>
                               <i class="fas fa-shopping-cart"></i>
                            </button>
@@ -133,7 +131,7 @@
 
         <?php }
           }          
-          $_SESSION['producto'] = json_encode($productor);
+          
           
         } ?>
         <!-- More people... -->

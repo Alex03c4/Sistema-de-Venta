@@ -6,6 +6,6 @@ class BaseController  {
         $this->id = $_SESSION['id'];        
     }
 
-
+    
 
 }

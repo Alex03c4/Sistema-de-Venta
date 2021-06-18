@@ -5,7 +5,10 @@
     require_once 'config/sesiones.php';
 	require_once 'models/BaseModel.php';
     foreach(glob("controllers/*.php") as $file){
-            require_once $file;
+		if (!$file == "controllers\VentaController.php" ) {
+			require_once $file;
+		}
+            
     }
     
 	if(isset($_GET['controllers'])){		

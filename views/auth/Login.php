@@ -1,3 +1,7 @@
+
+<?php 
+session_destroy();
+?>
 <?php
     require_once "views\components\admin\header.php";
 ?>

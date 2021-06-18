@@ -2,10 +2,10 @@
 class VentaController {
     
     public function __construct()
-    { 
+    {
        require_once 'models\VentaModel.php';
-       require_once 'controllers\ClienteController.php';
-       /* parent::__construct();         */
+       require_once 'controllers\ClienteController.php';           
+      
     } 
     
     public function ViewVentas(){
@@ -52,28 +52,82 @@ class VentaController {
 
     }
 
-    public function Carrito(){
+/*     public function Carrito2(){
   
-       $producto = json_decode($_SESSION['producto'])     ;
+        if (!isset($_SESSION['C-Compra'])) {
+            $p = array(
+                'id'=> $_POST['Producto'],
+                'can'=> 1
+            );
+            $_SESSION['C-Compra'][0]= json_encode($p);
+        }else {
+            $NumeroProducto = count($_SESSION['C-Compra']);
+            $p = array(
+                'id'=> $_POST['Producto'],
+                'can'=> 1
+            );
 
+            $aux= json_decode($_SESSION['C-Compra']);
+            foreach ($aux as $key ) {
+                if ($key->id == $_POST['Producto']) {
+                    # code...
+                }
+            }
+
+            $_SESSION['C-Compra'][$NumeroProducto] = json_encode($p);;
+        }
         
-        foreach ($producto as $key) {        
-            if ($key->id == $_POST['Producto']) {
-                $data = array(
-                    'id' => $key->id,
-                    'nombre' => $key->nombre,
-                    'precio' => $key->precio,
-                    'stock' => $key->stock,
-                    'descripcion' => $key->descripcion,
-                    'img'=> $key->img 
-                );                    
-           }
+    } */
+
+
+
+
+/* de prevea  */
+    public function Carrito(){
+
+        ?>
+            <pre>
+        <?php
+                die(var_dump($_POST));
+        ?>
+            </pre>
+        <?php
+        
+
+
+        if (!isset($_SESSION['C-Compra'])) {
+            $p = array(
+                'id'=> $_POST['Producto'],
+                'can'=> 1
+            );
+            $_SESSION['C-Compra'][0]= json_encode($p);
+        } else {
+            $NumeroProducto = count($_SESSION['C-Compra']);
+            $p = array(
+                'id'=> $_POST['Producto'],
+                'can'=> 1
+            );           
+            $_SESSION['C-Compra'][$NumeroProducto] = json_encode($p);
         }
 
-       
-        die(json_encode($data));  
+
+
+        $id = $_POST['Producto'];
+        $producto = new ventaModel();
+        $pro = $producto->getById('productos', $id);
+        $img = $producto->img($id, 3);
+
+
+        $carrito = array(
+                'producto'=> $pro,
+                'img'=>  $img
+        );
+
         
-    }
+
+        die(json_encode($carrito));  
+         
+}
 
 }
 

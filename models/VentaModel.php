@@ -5,6 +5,8 @@ class VentaModel extends BaseModel
         parent::__construct();        
     }
 
+    
+
 
     
 }
