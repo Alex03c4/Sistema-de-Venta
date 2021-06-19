@@ -106,7 +106,8 @@
 
 
                 <td class="py-3 px-6 text-center">
-                  <div class="flex item-center justify-center m-1">
+                  <div x-data="{ btm: true }"
+                    class="flex item-center justify-center m-1">
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                       <div>
                         <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">
@@ -118,7 +119,7 @@
                            <input type="hidden" name="imgURL"   value="<?php echo $imgURL ?>">
                            <input type="hidden" name="descrip"value="<?php echo $value->descripcion ?>">                          
 
-                           <button>
+                           <button x-on:click="btm= !btm" x-show="btm">
                               <i class="fas fa-shopping-cart"></i>
                            </button>
                         </form>

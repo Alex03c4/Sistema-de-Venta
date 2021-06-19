@@ -1,10 +1,10 @@
 <?php
 
-class ProductoController  extends BaseController {
+class ProductoController   {
     public $idProdruto;
     public function __construct(){ 
         require_once 'models\ProductoModel.php';
-        parent::__construct();        
+             
     }
 
     public function ViewProducto(){

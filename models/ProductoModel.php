@@ -89,7 +89,7 @@ class ProductoModel extends BaseModel {
 
             } else {
                 $respuesta = array(
-                    'respuesta' => 'error1'
+                    'respuesta' => 'error'
                 );
             }
 

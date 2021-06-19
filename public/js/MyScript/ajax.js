@@ -2,8 +2,7 @@ $(document).ready(function () {
     $(".Updates").on("submit", function (e) {
         
         e.preventDefault();
-        var datos = new FormData(this); 
-
+        var datos = new FormData(this);
         console.log(datos);
         $.ajax({
           type: $(this).attr("method"),
@@ -52,7 +51,7 @@ $(document).ready(function () {
       });
 
 
-      $('.Delete').on("submit", function (e) {
+    $('.Delete').on("submit", function (e) {
         e.preventDefault();
         Swal.fire({
           title: 'Are you sure?',
@@ -75,5 +74,59 @@ $(document).ready(function () {
           
         })
       });
+
+      $('.Carrito').on("submit", function (e) {
+        e.preventDefault();
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this papito lindo!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            e.preventDefault();
+            var datos = $(this).serializeArray();   
+            console.log(datos);
+            $.ajax({
+              type: 'post',
+              data: datos,
+              url: 'index.php?controllers=Venta&a=GenerarVentas',
+              dataType: "json",
+              success: function (data) {
+                var resultado = data;
+                console.log(resultado); 
+                  Swal.fire(
+                'Venta',
+                'Generada con Éxito.',
+                'success'
+                )
+                setTimeout(redire,2000);
+              },error : function(xhr, status) {
+                Swal.fire(
+                  'Venta',
+                  'Generada con Éxito.',
+                  'erro'
+                  )
+                  
+                  
+            },
+              
+            });
+
+            /* window.location.href = $(this).attr("action");
+            
+            window.location.href = $(this).attr("location"); */
+          }
+          
+        })
+      });
+    
+      function redire(){
+        window.location.href = 'index.php?controllers=Venta&a=ViewVentas'
+      }
+    
 
 }); // fin $(document).ready(function ()
