@@ -90,15 +90,15 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 grid grid-cols-1 lg:grid-cols-5 gap-2">
                   <?php
-                  foreach ($data['tags'] as $llave => $resultado) {
+                  foreach ($data['tags'] as $llave => $resultado2) {
 
-                    if ($resultado->taggable_id ==  $value->id) { ?>
+                    if ($resultado2->taggable_id ==  $value->id) { ?>
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                       
                       <?php
-                      echo " bg-" . $resultado->color . "-200 " . " text-" . $resultado->color . "-800 ";
+                      echo " bg-" . $resultado2->color . "-200 " . " text-" . $resultado2->color . "-800 ";
                       ?>
-                        "><?php echo $resultado->nombre ?></span>
+                        "><?php echo $resultado2->nombre ?></span>
                   <?php
                     }
                   } ?>
@@ -130,11 +130,10 @@
               </tr>
 
 
-        <?php }
-          }          
-          
-          
-        } ?>
+            <?php }
+          }                  
+        } 
+        ?>
         <!-- More people... -->
       </tbody>
     </table>

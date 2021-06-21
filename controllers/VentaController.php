@@ -24,26 +24,18 @@ class VentaController {
     
     $model = new VentaModel();
     $newStock = null; 
-
-    
-         
+             
         foreach ($_SESSION["C-Compra"] as $key ) {               
                 $id         = (int)$key['id'];
                 $precio     = (int)$key['precio'];
                 $cantida    = (int)$_POST[$key['id']];
                 $Stock      = (int)$key['stock'];
-
-                $newStock = ($Stock - $cantida)  ;
+                
+                $newStock = ($Stock - $cantida);
                                 
                 $model->StockUpdate($newStock, $id);
         }
-
-
-       $respuesta = array(
-            'respuesta' => 'error'
-        );
-        die(json_encode($respuesta));  
-          
+ 
         if (isset($_POST['Cliente'])) {           
              
         } else {
@@ -60,7 +52,10 @@ class VentaController {
 
         } 
         
-        
+        $respuesta = array(
+            'respuesta' => 'error'
+        );
+        die(json_encode($respuesta));  
         
         
     }

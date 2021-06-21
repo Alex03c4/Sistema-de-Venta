@@ -75,11 +75,11 @@ $(document).ready(function () {
         })
       });
 
-      $('.Carrito').on("submit", function (e) {
+      $('.Ventas').on("submit", function (e) {
         e.preventDefault();
         Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this papito lindo!",
+          title: 'Seguro que quieres',
+          text: "Genera Ventas?",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
