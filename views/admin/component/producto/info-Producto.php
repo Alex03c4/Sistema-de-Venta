@@ -10,7 +10,7 @@
     <label for="last_name" class="block text-base font-bold text-gray-700">Precio:</label>
     <div class="flex justify-between">
         <i class="fas fa-dollar-sign mt-3 mr-1"> </i>
-        <input type="number" name="precio" autocomplete="off" id="precio" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <input step="any" type="number" name="precio" autocomplete="off" id="precio" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
 </div>
 
@@ -34,6 +34,6 @@
     <label for="last_name" class="block text-base font-bold text-gray-700">Descripcion:</label>
     <div class="flex justify-between">
         <textarea id="editor" name="descripcion">
-    </textarea>
+        </textarea>
     </div>
 </div>

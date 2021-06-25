@@ -8,7 +8,7 @@
         </div>
     </div>
     <div id="producto" class="grid grid-cols-3 xl:grid-cols-4">
-
+       
 
     </div>
 
