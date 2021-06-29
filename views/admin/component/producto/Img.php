@@ -7,7 +7,7 @@
 <div class="ml-7 mt-3">
     <div class="content_uploader">
         <div class="box">
-            <input class="filefield " type="file" name="Img" value="">
+            <input class="filefield limpiar " type="file" name="Img" value="">
             <p class="select_bottom">Seleccionar un archivo</p>
             <div class="spinner"></div>
             <div class="overlay_uploader"></div>

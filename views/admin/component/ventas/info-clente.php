@@ -13,7 +13,7 @@
             <label for="last_name" class="block text-base font-bold text-gray-700">Cedula del Cliente:</label>
             <div class="flex justify-between">
                 <i class="far fa-id-card mt-3 mr-1"></i>
-                <input type="number" id="Cedula-cliente" name="Cedula-cliente" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input required type="number" id="Cedula-cliente" name="Cedula-cliente" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
         </div>
 

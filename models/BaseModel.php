@@ -142,6 +142,7 @@ class BaseModel {
             if (is_file($file))
             unlink($file); //elimino el fichero
         }
+        /* if (is_file('public/img/'.$Model."/". $img_id)) */
         rmdir('public/img/'.$Model."/". $img_id);
 
         $query=$this->db->query("DELETE FROM `images` WHERE `img_id`= $img_id && `img_type`= $img_type");       

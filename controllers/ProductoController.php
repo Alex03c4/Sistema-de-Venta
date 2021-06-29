@@ -16,6 +16,7 @@ class ProductoController   {
         $producto = null;
         require_once "views\admin\Productos.php";   
     }
+    
     public function ViewInsert() { 
         $producto = new ProductoModel(); 
         $data['titulo'] = 'Productos';        
@@ -96,11 +97,7 @@ class ProductoController   {
         );        
         $producto = new ProductoModel();
 
-        $producto->update($dato);
-
-        
-
-        		
+        $producto->update($dato);       		
     }
 
 

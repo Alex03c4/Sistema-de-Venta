@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-06-2021 a las 02:56:08
+-- Tiempo de generación: 26-06-2021 a las 02:37:38
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -48,7 +48,8 @@ INSERT INTO `cliente` (`id`, `cedula`, `nombre`, `apellido`, `telefono`, `direcc
 (3, '9611145', 'Jaime Arturo', 'Garcia', '0251547896', 'Ruiz Pineda', 'JaimeGarcia51@Gmail.com'),
 (4, '', '', '', '', '', ''),
 (7, '6666666', 'naudis', 'garcia', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'PEPE@gmail.com'),
-(11, '23', 'naudis', 'garcia', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'naudisgarcia251@gmail.com');
+(11, '23', 'naudis', 'garcia', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'naudisgarcia251@gmail.com'),
+(16, '32742337', 'Reimar', 'Peña', '04125162866', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 'Geikerpena@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,6 @@ CREATE TABLE `images` (
 
 INSERT INTO `images` (`id`, `url`, `img_id`, `img_type`) VALUES
 (1, 'naudis.jpg', 1, 1),
-(2, 'Mary.jpg', 1, 3),
 (3, 'Mary.jpg', 2, 3),
 (4, 'Mary.jpg', 3, 3),
 (5, 'Mary.jpg', 4, 3),
@@ -103,7 +103,16 @@ INSERT INTO `images` (`id`, `url`, `img_id`, `img_type`) VALUES
 (10, 'Emili.jpg', 10, 3),
 (11, 'Klondy.png', 11, 3),
 (12, 'Klondy.png', 17, 3),
-(13, 'Klondy.png', 18, 3);
+(13, 'Klondy.png', 18, 3),
+(14, 'Faste.png', 19, 3),
+(15, 'Luis.jpg', 1, 3),
+(16, 'Faste.png', 15, 3),
+(17, 'Klondy.png', 12, 3),
+(18, 'Luis.jpg', 14, 3),
+(23, 'ejercicio 2.jpg', 27, 3),
+(24, 'ejercicio 2.jpg', 28, 3),
+(25, 'Luis.jpg', 33, 3),
+(26, 'Faste.png', 34, 3);
 
 -- --------------------------------------------------------
 
@@ -138,33 +147,42 @@ CREATE TABLE `productos` (
   `precio` float NOT NULL,
   `marca` varchar(50) NOT NULL,
   `stock` int(11) NOT NULL,
-  `descripcion` text NOT NULL,
   `estatus` int(11) NOT NULL,
-  `id_proveedor` int(11) NOT NULL
+  `id_proveedor` int(11) NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `precio`, `marca`, `stock`, `descripcion`, `estatus`, `id_proveedor`) VALUES
-(1, 'Antonio', 2, '', 0, '', 2, 3),
-(2, 'klondy', 2, '', 0, '', 2, 3),
-(3, 'Mary ', 20, '20', 20, '<p>20</p>', 2, 3),
-(4, 'pepe', 20, '20', 20, '<p>20</p>', 1, 3),
-(5, 'vilma', 20, '20', 20, '<p>20</p>', 2, 3),
-(6, 'Aruto', 20, '20', 20, '<p>20</p>', 2, 3),
-(7, 'Cano', 20, '20', 20, '<p>20</p>', 2, 3),
-(8, 'Jose', 20, '20', 20, '<p>20</p>', 1, 3),
-(9, 'Sara', 20, '20', 20, '<p>20</p>', 1, 3),
-(10, 'Quinverli', 40, '2000', 2000, '<p>naudis</p>', 2, 3),
-(11, 'Reimar', 50, '50', 50, '<p>50</p>', 1, 3),
-(12, '2', 0, '', 0, '', 2, 3),
-(14, '3', 0, '', 0, '', 2, 3),
-(15, '1', 50, '50', 5, '<p>0</p>', 1, 2),
-(16, 'pepe pito dormilos', 2, '', 0, '', 1, 3),
-(17, 'naudis garcia', 50, '50', 50, '<p>50</p>', 1, 3),
-(18, 'lolita', 50, '50', 50, '<p>50</p>', 2, 3);
+INSERT INTO `productos` (`id`, `nombre`, `precio`, `marca`, `stock`, `estatus`, `id_proveedor`, `descripcion`) VALUES
+(1, 'Antonio', 2, '', 0, 1, 3, ''),
+(2, 'klondy', 2, '', 0, 2, 3, ''),
+(3, 'Mary ', 20, '20', 0, 1, 3, '<p>20</p>'),
+(4, 'pepe', 20, '20', 9, 1, 3, '<p>20</p>'),
+(5, 'vilma', 20, '20', 20, 2, 3, '<p>20</p>'),
+(6, 'Quinverli', 40, '2000', 1952, 1, 3, '<h3><strong>Analisis :</strong></h3><ul><li>proteina: min 14%.</li><li>grasa: min 3%.</li><li>Fibra : Max. 12%.<ul><li>Humedad : Max. 12%</li></ul></li><li>&nbsp;</li></ul><h3><strong>Presentación:</strong></h3><ul><li>Alimento en forma de pellet en saco <strong>35 kg</strong></li><li>&nbsp;</li></ul><h3><strong>Uso:</strong></h3><ul><li>Alimento de mantenimiento para ser utilizado en</li><li><strong>Cerdo, Aves y Rumuniantes.</strong></li></ul>'),
+(7, 'Cano', 20.5, '20', 19, 1, 3, '<p>20</p>'),
+(8, 'Jose', 20, '20', 0, 1, 3, '<p>20</p>'),
+(9, 'Sara', 20, '20', 32, 1, 3, '<p>20</p>'),
+(10, 'Quinverli', 40, '2000', 1953, 1, 3, ' Analisis :\r\n         Proteina    : min. 14%           \r\n         Grasa        : Min. 3%              \r\n         Fibra         : Max. 12%\r\n          Humedad : Max. 12%\r\n\r\nPresentación:'),
+(11, 'Reimar', 50, '50', 899, 1, 3, '<p>50</p>'),
+(14, '3', 0, '', 0, 2, 3, ''),
+(16, 'pepe pito dormilos', 2, '', 0, 1, 3, ''),
+(17, 'naudis garcia', 50, '50', 50, 2, 3, '<p>50</p>'),
+(18, 'lolita', 50, '50', 50, 2, 3, '<p>50</p>'),
+(19, 'pepe', 0.8, 'pepitoa', 50, 1, 2, '<p>hola pepa</p>'),
+(20, 'lamela', 68.2, 'pepito', 49, 1, 3, '<p>Lamela Jugador&nbsp;</p>'),
+(27, 'mantequilla', 200, '500', 60, 2, 3, '<p>pepito lamela&nbsp;</p>'),
+(28, 'mantequilla', 200, '500', 60, 2, 3, '<p>pepito lamela&nbsp;</p>'),
+(29, 'aa', 22, 'aa', 0, 2, 3, ''),
+(30, 'ww', 3, '', 0, 2, 2, ''),
+(32, '22', 22, '33', 0, 2, 3, ''),
+(33, '33', 33, '333', 333, 2, 2, '<p>33</p>'),
+(34, 'pepapu', 22, '22', 22, 1, 3, '<p>lamela</p>'),
+(36, '', 0, '', 0, 2, 3, ''),
+(37, '', 0, '', 0, 2, 3, '');
 
 -- --------------------------------------------------------
 
@@ -188,7 +206,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `nombre`, `apellido`, `cedula`, `sexo`, `telefono`, `direccion`, `user_id`) VALUES
-(1, 'naudis', 'garcia', '22200685', '', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 1);
+(1, 'naudis', 'garcia', '22200685', 'Masculino', '04245366490', 'la orquidea Calle 6, Barquisimeto 3001, Lara', 1);
 
 -- --------------------------------------------------------
 
@@ -253,25 +271,32 @@ CREATE TABLE `taggables` (
 
 INSERT INTO `taggables` (`id`, `taggable_id`, `tag_type`, `tag_id`) VALUES
 (1, 3, 3, 7),
-(2, 6, 3, 6),
 (40, 5, 3, 7),
 (41, 5, 3, 5),
 (96, 16, 3, 7),
 (97, 16, 3, 6),
 (99, 18, 3, 7),
 (102, 4, 3, 7),
-(103, 7, 3, 5),
 (107, 17, 3, 7),
 (108, 17, 3, 6),
 (109, 17, 3, 5),
-(110, 15, 3, 7),
-(111, 15, 3, 7),
-(112, 15, 3, 6),
-(113, 15, 3, 5),
-(114, 15, 3, 4),
-(115, 15, 3, 3),
-(116, 15, 3, 2),
-(117, 15, 3, 1);
+(150, 10, 3, 2),
+(162, 6, 3, 2),
+(164, 7, 3, 5),
+(165, 19, 3, 6),
+(166, 15, 3, 7),
+(167, 15, 3, 7),
+(168, 15, 3, 6),
+(169, 15, 3, 5),
+(170, 15, 3, 4),
+(171, 15, 3, 3),
+(172, 15, 3, 2),
+(173, 15, 3, 1),
+(186, 20, 3, 6),
+(187, 27, 3, 7),
+(188, 28, 3, 7),
+(189, 34, 3, 5),
+(190, 34, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -421,7 +446,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa`
@@ -433,7 +458,7 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de la tabla `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `models`
@@ -445,7 +470,7 @@ ALTER TABLE `models`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
@@ -463,7 +488,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `taggables`
 --
 ALTER TABLE `taggables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
 
 --
 -- AUTO_INCREMENT de la tabla `tags`

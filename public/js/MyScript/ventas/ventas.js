@@ -93,6 +93,11 @@ $(".carrito").on("submit", function (e) {
 
 
 function sumar (cantidada, Posicion, stock , precio) {
+    /* 
+        para obtener en valor de radio 
+        alert($('input:radio[name=radio]:checked').val());
+    
+    */
     $.ajax({       
         url : 'index.php?controllers=Venta&a=addCarito',          
         data : { Posicion : Posicion , Precio : precio, Cantidad :  cantidada },          
@@ -112,7 +117,7 @@ function sumar (cantidada, Posicion, stock , precio) {
   Sub = cantidada*precio;
   SubTotal=  "spTotal"+Posicion; 
 
-  document.getElementById(SubTotal).innerHTML = "$"+ Sub ;
+  document.getElementById(SubTotal).innerHTML = "$"+ Sub.toFixed(2);  ;
  /*  alert(valor + " " + id + " " + stock); */
 }
 

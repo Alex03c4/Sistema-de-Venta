@@ -10,11 +10,12 @@ class EmpresaController  {
     public function ViewEmpresa(){
         $empresa  = new EmpresaModel();
         $data['titulo'] = 'Empresa';
-        $data['img'] = $empresa->imgAll(4); /* El id del modelo de la Empresa es = 4 */
+        $data['img'] = $empresa->imgAll(4); 
         $data['empresa'] = $empresa->getById('empresa',1);
     
         $empresa = null;
         require_once "views\admin\Empresa.php";   
+        echo "hola";
     }
 
     public function update(){  

@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    $(".Updates").on("submit", function (e) {
-        
+    $(".Updates").on("submit", function (e) {        
         e.preventDefault();
         var datos = new FormData(this);
         console.log(datos);
@@ -18,6 +17,7 @@ $(document).ready(function () {
             console.log(resultado);
       
             if (resultado.respuesta == "exito") {
+              
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -31,11 +31,14 @@ $(document).ready(function () {
                     no-repeat
                     `
                   })
+                  document.getElementById("insert").reset();//limpiar el formulario
+                  $('.box').css('background-image', 'url( public/img/Producto/defaul/Producto.png )');  
+                  
             } else {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Actualización Exitosa',
+                    title: 'Disculpe, existió un problema',
                     showConfirmButton: false,
                     timer: 1500,
                     backdrop: `
@@ -48,7 +51,11 @@ $(document).ready(function () {
             }
           },
         });
-      });
+    });
+
+    $("#insert").on("submit", function (e) { 
+
+    });
 
 
     $('.Delete').on("submit", function (e) {

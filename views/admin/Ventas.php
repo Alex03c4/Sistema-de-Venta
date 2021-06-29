@@ -1,6 +1,6 @@
 <?php
 unset($_SESSION['C-Compra']);
-unset($_SESSION['Total']);
+unset($_SESSION['SubTotal']);
 ?>
 
 <?php
@@ -17,7 +17,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js" defer></script>
 
 <script src="public\plugins\datateble\Tables.js" defer></script>
-<script src="public\js\MyScript\ajax.jss" defer></script>
+<script src="public\js\MyScript\ajax.js" defer></script>
 <script src="public\js\MyScript\cliente\cliente.js" defer></script>
 
 <!-- Carito -->
@@ -30,7 +30,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
   <form role="form" class="Ventas" method="post" action="index.php?controllers=Venta&a=GenerarVentas">
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full  grid grid-cols-4 gap-2 ">
 
-      <div class="col-span-4 lg:col-span-3">
+      <div x-data="{ open: true }" class="col-span-4 lg:col-span-3">
 
 
         <?php require_once 'views\admin\component\ventas\info-carrito.php'; ?>

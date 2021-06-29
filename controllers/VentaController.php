@@ -21,6 +21,15 @@ class VentaController {
     }
 
     public function GenerarVentas(){ 
+
+        ?>
+            <pre>
+        <?php
+                die(var_dump($_POST));
+        ?>
+            </pre>
+        <?php
+        
         
         $model = new VentaModel();
         $newStock = null; 
@@ -82,14 +91,14 @@ class VentaController {
                 'Total'=>$_POST['precio']
             );
 
-            $_SESSION['Total'][0] = (float)$_POST['precio'];
+            $_SESSION['SubTotal'][0] = (float)$_POST['precio'];
             $_SESSION['C-Compra'][0] = $p2;
                         
         } else {
             $aux = 0;
             $NumeroProducto = count($_SESSION['C-Compra']); 
-            $_SESSION['Total'][$NumeroProducto] = (float)$_POST['precio'];     
-            foreach ($_SESSION['Total'] as $key => $value) {
+            $_SESSION['SubTotal'][$NumeroProducto] = (float)$_POST['precio'];     
+            foreach ($_SESSION['SubTotal'] as $key => $value) {
                 $aux += $value ;
             }
             
@@ -122,12 +131,17 @@ class VentaController {
     }
 
     public function addCarito(){
-        $_SESSION['Total'][$_POST['Posicion']] =  (float)$_POST['Precio']* $_POST['Cantidad'];
+        
+        $_SESSION['SubTotal'][$_POST['Posicion']] =  (float)$_POST['Precio']* $_POST['Cantidad'];
+       
         $aux = 0;
+
             
-        foreach ($_SESSION['Total'] as $key => $value) {
+        foreach ($_SESSION['SubTotal'] as $key => $value) {
            $aux += $value ;
         }
+
+        $aux = number_format($aux, 2, ",", ".");
         die(json_encode($aux));  
             
     }

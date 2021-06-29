@@ -4,10 +4,10 @@
             <h2>Carrito</h2>
         </div>
         <div class="cursor-pointer mx-4">
-            <i class="fas fa-window-minimize"></i>
+            <i x-on:click="open= !open" class="fas fa-window-minimize"></i>
         </div>
     </div>
-    <div id="producto" class="grid grid-cols-3 xl:grid-cols-4">
+    <div x-show="open" id="producto" class="grid grid-cols-3 xl:grid-cols-4">
        
 
     </div>

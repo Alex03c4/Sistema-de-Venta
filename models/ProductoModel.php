@@ -74,15 +74,20 @@ class ProductoModel extends BaseModel {
                 $aux = new ProductoModel();
                 
                     $aux->deleteTaggables($dato["id"], 3);
-
-                
+              
                 if (!$dato['checkbox'] == NULL) {
-                    
-
                     foreach ($dato['checkbox'] as $value) {                   
                        $aux->InserTaggables($dato["id"], 3 , $value);
                     }   
                 }
+
+                $aux->deleteImg($dato["id"], 3 , 'Producto');
+                /* if (!$dato['Img_nombre'] == NULL) {
+                    
+                    
+                } */
+                $aux->InsertImg($dato["id"], 3 , 'Producto', $dato);
+
 
                /*  $img = new ProductoModel();
                     $img->InsertImg( $dato["id"] , 3 , 'Producto' , $dato);   */
