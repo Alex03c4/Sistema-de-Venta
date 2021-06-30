@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2021 a las 02:37:38
+-- Tiempo de generación: 29-06-2021 a las 16:35:38
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -72,7 +72,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`Id`, `nombre`, `documento`, `telefono`, `telefono2`, `email`, `direccion`) VALUES
-(1, 'LaraMarket naudis', 'J-2253658455', '02519855490', '04246366480', 'LaraMarket@Gmail.com', 'La Orquidea ');
+(1, 'LaraMarket ', 'J-2253658455', '02519855490', '04246366480', 'LaraMarket@Gmail.com', 'La Orquidea ');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,6 @@ INSERT INTO `images` (`id`, `url`, `img_id`, `img_type`) VALUES
 (18, 'Luis.jpg', 14, 3),
 (23, 'ejercicio 2.jpg', 27, 3),
 (24, 'ejercicio 2.jpg', 28, 3),
-(25, 'Luis.jpg', 33, 3),
 (26, 'Faste.png', 34, 3);
 
 -- --------------------------------------------------------
@@ -163,7 +162,7 @@ INSERT INTO `productos` (`id`, `nombre`, `precio`, `marca`, `stock`, `estatus`, 
 (4, 'pepe', 20, '20', 9, 1, 3, '<p>20</p>'),
 (5, 'vilma', 20, '20', 20, 2, 3, '<p>20</p>'),
 (6, 'Quinverli', 40, '2000', 1952, 1, 3, '<h3><strong>Analisis :</strong></h3><ul><li>proteina: min 14%.</li><li>grasa: min 3%.</li><li>Fibra : Max. 12%.<ul><li>Humedad : Max. 12%</li></ul></li><li>&nbsp;</li></ul><h3><strong>Presentación:</strong></h3><ul><li>Alimento en forma de pellet en saco <strong>35 kg</strong></li><li>&nbsp;</li></ul><h3><strong>Uso:</strong></h3><ul><li>Alimento de mantenimiento para ser utilizado en</li><li><strong>Cerdo, Aves y Rumuniantes.</strong></li></ul>'),
-(7, 'Cano', 20.5, '20', 19, 1, 3, '<p>20</p>'),
+(7, 'Cano', 20.5, '20', 18, 1, 3, '<p>20</p>'),
 (8, 'Jose', 20, '20', 0, 1, 3, '<p>20</p>'),
 (9, 'Sara', 20, '20', 32, 1, 3, '<p>20</p>'),
 (10, 'Quinverli', 40, '2000', 1953, 1, 3, ' Analisis :\r\n         Proteina    : min. 14%           \r\n         Grasa        : Min. 3%              \r\n         Fibra         : Max. 12%\r\n          Humedad : Max. 12%\r\n\r\nPresentación:'),
@@ -179,7 +178,7 @@ INSERT INTO `productos` (`id`, `nombre`, `precio`, `marca`, `stock`, `estatus`, 
 (29, 'aa', 22, 'aa', 0, 2, 3, ''),
 (30, 'ww', 3, '', 0, 2, 2, ''),
 (32, '22', 22, '33', 0, 2, 3, ''),
-(33, '33', 33, '333', 333, 2, 2, '<p>33</p>'),
+(33, '33', 33, '333', 500, 1, 2, '<p>33</p>'),
 (34, 'pepapu', 22, '22', 22, 1, 3, '<p>lamela</p>'),
 (36, '', 0, '', 0, 2, 3, ''),
 (37, '', 0, '', 0, 2, 3, '');
@@ -446,7 +445,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa`

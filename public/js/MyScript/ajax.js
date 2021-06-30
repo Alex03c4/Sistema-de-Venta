@@ -91,12 +91,12 @@ $(document).ready(function () {
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Si!'
         }).then((result) => {
           if (result.isConfirmed) {
             e.preventDefault();
             var datos = $(this).serializeArray();   
-            console.log(datos);
+           /*  console.log(datos); */
             $.ajax({
               type: 'post',
               data: datos,
@@ -104,18 +104,31 @@ $(document).ready(function () {
               dataType: "json",
               success: function (data) {
                 var resultado = data;
-                console.log(resultado); 
+                console.log(resultado);
+                if (resultado.respuesta=="exito") {
+
+                   Swal.fire(
+                  'Venta',
+                  'Generada con Éxito.',
+                  'success'
+                  ) 
+
+                 setTimeout(redire,2000); 
+                } else {
                   Swal.fire(
-                'Venta',
-                'Generada con Éxito.',
-                'success'
-                )
-                setTimeout(redire,2000);
+                    'Venta',
+                    'Disculpe, existió un problema. ' . resultado.Exception,
+                    'error'
+                    )
+                }
+                console.log(resultado); 
+                
+                
               },error : function(xhr, status) {
                 Swal.fire(
                   'Venta',
-                  'Generada con Éxito.',
-                  'erro'
+                  'Disculpe, existió un problema.',
+                  'error'
                   )
                   
                   

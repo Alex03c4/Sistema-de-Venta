@@ -1,6 +1,7 @@
 <?php
 unset($_SESSION['C-Compra']);
 unset($_SESSION['SubTotal']);
+unset($_SESSION['Total']);
 ?>
 
 <?php
@@ -9,8 +10,6 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 ?>
 
-<!-- Editor -->
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js" defer></script>
 
 <!-- DataTable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
@@ -31,7 +30,6 @@ require_once "views\admin\component\layouts\sidebarTW.php";
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full  grid grid-cols-4 gap-2 ">
 
       <div x-data="{ open: true }" class="col-span-4 lg:col-span-3">
-
 
         <?php require_once 'views\admin\component\ventas\info-carrito.php'; ?>
         <?php require_once 'views\admin\component\ventas\info-total.php'; ?>

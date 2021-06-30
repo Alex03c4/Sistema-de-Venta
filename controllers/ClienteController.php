@@ -28,7 +28,9 @@ class ClienteController  {
 
     public function Insert($dato){
       $cliente = new ClienteModel();
-      $cliente->Insert($dato);   
+      $resultado = $cliente->Insert($dato);
+      
+      return ($resultado);
    }
 
     public function update(){

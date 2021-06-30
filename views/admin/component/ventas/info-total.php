@@ -30,7 +30,7 @@
 
 
                 <div x-show="open" class="mb-1 absolute ml-24 -mt-20 ">
-                    <textarea x-ref="input"  name="message" id="" class="border-2 border-gray-200 rounded-md p-2 focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-300" placeholder="Por favor una breve Descripción"></textarea>
+                    <textarea x-ref="input"  name="desc-venta" id="" class="border-2 border-gray-200 rounded-md p-2 focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-300" placeholder="Por favor una breve Descripción"></textarea>
                 </div>
             </div>
         </div>

@@ -22,49 +22,61 @@ class VentaController {
 
     public function GenerarVentas(){ 
 
-        ?>
-            <pre>
-        <?php
-                die(var_dump($_POST));
-        ?>
-            </pre>
-        <?php
-        
-        
-        $model = new VentaModel();
-        $newStock = null; 
-                
-            foreach ($_SESSION["C-Compra"] as $key ) {               
-                    $id         = (int)$key['id'];
-                    $precio     = (int)$key['precio'];
-                    $cantida    = (int)$_POST[$key['id']];
-                    $Stock      = (int)$key['stock'];
+        try {
+            $model = new VentaModel();
+            $newStock = null; 
+            $time = time();
+            $time= date("Y-m-d(H:i:s)",$time);            
                     
+    
+                if (isset($_POST['Cliente'])) {           
+                    $Id_Cliente = $_POST['Cliente'];
+                } else {
+                    $dato = array(            
+                        'Cedula-cliente' =>  $_POST['Cedula-cliente'],
+                        'nombre' => $_POST['nombre'],
+                        'apellido' => $_POST['apellido'],
+                        'telefono' => $_POST['telefono'],
+                        'direccion' => $_POST['direccion'],
+                        'email'=> $_POST['email']                            
+                    );
+                    $cliente = new ClienteController();
+                    $Id_Cliente = $cliente->Insert($dato); 
+                } 
+                
+                $Venta = array(
+                    'Producto'=> json_encode($_SESSION['C-Compra']),
+                    'Total'=> $_SESSION["Total"],
+                    'Tipo_pago'=> $_POST["radio"],
+                    'Id_User' =>$_SESSION['id'],
+                    'id_Cliente' => $Id_Cliente,
+                    'desc' => $_POST['desc-venta'],
+                    'fecha' => $time
+                );
+    
+                $model->InsertVentas($Venta);          
+               
+                foreach ($_SESSION["C-Compra"] as $key ) {               
+                    $id         = (int)$key['id'];                   
+                    $cantida    = (int)$_POST[$key['id']];
+                    $Stock      = (int)$key['stock'];                    
                     $newStock = ($Stock - $cantida);                                    
                     $model->StockUpdate($newStock, $id);
-            }
-    
-            if (isset($_POST['Cliente'])) {           
-                
-            } else {
-                $dato = array(            
-                    'Cedula-cliente' =>  $_POST['Cedula-cliente'],
-                    'nombre' => $_POST['nombre'],
-                    'apellido' => $_POST['apellido'],
-                    'telefono' => $_POST['telefono'],
-                    'direccion' => $_POST['direccion'],
-                    'email'=> $_POST['email']                            
+                }
+                $respuesta = array(
+                    'respuesta' => 'exito'
                 );
-            $cliente = new ClienteController();
-            $cliente->Insert($dato); 
-
-            } 
-            
+    
+                die(json_encode($respuesta));  
+                 
+        } catch (\Throwable $th) {    
             $respuesta = array(
                 'respuesta' => 'error'
-            );
-            die(json_encode($respuesta));  
-            
+            ); 
+            die(json_encode($respuesta)); 
+        }
+        
+        
         
     }
 
@@ -86,14 +98,18 @@ class VentaController {
 
             $p2 = array(
                 'id' => $_POST['id'],
+                'can'=> 1,  
+                'nombre'=> $_POST['nombre'],
+                'marca'=> $_POST['marca'],
                 'precio'=> $_POST['precio'],
                 'stock'=> $_POST['stock'],
-                'Total'=>$_POST['precio']
+                'Total'=>$_POST['precio'],
+                
             );
 
             $_SESSION['SubTotal'][0] = (float)$_POST['precio'];
             $_SESSION['C-Compra'][0] = $p2;
-                        
+            $_SESSION['Total'] = (float)$_POST['precio'];            
         } else {
             $aux = 0;
             $NumeroProducto = count($_SESSION['C-Compra']); 
@@ -118,11 +134,15 @@ class VentaController {
             );  
             $p2 = array(
                 'id' => $_POST['id'],
+                'can'=> 1,  
+                'nombre'=> $_POST['nombre'],
+                'marca'=> $_POST['marca'],
                 'precio'=> $_POST['precio'],
                 'stock'=> $_POST['stock'],
+                'Total'=>$_POST['precio'],                
                 
             );  
-            
+            $_SESSION['Total'] = $aux;
             $_SESSION['C-Compra'][$NumeroProducto] = $p2;
         }       
 
@@ -133,7 +153,7 @@ class VentaController {
     public function addCarito(){
         
         $_SESSION['SubTotal'][$_POST['Posicion']] =  (float)$_POST['Precio']* $_POST['Cantidad'];
-       
+        $_SESSION['C-Compra'][$_POST['Posicion']]['can'] = (float)$_POST['Cantidad'];
         $aux = 0;
 
             
@@ -142,6 +162,7 @@ class VentaController {
         }
 
         $aux = number_format($aux, 2, ",", ".");
+        $_SESSION['Total'] = $aux;
         die(json_encode($aux));  
             
     }

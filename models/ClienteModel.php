@@ -11,28 +11,27 @@ class ClienteModel extends BaseModel {
          $sql .= " VALUES ";             
          $stmt = $this->db->prepare($sql. "(?, ?, ?, ?, ?, ?)");
          $stmt->bind_param('ssssss', $dato['Cedula-cliente'], $dato['nombre'], $dato['apellido'], $dato['telefono'], $dato['direccion'] , $dato['email']);
-         $stmt->execute();       
-         if ($stmt->affected_rows>0) {                   
-             
-             $respuesta = array(
-                 'respuesta' => 'exito',                             
-             ); 
-      
-        
+         $stmt->execute();   
+         
+         if ($stmt->affected_rows>0) {                  
+            return ($stmt->insert_id);                   
          } else {
-             $respuesta = array(
-                 'respuesta' => 'error'
-             );
-             die(json_encode($respuesta));   
-         }              
-        } catch (Exception $e) {
-         $respuesta = array(
-             'respuesta' => 'error',
-             'donde' => 'sql',
-             'e' => $e->getMessage()
-         );
-         die(json_encode($respuesta));      
-     }       
+            /* $respuesta = array(
+                'respuesta' => 'error'                
+            ); 
+            die(json_encode($respuesta));
+             echo $stmt->affected_rows;   */  
+         } 
+        } catch (Exception $e) {    
+            $respuesta = array(
+                'respuesta' => 'error',
+                'Exception' => $e
+            ); 
+             die(json_encode($respuesta)); 
+        }
+        
+         return NULL;      
+             
         
     }
 
