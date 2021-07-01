@@ -16,7 +16,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js" defer></script>
 
 <script src="public\plugins\datateble\Tables.js" defer></script>
-<script src="public\js\MyScript\ajax.js" defer></script>
+<script src="public\js\MyScript\ajax.jss" defer></script>
 <script src="public\js\MyScript\cliente\cliente.js" defer></script>
 
 <!-- Carito -->

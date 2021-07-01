@@ -19,8 +19,14 @@ $("#Cedula-cliente").on("blur", function (e) {
         $("#Nuevo-cliente").removeClass("visible");
         $("#Nuevo-cliente").addClass("hidden");        
           $("#remove").remove();
+          
           var datoCliente = document.querySelector('#ajax');
           var nuevoDiv = document.createElement('div');
+          var Credito = resultado.credito.Creditos;
+          if (resultado.credito.Creditos == null) {
+              var Credito = 0
+          }
+
           nuevoDiv.id = 'remove';
           nuevoDiv.innerHTML = `           
            <div class="m-2">
@@ -55,7 +61,7 @@ $("#Cedula-cliente").on("blur", function (e) {
                 <label for="last_name" class="block text-base font-bold text-gray-700">Crédito:</label>
                 <div class="flex justify-between">
                     <i class="far fa-id-card mt-3 mr-1"></i>
-                    <input readonly="readonly" value="${"$ 0"} " type="text" name="credito" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <input readonly="readonly" value="${"$ "+Credito}" type="text" name="credito" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
             </div>
             <input type="hidden" name="Cliente" value="${resultado.data.id}">

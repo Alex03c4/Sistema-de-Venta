@@ -9,6 +9,11 @@ $menu = array(
     'icono' =>  'fas fa-cash-register',
     'url'   =>  'index.php?controllers=Venta&a=ViewVentas'
   ),
+
+  'Créditos' =>  array(
+    'icono' =>  'fas fa-hand-holding-usd',
+    'url'   =>  'index.php?controllers=Venta&a=ViewVentas'
+  ),
 );
 
 $menuAdmin = array(

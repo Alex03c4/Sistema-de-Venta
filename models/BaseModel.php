@@ -27,6 +27,18 @@ class BaseModel {
      return $resultSet; 
     }
 
+
+    
+    public function Credito($cedula){
+        $resultSet= NULL; 
+           $sql = "SELECT round(SUM(`monto`),2) AS Creditos FROM credito WHERE `id_cliente` = $cedula";
+           $query= $this->db->query($sql);
+           if($row = $query->fetch_assoc()) {
+               $resultSet=$row;
+           } 
+        return $resultSet; 
+       }
+
     public function getAll($table){
         $resultSet= null;
         $query=$this->db->query("SELECT * FROM $table ORDER BY id DESC");

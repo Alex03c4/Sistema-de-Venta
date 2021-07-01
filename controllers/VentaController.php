@@ -54,7 +54,17 @@ class VentaController {
                     'fecha' => $time
                 );
     
-                $model->InsertVentas($Venta);          
+                $id_vente =  $model->InsertVentas($Venta);
+                if ($_POST["radio"] == 'Credito') {
+                    $Venta = array(                        
+                        'Total'=> $_SESSION["Total"],                                          
+                        'id_Cliente' => $Id_Cliente,
+                        'id_venta'=> $id_vente  
+                       
+                    );
+
+                   $model->InserCredito($Venta);
+                }          
                
                 foreach ($_SESSION["C-Compra"] as $key ) {               
                     $id         = (int)$key['id'];                   
