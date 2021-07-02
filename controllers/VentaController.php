@@ -92,8 +92,8 @@ class VentaController {
 
     public function Carrito(){        
         $p=NULL;      
-        if (!isset($_SESSION['C-Compra'])) {             
-            $p = array(
+        if (!isset($_SESSION['C-Compra'])) {              
+            $p = array(                
                 'id'=> $_POST['id'],
                 'can'=> 1,                
                 'nombre'=> $_POST['nombre'],
@@ -107,6 +107,7 @@ class VentaController {
             );
 
             $p2 = array(
+                
                 'id' => $_POST['id'],
                 'can'=> 1,  
                 'nombre'=> $_POST['nombre'],
@@ -129,7 +130,7 @@ class VentaController {
             }
             
 
-            $p = array(
+            $p = array(                
                 'id'=> $_POST['id'],
                 'can'=> 1,
                 'nombre'=> $_POST['nombre'],
@@ -143,6 +144,7 @@ class VentaController {
                 
             );  
             $p2 = array(
+                
                 'id' => $_POST['id'],
                 'can'=> 1,  
                 'nombre'=> $_POST['nombre'],
@@ -164,6 +166,7 @@ class VentaController {
         
         $_SESSION['SubTotal'][$_POST['Posicion']] =  (float)$_POST['Precio']* $_POST['Cantidad'];
         $_SESSION['C-Compra'][$_POST['Posicion']]['can'] = (float)$_POST['Cantidad'];
+        $_SESSION['C-Compra'][$_POST['Posicion']]['Total'] = (float)$_POST['Precio']* $_POST['Cantidad'];
         $aux = 0;
 
             

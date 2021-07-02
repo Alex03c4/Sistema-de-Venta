@@ -13,7 +13,7 @@ class BaseModel {
         if($row = $query->fetch_assoc()) {
             $resultSet=$row;
         } 
-     return $resultSet;
+        return $resultSet;
     }
 
 

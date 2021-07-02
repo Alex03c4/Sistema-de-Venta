@@ -1,4 +1,4 @@
-<div class="  rounded-2xl gap-y-5">
+<div class="  rounded-2xl gap-y-5 mb-7">
   <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
     <div>
       <h2>Lista de Producto</h2>
@@ -20,12 +20,15 @@
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Stock
           </th>
+          <th scope="col" class="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+            Cantidad Comprada
+          </th>
+
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Estatus
+            Sub-Total
           </th>
-          <th scope="col" class="relative px-6 py-3">
-            <span class="sr-only">Edit</span>
-          </th>
+
+
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
@@ -33,8 +36,7 @@
         <?php
         if (isset($data['producto'])) {
          
-          foreach ($data['producto'] as $key => $value) {
-            if ($value->estatus == 1 && $value->stock > 0) { ?>
+          foreach ($data['producto'] as $key => $value) {?>
 
               <tr class="border-b border-gray-200 hover:bg-gray-100">
 
@@ -88,50 +90,23 @@
 
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 grid grid-cols-1 lg:grid-cols-5 gap-2">
-                  <?php
-                  foreach ($data['tags'] as $llave => $resultado2) {
 
-                    if ($resultado2->taggable_id ==  $value->id) { ?>
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                      
-                      <?php
-                      echo " bg-" . $resultado2->color . "-200 " . " text-" . $resultado2->color . "-800 ";
-                      ?>
-                        "><?php echo $resultado2->nombre ?></span>
-                  <?php
-                    }
-                  } ?>
+
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900 text-center">  <?php echo $value->can ?> </div>
+                </td>
+
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900"> <i class="fas fa-dollar-sign"></i> <?php echo $value->Total ?> </div>
                 </td>
 
 
-                <td class="py-3 px-6 text-center">
-                  <div x-data="{ btm: true }"
-                    class="flex item-center justify-center m-1">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                      <div>
-                        <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">
-                          <input type="hidden" name="img"     value="<?php echo $imgURL ?>">  
-                           <input type="hidden" name="id"     value="<?php echo $value->id ?>">
-                           <input type="hidden" name="nombre" value="<?php echo $value->nombre ?>">
-                           <input type="hidden" name="precio" value="<?php echo $value->precio ?>">
-                           <input type="hidden" name="marca"  value="<?php echo $value->marca ?>">
-                           <input type="hidden" name="stock"  value="<?php echo $value->stock ?>"> 
-                           <input type="hidden" name="imgURL"   value="<?php echo $imgURL ?>">
-                           <input type="hidden" name="descrip"value="<?php echo $value->descripcion ?>">                          
 
-                           <button x-on:click="btm= !btm" x-show="btm">
-                              <i class="fas fa-shopping-cart"></i>
-                           </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </td>
+
               </tr>
 
 
-            <?php }
+            <?php 
           }                  
         } 
         ?>

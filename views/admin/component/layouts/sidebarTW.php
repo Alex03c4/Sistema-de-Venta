@@ -12,7 +12,7 @@ $menu = array(
 
   'Créditos' =>  array(
     'icono' =>  'fas fa-hand-holding-usd',
-    'url'   =>  'index.php?controllers=Venta&a=ViewVentas'
+    'url'   =>  'index.php?controllers=Credito&a=ViewCredito'
   ),
 );
 

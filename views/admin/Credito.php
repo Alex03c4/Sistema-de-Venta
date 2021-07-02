@@ -16,9 +16,9 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
-<div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
+  <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
     <div>
-      <h2>Lista de Producto</h2>
+      <h2>Lista de Crédito</h2>
     </div>
     <div class="cursor-pointer mx-4">
       <i class="fas fa-window-minimize"></i>
@@ -34,16 +34,19 @@ require_once "views\admin\component\layouts\sidebarTW.php";
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nombre
+                    Nombre Cliente
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Precio
+                    Cedula
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Stock
+                    Teléfono
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Estatus
+                    Monto
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Numero de factura
                   </th>
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
@@ -53,9 +56,9 @@ require_once "views\admin\component\layouts\sidebarTW.php";
               <tbody class="bg-white divide-y divide-gray-200">
 
                 <?php
-                if (isset($data['producto'])) {
+                if (isset($data['Credito'])) {
 
-                  foreach ($data['producto'] as $key => $value) {?>
+                  foreach ($data['Credito'] as $key => $value) { ?>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
                       <td class="px-6 py-4 whitespace-nowrap">
@@ -63,7 +66,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                           <div class="flex-shrink-0 h-10 w-10">
                             <?php
                             $imgURL = "defaul/Producto.png";
-                           
+
                             if (isset($data['img'])) {
                               foreach ($data['img'] as $imagen => $resultado) {
                                 if ($resultado->img_id === $value->id) {
@@ -77,7 +80,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                           </div>
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">
-                              <?php echo $value->nombre ?>
+                              <?php echo $value->nombre . " " . $value->apellido ?>
                             </div>
                             <!-- <div class="text-sm text-gray-500">
                               jane.cooper@example.com
@@ -86,55 +89,38 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                         </div>
                       </td>
 
+
                       <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900"> <i class="fas fa-dollar-sign"></i> <?php echo $value->precio ?> </div>
+                        <div class="text-sm font-medium text-gray-900">  <?php echo $value->cedula ?> </div>
                       </td>
 
                       <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                        <?php
-                        if ($value->stock <= 25) { ?>
-                            bg-red-200 text-red-600
-                           <?php
-                        } else{ ?>
-
-                          bg-green-100 text-green-800
-                         
-                         <?php
-
-                        }
-                        ?> ">
-
-                          <?php echo $value->stock; ?>
-
-                        </span>
+                        <div class="text-sm font-medium text-gray-900">  <?php echo $value->telefono ?> </div>
                       </td>
 
-                      <?php
-                      if ($value->estatus === '1') { ?>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Active</span>
-                        </td>
-                      <?php
-                      } else { ?>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Inactivo</span>
-                        </td>
-                      <?php
-                      }
-                      ?>
+                      
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900"> <i class="fas fa-dollar-sign"></i> <?php echo $value->monto ?> </div>
+                      </td>
+
+
+                      
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900"> <i class="fas fa-file-invoice-dollar"></i> <?php echo $value->id_venta ?> </div>
+                      </td>
+                      
 
 
                       <td class="py-3 px-6 text-center">
                         <div class="flex item-center justify-center m-1">
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <a href="#">
-                            <i class="far fa-eye"></i>
+                              <i class="far fa-eye"></i>
                             </a>
                           </div>
 
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                            <a href="index.php?controllers=Producto&a=getByID&id=<?php echo $value->id ?>">
+                            <a href="index.php?controllers=Credito&a=getByID&id=<?php echo $value->idCredito ?>">
                               <i class="fas fa-pencil-alt"></i>
                             </a>
 
