@@ -30,7 +30,7 @@
 
     <title><?php echo $data['titulo']?></title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans">
 <div class="inicio">
 
 

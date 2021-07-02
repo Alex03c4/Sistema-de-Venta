@@ -1,6 +1,6 @@
 <form name="info-Proveedor-form" class="Updates" method="post" action="index.php?controllers=Proveedor&a=Insert" enctype="multipart/form-data">
     <div class="col-span-6 sm:col-span-4 m-5 ">
-        <label for="country" class="block text-base font-bold text-gray-700">Country / Region</label>
+        <label for="country" class="text-sm font-medium text-gray-900">Country / Region</label>
         
         <select id="Proveedor" name="proveedorT" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <!-- <option value="-1" selected="" disabled="">Select one</option> -->
@@ -18,12 +18,12 @@
     
     <div id="ajax">
         <div class="col-span-6 sm:col-span-4 m-5 border-b">
-            <label for="last_name" class="block text-base font-bold text-gray-700">Nombre:</label>
+            <label for="last_name" class="text-sm font-medium text-gray-900">Nombre:</label>
             <input type="text" name="nombreP" autocomplete="off" id="nombreP" class="p-2 capitalize mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="col-span-6 sm:col-span-4 m-5 border-b">
-            <label for="last_name" class="block text-base font-bold text-gray-700">Teléfono:</label>
+            <label for="last_name" class="text-sm font-medium text-gray-900">Teléfono:</label>
             <div class="flex justify-between">
                 <i class="fas fa-phone mt-3 mr-1"></i>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4 m-5 border-b">
-            <label for="last_name" class="block text-base font-bold text-gray-700">dirección:</label>
+            <label for="last_name" class="text-sm font-medium text-gray-900">dirección:</label>
             <div class="flex justify-between">
                 <i class="fas fa-route mt-3 mr-1"></i>
                 <input type="text" name="direccion" autocomplete="off" id="direccion" class="p-2 capitalize mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4 m-5 border-b">
-            <label for="last_name" class="block text-base font-bold text-gray-700">Descripcion:</label>
+            <label for="last_name" class="text-sm font-medium text-gray-900">Descripcion:</label>
             <div class="flex justify-between">
                 <textarea id="descripcion2" name="descripcionPro">
 

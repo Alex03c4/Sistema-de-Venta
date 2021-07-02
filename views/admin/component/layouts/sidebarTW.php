@@ -21,7 +21,6 @@ $menuAdmin = array(
     'icono' =>  'fas fa-users',
     'Sub'   =>  '#'
   ),
-
   'Productos' =>  array(
     'icono' =>  'fas fa-people-carry',
     'Sub'   =>  array(
@@ -32,11 +31,19 @@ $menuAdmin = array(
   'Proveedor' =>  array(
     'icono' =>  'fas fa-shipping-fast fa-fw',
     'Sub'   =>  array(
-      'insert' => 'index.php?controllers=Producto&a=ViewInsert',
-      'select' => 'index.php?controllers=Producto&a=ViewProducto'
-    )
-
+      'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
+      'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
+    )   
   ),
+  'Tags' =>  array(
+    'icono' =>  'fas fa-tags',
+    'Sub'   =>  array(
+      'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
+      'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
+    )   
+  ),
+
+
 );
 
 ?>

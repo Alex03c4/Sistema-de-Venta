@@ -9,14 +9,14 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <!-- <a href="index.php?controllers=Perfil&a=edit">Perfil</a> -->
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
-        <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Empresa&a=update" enctype="multipart/form-data">
+        <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Proveedor&a=Insert" >
             <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"> -->
             <div>
 
                 <div class="bg-gray-100  rounded-2xl gap-y-5">
                     <div class="bg-blue-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
                         <div>
-                            <h2>Datos de la Empresa</h2>
+                            <h2>Registro de Proveedor</h2>
                         </div>
                         <div class="cursor-pointer mx-4">
                             <i class="fas fa-window-minimize"></i>
@@ -24,7 +24,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                     </div>
 
                     <div>
-                        <?php require_once 'views\admin\component\Empresa\info-Empresa.php'; ?>
+                        <?php require_once 'views\admin\component\proveedor\info-Proveedor.php'; ?>
                     </div>
                 </div>
             </div>

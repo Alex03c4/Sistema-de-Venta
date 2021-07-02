@@ -30,7 +30,7 @@
 
     <title>Document</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-serif">
 <div class="inicio">
 
 

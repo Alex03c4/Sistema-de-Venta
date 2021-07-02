@@ -1,11 +1,14 @@
 <?php
 class ProveedorModel extends BaseModel {
+   
+   
+   
     public function Insert($dato){
         try {
-         $sql = "INSERT INTO `proveedores`(`nombre`, `telefono`, `direccion`, `descripcion`) ";
+         $sql = "INSERT INTO `proveedores`( `rig`,`nombre`, `telefono`, `direccion`, `descripcion`) ";
          $sql .= " VALUES ";             
-         $stmt = $this->db->prepare($sql. "(?, ?, ?, ?)");
-         $stmt->bind_param('ssss', $dato['nombre'], $dato['telefono'], $dato['direccion'], $dato['descripcionPro']);
+         $stmt = $this->db->prepare($sql. "(?, ?, ?, ?, ?)");
+         $stmt->bind_param('sssss', $dato['documento'], $dato['nombre'], $dato['telefono'], $dato['direccion'], $dato['descripcionPro']);
          $stmt->execute();  
          if ($stmt->affected_rows>0) {               
              $respuesta = array(
