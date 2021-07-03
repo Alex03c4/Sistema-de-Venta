@@ -16,42 +16,41 @@ $menu = array(
   ),
 );
 
-$menuAdmin = array(
-  'Usuarios' => array(
-    'icono' =>  'fas fa-users',
-    'Sub'   =>  '#'
-  ),
-  'Productos' =>  array(
-    'icono' =>  'fas fa-people-carry',
-    'Sub'   =>  array(
-      'insert' => 'index.php?controllers=Producto&a=ViewInsert',
-      'select' => 'index.php?controllers=Producto&a=ViewProducto'
-    )
-  ),
-  'Proveedor' =>  array(
-    'icono' =>  'fas fa-shipping-fast fa-fw',
-    'Sub'   =>  array(
-      'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
-      'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
-    )   
-  ),
-  'Tags' =>  array(
-    'icono' =>  'fas fa-tags',
-    'Sub'   =>  array(
-      'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
-      'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
-    )   
-  ),
-
-
-);
-
+if ($_SESSION['rol'] <= 2) {
+  $menuAdmin = array(
+    'Usuarios' => array(
+      'icono' =>  'fas fa-users',
+      'Sub'   =>  '#'
+    ),
+    'Productos' =>  array(
+      'icono' =>  'fas fa-people-carry',
+      'Sub'   =>  array(
+        'insert' => 'index.php?controllers=Producto&a=ViewInsert',
+        'select' => 'index.php?controllers=Producto&a=ViewProducto'
+      )
+    ),
+    'Proveedor' =>  array(
+      'icono' =>  'fas fa-shipping-fast fa-fw',
+      'Sub'   =>  array(
+        'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
+        'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
+      )
+    ),
+    'Tags' =>  array(
+      'icono' =>  'fas fa-tags',
+      'Sub'   =>  array(
+        'insert' => 'index.php?controllers=Proveedor&a=ViewInsert',
+        'select' => 'index.php?controllers=Proveedor&a=ViewProveedor'
+      )
+    ),
+  );
+}
 ?>
 
 
 <div id="sidebar" class="bg-gray-600 h-full w-60 fixed text-gray-400 border-r-2 border-gray-700 invisible 
 <?php if ($data['titulo'] === 'Ventas') {
-    echo " invisible ";
+  echo " invisible ";
 } else {
   echo " lg:visible ";
 }
@@ -94,7 +93,22 @@ $menuAdmin = array(
         <span><?php echo $_SESSION['profiles']['nombre'] . " "; ?><strong> <?php echo $_SESSION['profiles']['apellido']; ?></strong></span>
       </div>
       <div id="user-role">
-        <span>Administrator</span>
+        <?php
+        if ($_SESSION['rol'] <= 2) { ?>
+          <span>Administrator</span>
+        <?php
+
+        } else if ($_SESSION['rol'] == 3) { ?>
+          <span>Empleado</span>
+        <?php
+        } else { ?>
+          <span>Empleado</span>
+        <?php
+        }
+        ?>
+
+
+
       </div>
     </div>
   </div><!-- #User -->
@@ -121,82 +135,81 @@ $menuAdmin = array(
       </ul>
     </div><!-- general -->
 
-    <div id="admin">
-      <h3 class="mt-4 p-0.5 text-lg">Admin</h3>
-      <ul>
-        <?php
 
-        foreach ($menuAdmin as $key => $value) { ?>
-          <li x-data="{ Open : false  }" class="relative">
-            <?php if (isset($value['url'])) { ?>
-              <a href="<?php echo $value['url'] ?>" class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer">
-                <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
-                  <span><i class="<?php echo $value['icono'] ?>"></i></span>
-                  <span class="px-0.5"><?php echo $key ?></span>
+    <?php
+    if (isset($menuAdmin)) {
+    ?>
+      <div id="admin">
+        <h3 class="mt-4 p-0.5 text-lg">Admin</h3>
+        <ul>
+          <?php
+
+          foreach ($menuAdmin as $key => $value) { ?>
+            <li x-data="{ Open : false  }" class="relative">
+              <?php if (isset($value['url'])) { ?>
+                <a href="<?php echo $value['url'] ?>" class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer">
+                  <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
+                    <span><i class="<?php echo $value['icono'] ?>"></i></span>
+                    <span class="px-0.5"><?php echo $key ?></span>
+                  </div>
+                </a>
+              <?php
+              } else { ?>
+                <div class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer" x-on:click="Open = !Open">
+                  <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
+                    <span><i class="<?php echo $value['icono'] ?>"></i></span>
+                    <span class="px-0.5"><?php echo $key ?></span>
+
+                    <span class="float-right" x-show="!Open"><i class="fas fa-angle-left"></i></span>
+                    <span class="ml-5" x-show="Open"><i class="fas fa-angle-down"></i></span>
+
+
+                  </div>
                 </div>
-              </a>
-            <?php
-            } else { ?>
-              <div class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer" x-on:click="Open = !Open">
-                <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
-                  <span><i class="<?php echo $value['icono'] ?>"></i></span>
-                  <span class="px-0.5"><?php echo $key ?></span>
+                <div x-show.transition="Open" style="display:none;">
+                  <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md shadow-inner  " aria-label="submenu">
+                    <li class="px-2  text-white transition-colors duration-150">
+                      <a href="<?php echo $value['Sub']['insert'] ?>">
+                        <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
+                          <div class="flex items-center">
 
-                  <span class="float-right" x-show="!Open"><i class="fas fa-angle-left"></i></span>
-                  <span class="ml-5" x-show="Open"><i class="fas fa-angle-down"></i></span>
+                            <span><i class="fas fa-cart-plus"></i></span>
+                            <span class="px-0.5">Registrar</span>
 
+
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="px-2  text-white transition-colors duration-150">
+                      <a href="<?php echo $value['Sub']['select'] ?>">
+                        <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
+                          <div class="flex items-center">
+
+                            <span><i class="fas fa-list-ol"></i></span>
+                            <span class="px-0.5">Listar</span>
+
+
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
 
                 </div>
-              </div>
-              <div x-show.transition="Open" style="display:none;">
-                <ul 
-                    x-transition:enter="transition-all ease-in-out duration-300" 
-                    x-transition:enter-start="opacity-25 max-h-0" 
-                    x-transition:enter-end="opacity-100 max-h-xl" 
-                    x-transition:leave="transition-all ease-in-out duration-300" 
-                    x-transition:leave-start="opacity-100 max-h-xl" 
-                    x-transition:leave-end="opacity-0 max-h-0" 
-                    class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md shadow-inner  " 
-                    aria-label="submenu">
-                  <li class="px-2  text-white transition-colors duration-150">
-                    <a href="<?php echo $value['Sub']['insert'] ?>">
-                      <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
-                        <div class="flex items-center">
+              <?php
+              } ?>
 
-                          <span><i class="fas fa-cart-plus"></i></span>
-                          <span class="px-0.5">Registrar</span>
+            </li>
+          <?php
 
-
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="px-2  text-white transition-colors duration-150">
-                    <a href="<?php echo $value['Sub']['select'] ?>">
-                      <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
-                        <div class="flex items-center">
-
-                          <span><i class="fas fa-list-ol"></i></span>
-                          <span class="px-0.5">Listar</span>
-
-
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-
-              </div>
-            <?php
-            } ?>
-
-          </li>
-        <?php
-
-        }
-        ?>
-      </ul>
-    </div><!-- admin -->
+          }
+          ?>
+        </ul>
+      </div><!-- admin -->
+    <?php
+    }
+    ?>
   </div><!-- sidebar-menu -->
 
   <div class="absolute bottom-0 flex bg-gray-800 w-full ">
@@ -210,13 +223,17 @@ $menuAdmin = array(
         <i class="fa fa-envelope"></i>
 
       </a>
+      <?php
+      if ($_SESSION['rol']<=2) { ?>
+        <a href="index.php?controllers=Empresa&a=ViewEmpresa" class="px-5 hover:text-white">
+          <i class="fa fa-cog"></i>
+        </a>
+      <?php
+      }
+      ?>
 
-      <a href="index.php?controllers=Empresa&a=ViewEmpresa" class="px-5 hover:text-white">
-        <i class="fa fa-cog"></i>
 
-      </a>
-
-      <a href="#" class="px-5 hover:text-white">
+      <a href="index.php?controllers=Auth&a=ViewLogin" class="px-5 hover:text-white">
         <i class="fa fa-power-off"></i>
       </a>
     </div>
@@ -226,13 +243,10 @@ $menuAdmin = array(
 
 
 
-
-
-
 <div id="sidebar-movil" class="bg-gray-600 h-full w-14 fixed text-gray-400 border-r-2 border-gray-700 visible  
 
 <?php if ($data['titulo'] === 'Ventas') {
-    echo " visible ";
+  echo " visible ";
 } else {
   echo " lg:invisible ";
 }
@@ -263,27 +277,80 @@ $menuAdmin = array(
   </div><!-- general -->
 
 
-  <div id="admin-movil" class="text-center">
-    <h3 class="mt-4 p-0.5 text-lg">A</h3>
-    <ul>
-      <?php
 
-      foreach ($menuAdmin as $key => $value) { ?>
-        <li>
-          <a href="<?php echo $value['url'] ?>">
-            <div class="w-full text-lg  p-3 transition-all hover:text-gray-100 hover:bg-gray-800 rounded-full">
-              <span><i class="<?php echo $value['icono'] ?>"></i></span>
+  <?php
+  if (isset($menuAdmin)) {
+  ?>
+    <div id="admin-movil" class="text-center">
+      <h3 class="mt-4 p-0.5 text-lg">A</h3>
+      <ul>
+        <?php
 
-            </div>
-          </a>
-        </li>
-      <?php
+        foreach ($menuAdmin as $key => $value) { ?>
+          <li x-data="{ Open : false  }" class="relative">
+            <?php if (isset($value['url'])) { ?>
+              <a href="<?php echo $value['url'] ?>" class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer">
+                <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
+                  <span><i class="<?php echo $value['icono'] ?>"></i></span>
+                </div>
+              </a>
+            <?php
+            } else { ?>
+              <div class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 cursor-pointer" x-on:click="Open = !Open">
+                <div class="w-full text-lg p-3 transition-all hover:text-gray-100 ">
+                  <span><i class="<?php echo $value['icono'] ?>"></i></span>
 
-      }
-      ?>
-    </ul>
-  </div><!-- admin-movil -->
 
+                  <span class="float-right" x-show="!Open"><i class="fas fa-angle-left"></i></span>
+                  <span class="ml-5" x-show="Open"><i class="fas fa-angle-down"></i></span>
+
+
+                </div>
+              </div>
+              <div x-show.transition="Open" style="display:none;">
+                <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md shadow-inner  " aria-label="submenu">
+                  <li class="px-2  text-white transition-colors duration-150">
+                    <a href="<?php echo $value['Sub']['insert'] ?>">
+                      <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
+                        <div class="flex items-center">
+
+                          <span><i class="fas fa-cart-plus"></i></span>
+
+
+
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="px-2  text-white transition-colors duration-150">
+                    <a href="<?php echo $value['Sub']['select'] ?>">
+                      <div class="px-1 hover:text-gray-800 hover:bg-gray-100 rounded-md">
+                        <div class="flex items-center">
+
+                          <span><i class="fas fa-list-ol"></i></span>
+
+
+
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+
+              </div>
+            <?php
+            } ?>
+
+          </li>
+        <?php
+
+        }
+        ?>
+      </ul>
+    </div><!-- admin-movil -->
+  <?php
+  }
+  ?>
 </div><!-- sidebar-menu -->
 </div><!-- sidebar-movil -->
 
@@ -300,7 +367,6 @@ $menuAdmin = array(
  overflow-hidden   rounded-2xl  dark:bg-gray-700 
 
 <?php if ($data['titulo'] === 'Ventas') {
-   
 } else {
   echo " lg:ml-60 ";
 }
@@ -315,7 +381,7 @@ $menuAdmin = array(
             <i class="<?php echo $menu[$data['titulo']]['icono'] ?>"></i>
           <?php
           } else { ?>
-            <i class="<?php echo $menuAdmin[$data['titulo']]['icono'] ?>"></i>           
+            <i class="<?php echo $menuAdmin[$data['titulo']]['icono'] ?>"></i>
           <?php
           }
           ?>

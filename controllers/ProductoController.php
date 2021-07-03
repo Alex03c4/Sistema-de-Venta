@@ -109,7 +109,7 @@ class ProductoController   {
         $date['tags'] = $producto->getAll('tags');
         $date['taggables'] = $producto->TaggablesAll($data['producto']['id'],3);
         $data['img'] = $producto->img($data['producto']['id'], 3);
-        $_SESSION['productoedid'] = $data['producto']['id'];
+        $_SESSION['productoedid'] = (int)$data['producto']['id'];
         
         require_once 'views\admin\Producto-edid.php';
     }

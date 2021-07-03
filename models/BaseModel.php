@@ -17,6 +17,17 @@ class BaseModel {
     }
 
 
+    //Roles y permiso
+    public function getRol($id){
+        $sql = "SELECT `id_role` FROM  user_role  WHERE `id_user` = $id";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['id_role'];
+    }
+
+
     public function getByCedula($tabla, $cedula){
      $resultSet= NULL; 
         $sql = "SELECT * FROM  $tabla  WHERE `cedula` = $cedula";
@@ -29,6 +40,7 @@ class BaseModel {
 
 
     
+    //créditos
     public function Credito($cedula){
         $resultSet= NULL; 
            $sql = "SELECT round(SUM(`monto`),2) AS Creditos FROM credito WHERE `id_cliente` = $cedula";
@@ -149,6 +161,7 @@ class BaseModel {
 
     public function deleteImg($img_id, $img_type, $Model){        
         //Eliminar Img
+        $query= null;
         $files = glob('public/img/'.$Model."/". $img_id . '/*'); //obtenemos todos los nombres de los ficheros
         foreach ($files as $file) {
             if (is_file($file))
@@ -156,10 +169,15 @@ class BaseModel {
         }
         /* if (is_file('public/img/'.$Model."/". $img_id)) */
         rmdir('public/img/'.$Model."/". $img_id);
+        try {
+            $query=$this->db->query("DELETE FROM `images` WHERE `img_id`= $img_id && `img_type`= $img_type"); 
+            return $query;
+        } catch (\Throwable $th) {
+            $query= null;
+        }
+                
 
-        $query=$this->db->query("DELETE FROM `images` WHERE `img_id`= $img_id && `img_type`= $img_type");       
-
-        return $query;
+        
     }
 
 

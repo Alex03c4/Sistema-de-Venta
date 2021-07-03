@@ -24,7 +24,13 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                     </div>
 
                     <div>
-                        <?php require_once 'views\admin\component\Empresa\info-Empresa.php'; ?>
+                        <?php
+                            if ($_SESSION['rol'] > 2) {
+                                
+                            }else {
+                                require_once 'views\admin\component\Empresa\info-Empresa.php';
+                            }                                                         
+                        ?>
                     </div>
                 </div>
             </div>

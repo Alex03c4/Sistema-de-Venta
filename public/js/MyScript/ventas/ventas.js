@@ -3,8 +3,7 @@ var Total = 0;
 $(".carrito").on("submit", function (e) {
     e.preventDefault();
     var datos = $(this).serializeArray();   
-     console.log(datos); 
-    
+     console.log(datos);
      $.ajax({
         type: 'post',
         data: datos,

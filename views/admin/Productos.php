@@ -50,15 +50,15 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                   </th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody id="tbody"  class="bg-white divide-y divide-gray-200">
 
                 <?php
                 if (isset($data['producto'])) {
 
                   foreach ($data['producto'] as $key => $value) {?>
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <tr id="tr" class="border-b border-gray-200 hover:bg-gray-100">
 
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td id class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                           <div class="flex-shrink-0 h-10 w-10">
                             <?php
@@ -140,7 +140,9 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
                           </div>
 
-                          <form class="Delete" location="index.php?controllers=Producto&a=ViewProducto" action="index.php?controllers=Producto&a=destroy&id=<?php echo $value->id ?>" method="post">
+                          <!-- 
+                            función  eliminar  se deshabilita por la razón de que no es recomendare eliminar un elemento 
+                            <form class="Delete" location="index.php?controllers=Producto&a=ViewProducto" action="index.php?controllers=Producto&a=destroy&id=<?php echo $value->id ?>" method="post">
                             <div class="transform hover:text-purple-500 hover:scale-110">
 
                               <input type="hidden" name="Eliminar-Producto" value="Eliminar">
@@ -149,7 +151,8 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                               </button>
 
                             </div>
-                          </form>
+                          </form> 
+                          -->
 
                         </div>
                       </td>

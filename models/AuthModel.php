@@ -52,6 +52,21 @@ class AuthModel {
         die(json_encode($respuesta));
     }
 
+    public function insertRol($id){
+        $sql = "INSERT INTO `user_role`(`id_user`)";
+        $sql .= " VALUES ";            
+        $stmt = $this->db->prepare($sql. "(?)");
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+    }
+
+    public function inserProfile($id){
+        $sql = "INSERT INTO `profiles`(`id`, `user_id`)";
+        $sql .= " VALUES ";
+        $stmt2 = $this->db->prepare($sql. "(?, ?)");
+        $stmt2->bind_param('ss', $id, $id);
+        $stmt2->execute();
+    }
     
 
     public function RegistroUser(){
@@ -73,37 +88,12 @@ class AuthModel {
             $this->id = $stmt->insert_id;        
             
             if ($stmt->affected_rows>0) {    
-                /* session_start(); */
+                
                 $_SESSION['id']     = $this->id;
                 $_SESSION['email']  = $email;                
-            /* require_once "RegistroPerfil.php"; */
-                    try {
-                        $sql = "INSERT INTO `profiles`(`id`, `user_id`)";
-                            $sql .= " VALUES ";
-                            $stmt2 = $this->db->prepare($sql. "(?, ?)");
-                            $stmt2->bind_param('ss', $this->id, $this->id);
-                            $stmt2->execute();
-                            if (!$stmt->affected_rows) {
-                                $Tabla = "user";
-                                $respuesta2 = array(
-                                    'respuesta' => 'error',
-                                    'donde' => 'sql'
-                                );
-                                /* require_once "..\..\sql\delete.php"; */   // esto esta en veremos si función                
-                                die(json_encode($respuesta2));
-                            }
-                        
-                    } catch (\Throwable $e) {
-                        $respuesta2 = array(
-                            'respuesta' => 'error',
-                            'Msm' => $e->GetMessage(),
-                            'Lugar' => 'catch ',
-                            'Linea' . $e->getLine()
-                        );
-                        /* require_once "..\..\sql\delete.php"; */  // esto esta en veremos si función       
-                        die(json_encode($respuesta2));
-                    }
-             $stmt2->close();
+                $this->insertRol($this->id);
+                $this->inserProfile($this->id);
+             
                 
                 $respuesta2 = array(
                     'respuesta' => 'exito',
@@ -129,6 +119,7 @@ class AuthModel {
         $stmt->close();
         die(json_encode($respuesta2));
     }
+
 
     public function update($dato){
         try {                        

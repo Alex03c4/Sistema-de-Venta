@@ -12,7 +12,8 @@ class PerfilController
         $user = new PerfilModel();              
         $data['titulo'] = 'Dashboard';
         $_SESSION['img'] = $user->img($this->id, 1);// var 1 es el modelo User
-        $_SESSION['profiles'] = $user->getById('profiles', $this->id);        
+        $_SESSION['profiles'] = $user->getById('profiles', $this->id); 
+        $_SESSION['rol'] = (int)$user->getRol($this->id) ;       
         $user =null;
         require_once "views\admin\Dashboard.php";   
     }

@@ -113,29 +113,16 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
                       <td class="py-3 px-6 text-center">
                         <div class="flex item-center justify-center m-1">
-                          <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                            <a href="#">
-                              <i class="far fa-eye"></i>
-                            </a>
-                          </div>
+                          
 
-                          <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                          <div class="w-4 mr-2 transform   hover:text-purple-500 hover:scale-110">
                             <a href="index.php?controllers=Credito&a=getByID&id=<?php echo $value->idCredito ?>">
                               <i class="fas fa-pencil-alt"></i>
                             </a>
 
                           </div>
 
-                          <form class="Delete" location="index.php?controllers=Producto&a=ViewProducto" action="index.php?controllers=Producto&a=destroy&id=<?php echo $value->id ?>" method="post">
-                            <div class="transform hover:text-purple-500 hover:scale-110">
-
-                              <input type="hidden" name="Eliminar-Producto" value="Eliminar">
-                              <button type="submit">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
-
-                            </div>
-                          </form>
+                          
 
                         </div>
                       </td>
