@@ -23,8 +23,8 @@ $(".carrito").on("submit", function (e) {
                 <div class="bg-white shadow-md  rounded-3xl p-4 m-1">
                     <div class="grid grid-cols-2 gap-2 h-40">
 
-                        <div x-on:click="Open = !Open" class="">
-                            <img class="rounded-3xl h-40 object-contain" src='public/img/Producto/${resultado.imgURL}' />
+                        <div x-on:click="Open = !Open" class=" ">
+                            <img class="cursor-pointer rounded-3xl h-40 object-contain" src='public/img/Producto/${resultado.imgURL}' />
                         </div>
                         <div>  
                                     
@@ -131,13 +131,6 @@ function descrip(data) {
       })
    
 }
-
-
-
-
-
-
-
 
 /* 
 

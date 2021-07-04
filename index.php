@@ -11,7 +11,7 @@
             
     }
     
-	if(isset($_GET['controllers'])){		
+	if(isset($_GET['controllers'])){	
 		$controlador = cargarControlador($_GET['controllers']);
 		
 		if(isset($_GET['a'])){
@@ -24,7 +24,7 @@
 			cargarAccion($controlador, ACCION_PRINCIPAL);
 		}
 		
-		} else {
+	} else {
 		
 		$controlador = cargarControlador(CONTROLADOR_PRINCIPAL);
 		$accionTmp = ACCION_PRINCIPAL;

@@ -30,10 +30,38 @@
     </div>
 </div>
 
+
+<div class="col-span-6 sm:col-span-4 m-5 ">
+    <label for="last_name" class="block text-base font-bold text-gray-700">Unidad de conversion:</label>
+    <div class="flex justify-between font-bold">
+        <div class="mt-1">
+            <input checked type="radio" id="KG" name="radio" value="1">
+            <label for="Tarjeta">Kg</label>
+        </div>
+        <div class="mt-1">
+            <input  type="radio" id="v" name="radio" value="2">
+            <label for="Tarjeta">L</label>
+        </div>
+        <div class="mt-1">
+            <input type="radio" id="M" name="radio" value="3">
+            <label for="Efectivo">M</label>
+        </div>
+        <div class="mt-1">
+            <input type="radio" id="Otros" name="radio" value="4">
+            <label for="Efectivo">Otros</label>
+        </div>
+        <div>
+            <input step="any" type="number" name="Total_unidad" autocomplete="off" class="limpiar mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">     
+        </div>
+
+    </div>
+</div>
+
+
 <div class="col-span-6 sm:col-span-4 m-5 ">
     <label for="last_name" class="block text-base font-bold text-gray-700">Descripcion:</label>
     <div class="flex justify-between">
-        <textarea id="editor" name="descripcion" class="limpiar">
+        <textarea rows="10" cols="50"  id="editor" name="descripcion" class="limpiar">
         </textarea>
     </div>
 </div>

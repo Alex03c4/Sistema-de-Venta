@@ -8,10 +8,10 @@ class ProductoModel extends BaseModel {
     public function Insert($dato){
        
        try {
-        $sql = "INSERT INTO `productos`(`nombre`, `precio`, `marca`, `stock`, `descripcion`, `id_proveedor`, `estatus`) ";
+        $sql = "INSERT INTO `productos`(`nombre`, `precio`, `marca`, `stock`, `descripcion`, `id_proveedor`, `estatus`, `id_unidad`, `Total_unidad`) ";
         $sql .= " VALUES ";             
-        $stmt = $this->db->prepare($sql. "(?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('sdsisii', $dato['nombre'], $dato['precio'], $dato['marca'], $dato['stock'], $dato['descripcion'] , $dato['id_proveedor'], $dato['estatus']);
+        $stmt = $this->db->prepare($sql. "(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param('sdsisiiid', $dato['nombre'], $dato['precio'], $dato['marca'], $dato['stock'], $dato['descripcion'] , $dato['id_proveedor'], $dato['estatus'], $dato['id_unidad'], $dato['Total_unidad']);
         $stmt->execute();       
         if ($stmt->affected_rows>0) {                   
             
@@ -54,14 +54,13 @@ class ProductoModel extends BaseModel {
     }
     
     public function update($dato){
-        try {
-                        
+        try {                        
             $sql  = " UPDATE `productos` SET  ";
-            $sql .= " `nombre`= ?, `precio`= ?, `marca`= ? , `stock`= ?  , `descripcion`= ?, `id_proveedor`= ?, `estatus`= ?   ";
+            $sql .= " `nombre`= ?, `precio`= ?, `marca`= ? , `stock`= ?  , `descripcion`= ?, `id_proveedor`= ?, `estatus`= ?, `id_unidad`= ?, `Total_unidad`= ?   ";
             $sql .= " WHERE id = ? ";
             
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param ("sdsisiii", $dato["nombre"], $dato["precio"], $dato["marca"], $dato["stock"], $dato["descripcion"] , $dato["id_proveedor"], $dato["estatus"] , $dato["id"]);
+            $stmt->bind_param ("sdsisiiiid", $dato["nombre"], $dato["precio"], $dato["marca"], $dato["stock"], $dato["descripcion"] , $dato["id_proveedor"], $dato["estatus"], $dato["radio"] , $dato["Total_unidad"] , $dato["id"]);
             $estado =   $stmt->execute();
 
             if ($stmt->affected_rows || $estado) {
@@ -81,12 +80,15 @@ class ProductoModel extends BaseModel {
                     }   
                 }
 
-                $aux->deleteImg($dato["id"], 3 , 'Producto');
+                if (!$dato["Img_nombre"] == "") {
+                  $aux->deleteImg($dato["id"], 3 , 'Producto');
                 /* if (!$dato['Img_nombre'] == NULL) {
                     
                     
                 } */
-                $aux->InsertImg($dato["id"], 3 , 'Producto', $dato);
+                $aux->InsertImg($dato["id"], 3 , 'Producto', $dato); 
+                }
+                
 
 
                /*  $img = new ProductoModel();

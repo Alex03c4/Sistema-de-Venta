@@ -7,9 +7,9 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <script src="public\js\MyScript\ajax.js" defer></script>
 
 <!-- <a href="index.php?controllers=Perfil&a=edit">Perfil</a> -->
-<div class="ml-16 mt-4 mr-3 lg:ml-64 ">
+<div class="ml-16 mt-4 mr-3 lg:ml-64">
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
-        <form name="login-perfil-form" id="Updates-perfil" class="Updates" method="post" action="index.php?controllers=Proveedor&a=Insert" >
+        <form name="login-perfil-form" id="insert" class="Updates" method="post" action="index.php?controllers=Proveedor&a=Insert" >
             <!-- <form name="info-Producto-form" class="Updates" method="post" action="index.php?controllers=Producto&a=Insert"> -->
             <div>
 

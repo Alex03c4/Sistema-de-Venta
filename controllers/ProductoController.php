@@ -40,6 +40,7 @@ class ProductoController   {
             $Img_nombre = $_FILES['Img']['name'];
             $Img_urlTMP = $_FILES['Img']['tmp_name'];
         }
+
   
         $producto = new ProductoModel();
         $dato = array(            
@@ -53,12 +54,10 @@ class ProductoController   {
             'Img_nombre' => $Img_nombre,
             'Img_urlTMP'=> $Img_urlTMP,
             'checkbox' => $che,
-            'estatus' => $estatus
+            'estatus' => $estatus,
+            'id_unidad'=> (int)$_POST['radio'],
+            'Total_unidad'=>$_POST['Total_unidad']
         );
-        
-        
- 
-        /*  var_dump($dato); */
         $producto->Insert($dato );      
 
     }
@@ -69,6 +68,9 @@ class ProductoController   {
         $estatus="2";
         $Img_nombre= NULL;
         $Img_urlTMP= NULL;
+       
+
+        
         if (isset($_POST['checkbox'])) {
            $che = $_POST['checkbox'];
         } 
@@ -79,14 +81,20 @@ class ProductoController   {
             $Img_nombre = $_FILES['Img']['name'];
             $Img_urlTMP = $_FILES['Img']['tmp_name'];
         } 
+
+
         $dato = array(
             'id' => $_SESSION['productoedid'],
             'nombre' =>  $_POST['nombre'],
             'precio' => $_POST['precio'] ,
             'marca' =>  $_POST['marca'],
             'stock' =>  $_POST['stock'],
+            'radio' =>  $_POST['radio'],
+            'Total_unidad' =>  $_POST['Total_unidad'],
             'descripcion' =>  $_POST['descripcion'], 
             'id_proveedor' => $_POST['id_proveedor'],
+
+
 
             'Img_nombre' => $Img_nombre,
             'Img_urlTMP'=> $Img_urlTMP,
