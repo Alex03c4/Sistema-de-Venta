@@ -21,7 +21,7 @@ $(".carrito").on("submit", function (e) {
             <div  x-data="{ Open : false  }" class="flex flex-col">
 
                 <div class="bg-white shadow-md  rounded-3xl p-4 m-1">
-                    <div class="grid grid-cols-2 gap-2 h-40">
+                    <div class="grid grid-cols-2 gap-2 h-48">
 
                         <div x-on:click="Open = !Open" class=" ">
                             <img class="cursor-pointer rounded-3xl h-40 object-contain" src='public/img/Producto/${resultado.imgURL}' />
@@ -38,18 +38,20 @@ $(".carrito").on("submit", function (e) {
                             </div>                           
 
                            
-                            <div >                        
-                                <div class="w-full text-sm text-blue-700 font-medium ">
-                                    Cantida : 
+                            <div class="" >                        
+                                <div class="w-full text-sm font-bold ">
+                                    ${resultado.Tipo_unidad} : 
                                     <input autocomplete="false"
                                     onchange="sumar(this.value, ${resultado.Posicion}, ${resultado.stock} ,${resultado.precio});"
-                                    min="1" max="${resultado.stock}" 
+                                    min="0" max="${resultado.stock}" 
                                     value="${resultado.can}"
                                     name="${resultado.id}"                              
                                     type="number"
                                     class="cantidad mt-1 block w-full font-bold text-black px-3 border border-gray-300 bg-white 
                                     rounded-md shadow-sm focus:outline-none 
                                     focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </div>
+
                                     
                             </div>   
 
@@ -58,23 +60,23 @@ $(".carrito").on("submit", function (e) {
                             </div>          
                         </div>
                     </div>               
+                    <div x-show.transition="Open" class="bg-white ">
+                        <div 
+                        x-transition:enter="transition-all ease-in-out duration-300" 
+                        x-transition:enter-start="opacity-25 max-h-0" 
+                        x-transition:enter-end="opacity-100 max-h-xl" 
+                        x-transition:leave="transition-all ease-in-out duration-300" 
+                        x-transition:leave-start="opacity-100 max-h-xl" 
+                        x-transition:leave-end="opacity-0 max-h-0" >
+                            <div class="overflow-auto grid grid-cols-2 gap-2 h-48 w-full  ">
+                                ${resultado.descrip}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 
 
-                <div x-show.transition="Open" class=" mt-5">
-                    <div 
-                    x-transition:enter="transition-all ease-in-out duration-300" 
-                    x-transition:enter-start="opacity-25 max-h-0" 
-                    x-transition:enter-end="opacity-100 max-h-xl" 
-                    x-transition:leave="transition-all ease-in-out duration-300" 
-                    x-transition:leave-start="opacity-100 max-h-xl" 
-                    x-transition:leave-end="opacity-0 max-h-0" >
-                        <div class="overflow-auto grid grid-cols-2 gap-2 h-48 w-full  ">
-                            ${resultado.descrip}
-                        </div>
-                    </div>
-                </div>
 
 
             </div>

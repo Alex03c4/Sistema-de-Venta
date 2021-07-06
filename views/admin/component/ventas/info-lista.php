@@ -23,11 +23,17 @@
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Stock
           </th>
-          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
             Etiquetas
           </th>
+
+          
           <th scope="col" class="relative px-6 py-3">
-            <span class="sr-only">Carrito</span>
+            <span class="">Ud/Micro</span>
+          </th>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="">Sacos/Macro</span>
           </th>
         </tr>
       </thead>
@@ -76,14 +82,15 @@
                   <div class="text-sm text-gray-900"> <?php echo $value->Total_unidad  ?> </div>
                   <div><?php
                         if ($value->id_unidad == 1) {
-                          echo 'Kg';
+                          $aux = 'Kg';
                         } else if ($value->id_unidad == 2) {
-                          echo 'L';
+                          $aux = 'L';
                         } else if ($value->id_unidad == 3) {
-                          echo 'M';
+                          $aux = 'M';
                         } else {
-                          echo 'Otros';
+                          $aux = 'Otros';
                         }
+                        echo $aux;
                         ?>
                   </div>
                 </td>
@@ -123,6 +130,63 @@
                   } ?>
                 </td>
 
+                <form class="hidden">
+                  <?php
+                  /* 
+                          
+                        */
+                  ?>
+                </form>
+
+                <td class="py-3 px-6 text-center">
+                  <div x-data="{ btm: true }" class="flex item-center justify-center m-1">
+                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                      <?php
+                      foreach ($data['xUnidad'] as $ud) {
+                        if ($ud->id_producto == $value->id) {
+                      ?>
+                          <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">                            
+                            <input type="hidden" name="img" value="<?php echo $imgURL ?>">
+                            <input type="hidden" name="id" value="<?php echo $ud->id ?>">
+                            <input type="hidden" name="nombre" value="<?php echo $value->nombre ?>">
+                            <input type="hidden" name="precio" value="<?php echo ((float)$value->precio / (float)$value->Total_unidad) + 0.1 ?>">
+                            <input type="hidden" name="marca" value="<?php echo $value->marca ?>">
+
+
+                            <input type="hidden" name="idxSaco" value="<?php echo $value->id ?>">
+                            <input type="hidden" name="stockxUnidad" value="<?php echo $ud->stock ?>">
+                            <input type="hidden" name="stockxSaco" value="<?php echo $value->stock ?>">
+                            <input type="hidden" name="stock" value="<?php echo $value->Total_unidad ?>">
+                            
+                            <input type="hidden" name="imgURL" value="<?php echo $imgURL ?>">
+                            <input type="hidden" name="descrip" value="<?php echo $value->descripcion ?>">
+                            <input type="hidden" name="Tipo_unidad" value="<?php echo $aux ?>">
+
+                            <button type="submit" x-on:click="btm=!btm" x-show="btm">
+                              <i class="fas fa-shopping-cart"></i>
+                            </button>
+                          </form>
+                      <?php
+                        }
+                      }
+                      ?>
+
+                    </div>
+                  </div>
+                </td>
+
+
+                <!-- por el error del submit -->
+
+
+
+
+
+
+
+
+
+
 
                 <td class="py-3 px-6 text-center">
                   <div x-data="{ btm: true }" class="flex item-center justify-center m-1">
@@ -137,7 +201,7 @@
                         <input type="hidden" name="stock" value="<?php echo $value->stock ?>">
                         <input type="hidden" name="imgURL" value="<?php echo $imgURL ?>">
                         <input type="hidden" name="descrip" value="<?php echo $value->descripcion ?>">
-
+                        <input type="hidden" name="Tipo_unidad" value="Saco">
                         <button type="submit" x-on:click="btm=!btm" x-show="btm">
                           <i class="fas fa-shopping-cart"></i>
                         </button>

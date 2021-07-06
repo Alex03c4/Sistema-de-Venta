@@ -12,6 +12,7 @@ class ProductoController   {
         $data['titulo'] = 'Productos';
         $data['img'] = $producto->imgAll(3); /* El id del modelo del producto es = 3 */
         $data['producto'] = $producto->getAll('productos');
+        $data['xUnidad'] = $producto->getAll('xunidad');
     
         $producto = null;
         require_once "views\admin\Productos.php";   
@@ -93,8 +94,6 @@ class ProductoController   {
             'Total_unidad' =>  $_POST['Total_unidad'],
             'descripcion' =>  $_POST['descripcion'], 
             'id_proveedor' => $_POST['id_proveedor'],
-
-
 
             'Img_nombre' => $Img_nombre,
             'Img_urlTMP'=> $Img_urlTMP,

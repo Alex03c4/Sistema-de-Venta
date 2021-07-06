@@ -4,7 +4,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 ?>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js" defer></script>
 <script src="public\js\MyScript\Producto\Producto.js" defer></script>
-<script src="public\js\MyScript\ajax.jss" defer></script>
+<script src="public\js\MyScript\ajax.js" defer></script>
 
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">

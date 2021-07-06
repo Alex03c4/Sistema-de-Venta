@@ -15,18 +15,18 @@ class VentaController {
         /* $data['venta'] = $venta->getAll('ventas');         */
         $data['producto'] = $venta->getAll('productos');
         $data['tags'] = $venta->TagsAll(3);
-    
-        $producto = null;
+        $data['xUnidad'] = $venta->getAll('xunidad');
+        $venta = null;
         require_once "views\admin\Ventas.php";   
     }
 
     public function GenerarVentas(){ 
-
         try {
             $model = new VentaModel();
-            $newStock = null; 
+            $newStock = null;
+            $destaparSaco= array(); 
             $time = time();
-            $time= date("Y-m-d(H:i:s)",$time);            
+            $time= date("Y-m-d(H:i:s)",$time);           
                     
     
                 if (isset($_POST['Cliente'])) {           
@@ -67,12 +67,35 @@ class VentaController {
                 }          
                
                 foreach ($_SESSION["C-Compra"] as $key ) {               
-                    $id         = (int)$key['id'];                   
-                    $cantida    = (int)$_POST[$key['id']];
-                    $Stock      = (int)$key['stock'];                    
-                    $newStock = ($Stock - $cantida);                                    
-                    $model->StockUpdate($newStock, $id);
+                    $id             = (int)$key['id'];                   
+                    $cantida        = (int)$key['can'];
+                    $Stock          = (int)$key['stock'];                    
+                    $newStock       = ($Stock - $cantida);
+                    $Tipo_unidad    = $key['Tipo_unidad']; 
+                    $stockxUnidad   = $key['stockxUnidad'];
+                    $idxSaco        = $key['idxSaco'];
+                    
+                    if ( $Tipo_unidad == "Saco") {
+                       $model->StockUpdate("productos",$newStock, $id);
+                    }else {
+                        if ($stockxUnidad >= $cantida) {
+                            $newStock =$stockxUnidad - $cantida;                           
+                            $model->StockUpdate("xunidad",$newStock, $id);
+                        } else{                           
+                            array_push($destaparSaco, $idxSaco );
+                            $model->StockUpdate("xunidad",($stockxUnidad + $Stock) , $id);
+                            $model->StockUpdate("xunidad",( ($stockxUnidad + $Stock) - $cantida) , $id);
+                        }
+                        
+                    }                
+                    
                 }
+               
+                
+                  foreach ($destaparSaco as $key ) {                     
+                     $this->destaparSaco("productos", $key); 
+                  }      
+                
                 $respuesta = array(
                     'respuesta' => 'exito'
                 );
@@ -90,8 +113,24 @@ class VentaController {
         
     }
 
-    public function Carrito(){        
+    public function Carrito(){  
+        
+        $stockxUnidad=NULL;
+        $stockxSaco=NULL; 
+        $idxSaco=NULL;
+
         $p=NULL;      
+        if (isset($_POST['stockxUnidad'])) {
+            $stockxUnidad = $_POST['stockxUnidad'];
+        }
+
+        if (isset($_POST['idxSaco'])) {
+            $idxSaco = $_POST['idxSaco'];
+        }
+
+        if (isset($_POST['stockxSaco'])) {
+            $stockxSaco = $_POST['stockxSaco'];
+        }
         if (!isset($_SESSION['C-Compra'])) {              
             $p = array(                
                 'id'=> $_POST['id'],
@@ -103,11 +142,11 @@ class VentaController {
                 'imgURL'=> $_POST['imgURL'],
                 'descrip'=> $_POST['descrip'],
                 'Total'=>$_POST['precio'],
-                'Posicion'=> 0
+                'Posicion'=> 0,
+                'Tipo_unidad'=>$_POST['Tipo_unidad']
             );
 
-            $p2 = array(
-                
+            $p2 = array(                
                 'id' => $_POST['id'],
                 'can'=> 1,  
                 'nombre'=> $_POST['nombre'],
@@ -115,7 +154,11 @@ class VentaController {
                 'precio'=> $_POST['precio'],
                 'stock'=> $_POST['stock'],
                 'Total'=>$_POST['precio'],
-                
+                'Tipo_unidad'=>$_POST['Tipo_unidad'],
+                'stockxUnidad'=> $stockxUnidad ,
+                'stockxSaco'=> $stockxSaco,
+                'idxSaco'=> $idxSaco 
+                              
             );
 
             $_SESSION['SubTotal'][0] = (float)$_POST['precio'];
@@ -140,7 +183,8 @@ class VentaController {
                 'imgURL'=> $_POST['imgURL'],
                 'descrip'=> $_POST['descrip'],
                 'Total'=>$aux,
-                'Posicion'=> $NumeroProducto
+                'Posicion'=> $NumeroProducto,
+                'Tipo_unidad'=>$_POST['Tipo_unidad']
                 
             );  
             $p2 = array(
@@ -151,7 +195,12 @@ class VentaController {
                 'marca'=> $_POST['marca'],
                 'precio'=> $_POST['precio'],
                 'stock'=> $_POST['stock'],
-                'Total'=>$_POST['precio'],                
+                'Total'=>$_POST['precio'],
+                'Tipo_unidad'=>$_POST['Tipo_unidad'],
+                'stockxUnidad'=> $stockxUnidad,
+                'stockxSaco'=> $stockxSaco,
+                'idxSaco'=> $idxSaco 
+
                 
             );  
             $_SESSION['Total'] = $aux;
@@ -178,6 +227,13 @@ class VentaController {
         $_SESSION['Total'] = $aux;
         die(json_encode($aux));  
             
+    }
+
+
+    public function destaparSaco($tabla, $id){
+        $ventas = new VentaModel();
+        $stock = $ventas->getStock($tabla, $id);
+        $ventas->StockUpdate($tabla, $stock-1, $id);
     }
 
     

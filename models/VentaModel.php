@@ -5,16 +5,16 @@ class VentaModel extends BaseModel
         parent::__construct();        
     }
 
-
-    public function StockUpdate($newStock, $id){
-        $sql  = " UPDATE `productos` SET  ";
+    // 
+    public function StockUpdate($tabla, $newStock, $id){
+        $sql  = " UPDATE $tabla SET  ";
         $sql .= " `stock`= ? ";
         $sql .= " WHERE id = ? ";
         $stmt = $this->db->prepare($sql);
             $stmt->bind_param ("ii",$newStock, $id);
             $estado =   $stmt->execute();
     }
-
+  
     public function InsertVentas($Venta){
         $sql = "INSERT INTO `ventas`(`id_cliente`, `id_user`, `productos`, `total`, `tipo_pago` , `descripcion`, `fecha`)  ";
         $sql .= " VALUES ";             
@@ -41,6 +41,18 @@ class VentaModel extends BaseModel
         }
         
     }
+
+
+
+    public function getStock($tabla, $id) {
+        $sql = "SELECT `stock` FROM  $tabla  WHERE `id` = $id";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet["stock"];  
+    }
+
     
 
 

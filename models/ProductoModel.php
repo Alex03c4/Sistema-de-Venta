@@ -5,35 +5,32 @@ class ProductoModel extends BaseModel {
     }
 
 
-    public function Insert($dato){
-       
+    public function Insert($dato){      
        try {
         $sql = "INSERT INTO `productos`(`nombre`, `precio`, `marca`, `stock`, `descripcion`, `id_proveedor`, `estatus`, `id_unidad`, `Total_unidad`) ";
         $sql .= " VALUES ";             
         $stmt = $this->db->prepare($sql. "(?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param('sdsisiiid', $dato['nombre'], $dato['precio'], $dato['marca'], $dato['stock'], $dato['descripcion'] , $dato['id_proveedor'], $dato['estatus'], $dato['id_unidad'], $dato['Total_unidad']);
         $stmt->execute();       
-        if ($stmt->affected_rows>0) {                   
-            
+        if ($stmt->affected_rows>0) {                             
             $respuesta = array(
                 'respuesta' => 'exito',                             
-            ); 
-            
-               
+            );              
             $aux = new ProductoModel();
 
             if (!$dato['Img_nombre'] ==NULL) {
                 $aux->InsertImg($stmt->insert_id , 3 , 'Producto' , $dato);
             }
-               
-                if (!$dato['checkbox']==NULL) {
-                 foreach ($dato['checkbox'] as $value) {                   
+
+            if (!$dato['checkbox'] == NULL) {
+                foreach ($dato['checkbox'] as $value) {                   
                     $aux->InserTaggables($stmt->insert_id, 3 , $value);
                 }   
-                }
+            }
+
+            $this->xUnida($stmt->insert_id);
                 
-                die(json_encode($respuesta));      
-       
+                die(json_encode($respuesta));        
         } else {
             $respuesta = array(
                 'respuesta' => 'error'
@@ -47,11 +44,20 @@ class ProductoModel extends BaseModel {
             'e' => $e->getMessage()
         );
         die(json_encode($respuesta));      
-    } 
-
-    die(json_encode($respuesta));    
-       
     }
+     die(json_encode($respuesta));       
+    }
+
+    public function xUnida($id){
+        $sql = "INSERT INTO `xunidad`(`id_producto`)  ";
+        $sql .= " VALUES ";             
+        $stmt = $this->db->prepare($sql. "(?)");
+        $stmt->bind_param('i', $id);
+        $stmt->execute();   
+    }
+
+
+
     
     public function update($dato){
         try {                        
