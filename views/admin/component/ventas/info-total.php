@@ -49,8 +49,8 @@
                     <div id="dolar">
                         <span>$</span> <span id="Totalust"></span>
                     </div>
-                    <div id="bsf">
-                        <span>BSF</span>
+                    <div>
+                        <span>BSF</span> <span id="bsf"></span>
                     </div>
                 </div>
             </div>

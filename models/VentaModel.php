@@ -27,9 +27,7 @@ class VentaModel extends BaseModel
         
     }
 
-    public function InserCredito($Venta){
-
-        
+    public function InserCredito($Venta){      
         try {
             $sql = "INSERT INTO `credito`(`id_cliente`, `id_venta`, `monto`)   ";
             $sql .= " VALUES ";             
@@ -51,6 +49,20 @@ class VentaModel extends BaseModel
             $resultSet=$row;
         } 
         return $resultSet["stock"];  
+    }
+
+    public function AllVentas() {
+        $sql = "SELECT ventas.`id` AS id_venta, `id_cliente`, `id_user`, `productos`, `total`, `tipo_pago`,  ";
+        $sql .=" `fecha`, `descripcion`,  profiles.`nombre` AS Np,  profiles.`apellido` AS Ap, cliente.`nombre` AS Nc, cliente.`apellido` AS Ac , cliente.`cedula` AS Cc  FROM `ventas` ";
+        $sql .= " INNER JOIN profiles ON ventas.id_user = profiles.user_id INNER JOIN cliente";
+        $sql .= " ON ventas.`id_cliente` = cliente.`id` ";
+        $query= $this->db->query($sql);
+        if ($query) {
+            while ($row = $query->fetch_object()) {
+             $resultSet[]=$row;
+             }
+         }
+        return $resultSet;  
     }
 
     

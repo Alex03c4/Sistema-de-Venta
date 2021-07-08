@@ -113,7 +113,7 @@ $(document).ready(function () {
                   'success'
                   ) 
 
-                 setTimeout(redire,2000); 
+                 setTimeout(redire,4000); 
                 } else {
                   Swal.fire(
                     'Venta',

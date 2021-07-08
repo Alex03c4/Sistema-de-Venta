@@ -163,7 +163,7 @@
                             <input type="hidden" name="Tipo_unidad" value="<?php echo $aux ?>">
 
                             <button type="submit" x-on:click="btm=!btm" x-show="btm">
-                              <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-balance-scale-left"></i>
                             </button>
                           </form>
                       <?php
@@ -189,7 +189,7 @@
 
 
                 <td class="py-3 px-6 text-center">
-                  <div x-data="{ btm: true }" class="flex item-center justify-center m-1">
+                  <div x-data="{ btm2: true }" class="flex item-center justify-center m-1">
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
 
                       <form class="carrito" action="index.php?controllers=Venta&a=Carrito" method="post">
@@ -202,7 +202,7 @@
                         <input type="hidden" name="imgURL" value="<?php echo $imgURL ?>">
                         <input type="hidden" name="descrip" value="<?php echo $value->descripcion ?>">
                         <input type="hidden" name="Tipo_unidad" value="Saco">
-                        <button type="submit" x-on:click="btm=!btm" x-show="btm">
+                        <button type="submit" x-on:click="btm2=!btm2" x-show="btm2">
                           <i class="fas fa-shopping-cart"></i>
                         </button>
                       </form>

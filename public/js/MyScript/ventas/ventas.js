@@ -17,6 +17,7 @@ $(".carrito").on("submit", function (e) {
             
             nuevoDiv.id = resultado.id;
             Total = resultado.Total;
+            bsf = resultado.bsf
             nuevoDiv.innerHTML = `
             <div  x-data="{ Open : false  }" class="flex flex-col">
 
@@ -85,6 +86,7 @@ $(".carrito").on("submit", function (e) {
         ` 
             carritoP.appendChild(nuevoDiv);
             document.getElementById('Totalust').innerHTML = Total;
+            document.getElementById('bsf').innerHTML = bsf;
         }
         });
 
@@ -107,7 +109,8 @@ function sumar (cantidada, Posicion, stock , precio) {
         success : function(data) {
             var resultado = data;
             console.log(resultado); 
-              document.getElementById('Totalust').innerHTML = resultado;           
+              document.getElementById('Totalust').innerHTML = resultado.dolar;
+              document.getElementById('bsf').innerHTML = resultado.bsf;            
         },           
         error : function(xhr, status) {
             alert('Disculpe, existió un problema');
@@ -118,7 +121,7 @@ function sumar (cantidada, Posicion, stock , precio) {
   Sub = cantidada*precio;
   SubTotal=  "spTotal"+Posicion; 
 
-  document.getElementById(SubTotal).innerHTML = "$"+ Sub.toFixed(2);  ;
+  document.getElementById(SubTotal).innerHTML = "$"+ Sub.toFixed(2); 
  /*  alert(valor + " " + id + " " + stock); */
 }
 

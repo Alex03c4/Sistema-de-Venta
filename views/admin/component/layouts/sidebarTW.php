@@ -372,6 +372,8 @@ if ($_SESSION['rol'] <= 2) {
 }
 ?>">
   <header class="flex justify-between py-3 px-6 ">
+  <?php 
+   ?>
     <h2>
       <label for="">
         <span>
@@ -380,7 +382,7 @@ if ($_SESSION['rol'] <= 2) {
 
             <i class="<?php echo $menu[$data['titulo']]['icono'] ?>"></i>
           <?php
-          } else { ?>
+          } else  if (isset($menuAdmin[$data['titulo']])) { ?>
             <i class="<?php echo $menuAdmin[$data['titulo']]['icono'] ?>"></i>
           <?php
           }

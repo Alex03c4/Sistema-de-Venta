@@ -22,13 +22,22 @@ class VentaController {
 
     public function GenerarVentas(){ 
         try {
+            $aux =NULL;
             $model = new VentaModel();
             $newStock = null;
             $destaparSaco= array(); 
             $time = time();
             $time= date("Y-m-d(H:i:s)",$time);           
-                    
-    
+                foreach ($_SESSION['C-Compra'] as $key => $value) {
+                    if ($value["can"] == 0) {
+                      unset($_SESSION['C-Compra'][$key]);
+                    }else {
+                        $aux = true;
+                    }
+                }
+                if ($aux == NULL) {
+                    die();
+                }
                 if (isset($_POST['Cliente'])) {           
                     $Id_Cliente = $_POST['Cliente'];
                 } else {
@@ -43,6 +52,8 @@ class VentaController {
                     $cliente = new ClienteController();
                     $Id_Cliente = $cliente->Insert($dato); 
                 } 
+
+                
                 
                 $Venta = array(
                     'Producto'=> json_encode($_SESSION['C-Compra']),
@@ -131,7 +142,9 @@ class VentaController {
         if (isset($_POST['stockxSaco'])) {
             $stockxSaco = $_POST['stockxSaco'];
         }
-        if (!isset($_SESSION['C-Compra'])) {              
+
+        if (!isset($_SESSION['C-Compra'])) { 
+            $bsf =  number_format($_SESSION['dolar']*$_POST['precio'], 2, ",", ".");            
             $p = array(                
                 'id'=> $_POST['id'],
                 'can'=> 1,                
@@ -142,6 +155,7 @@ class VentaController {
                 'imgURL'=> $_POST['imgURL'],
                 'descrip'=> $_POST['descrip'],
                 'Total'=>$_POST['precio'],
+                'bsf'=>$bsf,
                 'Posicion'=> 0,
                 'Tipo_unidad'=>$_POST['Tipo_unidad']
             );
@@ -183,6 +197,7 @@ class VentaController {
                 'imgURL'=> $_POST['imgURL'],
                 'descrip'=> $_POST['descrip'],
                 'Total'=>$aux,
+                'bsf'=>number_format($_SESSION['dolar']*$aux, 2, ",", "."),
                 'Posicion'=> $NumeroProducto,
                 'Tipo_unidad'=>$_POST['Tipo_unidad']
                 
@@ -222,13 +237,26 @@ class VentaController {
         foreach ($_SESSION['SubTotal'] as $key => $value) {
            $aux += $value ;
         }
-
+        $bsf= number_format($_SESSION['dolar']*$aux, 2, ",", ".");
         $aux = number_format($aux, 2, ",", ".");
         $_SESSION['Total'] = $aux;
+        
+        
+        $aux =array(
+            'dolar'=> $_SESSION['Total'],
+            'bsf'=> $bsf
+        );
         die(json_encode($aux));  
             
     }
 
+    public function getVentas(){
+        $venta = new VentaModel();
+        $data['titulo'] = "Holas";
+        $data['ventas'] = $venta->AllVentas() ;
+        require_once "views\admin\component\Dashboard\Lista-Ventas.php";  
+        
+    }
 
     public function destaparSaco($tabla, $id){
         $ventas = new VentaModel();
