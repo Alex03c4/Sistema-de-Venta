@@ -3,7 +3,7 @@
 
     <select id="Proveedor" name="id_proveedor" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         <!-- <option value="-1" selected="" disabled="">Select one</option> -->
-        <option value="0">Nuevo Producto</option>
+        <option value="0">-------</option>
         <?php
         foreach ($data['proveedor'] as $key) { ?>
             <option value="<?php echo $key->id ?>">

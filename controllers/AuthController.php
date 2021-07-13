@@ -15,7 +15,8 @@ class AuthController {
     }
     
     public function index(){
-      require_once "views\welcome\Welcome.php";  
+        $data['titulo'] = 'Login';
+        require_once "views\auth\Login.php";    
     }
 
 

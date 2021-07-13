@@ -2,7 +2,7 @@
 <div class="ml-16 mt-4 mr-3 lg:ml-64 mb-20">
   <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
     <div>
-      <h2>Lista de Producto al Mayor</h2>
+      <h2>Lista de Producto</h2>
     </div>
     <div class="cursor-pointer mx-4">
       <i class="fas fa-window-minimize"></i>
@@ -23,19 +23,19 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Precio
                   </th>
-                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    .....
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase  tracking-wider">
+                    Contenido
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Stock
                   </th>
-                 
+                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    STOCK ud
+                  </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Estatus
                   </th>
-                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
-                    VENTAS Ud
-                  </th>
+                  
 
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
@@ -78,8 +78,8 @@
                         </div>
                       </td>
 
-                      <td class="px-6 py-4 whitespace-nowrap font-bold">
-                        <div class="text-sm text-gray-900"> <i class="fas fa-dollar-sign"></i> <?php echo $value->precio ?> </div>
+                      <td class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                        <div class="text-sm text-gray-900"> <i class=" fas fa-dollar-sign"></i> <?php echo $value->precio ?> </div>
                       </td>
 
                       <td class="px-6 py-4 whitespace-nowrap flex font-bold">
@@ -120,6 +120,23 @@
                         </span>
                       </td>
 
+                      <td class="px-6 py-4 whitespace-nowrap flex font-bold">
+                     
+                            <?php 
+                                foreach ($data['xUnidad'] as $ud) {
+                                    if ($ud->id_producto == $value->id ) {
+                                      ?> 
+                                        <div class="text-sm text-gray-900">  <?php echo $ud->stock   ?> </div>
+                                      <?php                                   
+                                    }       
+                                }
+                            
+                            ?>
+                            <div>
+                            <?php echo $aux  ?>
+                            </div>
+                            
+                        </td>
                       <?php
                       if ($value->estatus === '1') { ?>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -134,28 +151,16 @@
                       }
                       ?>
 
-                      <td class="px-6 py-4 whitespace-nowrap  font-bold">
-                        <?php 
-                            foreach ($data['xUnidad'] as $ud) {
-                                if ($ud->id_producto == $value->id ) {
-                                   ?> 
-                                    <div class="text-sm text-gray-900">  <?php echo $ud->stock .$aux  ?> </div>
-                                   <?php                                   
-                                }       
-                            }
-                        
-                        ?>
-                        
-                      </td>
+                      
 
 
                       <td class="py-3 px-6 text-center">
-                        <div class="flex item-center justify-center m-1">
+                        <!-- <div class="flex item-center justify-center m-1">
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <a href="#">
                               <i class="far fa-eye"></i>
                             </a>
-                          </div>
+                          </div> -->
 
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <a href="index.php?controllers=Producto&a=getByID&id=<?php echo $value->id ?>">

@@ -2,8 +2,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src="public/plugins/img-User/script.js"></script>
 
-
-
 <div class="ml-7 mt-3">
     <div class="content_uploader">
         <div class="box">

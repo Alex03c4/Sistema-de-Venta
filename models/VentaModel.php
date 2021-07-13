@@ -40,8 +40,6 @@ class VentaModel extends BaseModel
         
     }
 
-
-
     public function getStock($tabla, $id) {
         $sql = "SELECT `stock` FROM  $tabla  WHERE `id` = $id";
         $query= $this->db->query($sql);
@@ -52,7 +50,7 @@ class VentaModel extends BaseModel
     }
 
     public function AllVentas() {
-        $sql = "SELECT ventas.`id` AS id_venta, `id_cliente`, `id_user`, `productos`, `total`, `tipo_pago`,  ";
+        $sql  = "SELECT ventas.`id` AS id_venta, `id_cliente`, `id_user`, `productos`, `total`, `tipo_pago`,  ";
         $sql .=" `fecha`, `descripcion`,  profiles.`nombre` AS Np,  profiles.`apellido` AS Ap, cliente.`nombre` AS Nc, cliente.`apellido` AS Ac , cliente.`cedula` AS Cc  FROM `ventas` ";
         $sql .= " INNER JOIN profiles ON ventas.id_user = profiles.user_id INNER JOIN cliente";
         $sql .= " ON ventas.`id_cliente` = cliente.`id` ";
@@ -63,6 +61,27 @@ class VentaModel extends BaseModel
              }
          }
         return $resultSet;  
+    }
+
+
+    public function IDVentas($id_venta) {
+        $sql  = "SELECT ventas.`id` AS id_venta, `id_cliente`, `id_user`, `productos`, `total`, `tipo_pago`,  ";
+        $sql .= " `fecha`, `descripcion`,  profiles.`nombre` AS Np, ";
+        $sql .= " profiles.`apellido` AS Ap, cliente.`nombre` AS Nc, cliente.`apellido` AS Ac , cliente.`cedula` AS Cc, ";
+        $sql .= " cliente.`direccion` AS Dc, cliente.`telefono` AS Tc";
+        $sql .= " FROM `ventas`";
+        $sql .= " INNER JOIN profiles ON ventas.id_user = profiles.user_id INNER JOIN cliente";
+        $sql .= " ON ventas.`id_cliente` = cliente.`id` ";
+        $sql .= " WHERE ventas.`id`= $id_venta ";
+        $query= $this->db->query($sql);
+
+
+        
+        
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet;
     }
 
     

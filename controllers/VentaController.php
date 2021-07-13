@@ -250,18 +250,25 @@ class VentaController {
             
     }
 
-    public function getVentas(){
-        $venta = new VentaModel();
-        $data['titulo'] = "Holas";
-        $data['ventas'] = $venta->AllVentas() ;
-        require_once "views\admin\component\Dashboard\Lista-Ventas.php";  
-        
-    }
 
     public function destaparSaco($tabla, $id){
         $ventas = new VentaModel();
         $stock = $ventas->getStock($tabla, $id);
         $ventas->StockUpdate($tabla, $stock-1, $id);
+    }
+
+    public function getVentas(){
+        $venta = new VentaModel();
+        $data['titulo'] = "Holas";
+        $data['ventas'] = $venta->AllVentas() ;
+        require_once "views\admin\component\Dashboard\Lista-Ventas.php";  
+            
+    }
+
+    public function IDVentas(){      
+        $venta = new VentaModel();       
+        $data['ventas'] = $venta->IDVentas($_POST['id_venta']) ;
+        require_once "public\plugins\pdf\crearPdf.php";  
     }
 
     

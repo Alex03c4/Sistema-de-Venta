@@ -16,7 +16,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
-  <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
+  <div class="bg-red-400 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
     <div>
       <h2>Lista de Crédito</h2>
     </div>

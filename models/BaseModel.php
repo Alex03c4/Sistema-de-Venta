@@ -51,7 +51,8 @@ class BaseModel {
         return $resultSet; 
        }
 
-    public function getAll($table){
+    
+       public function getAll($table){
         $resultSet= null;
         $query=$this->db->query("SELECT * FROM $table ORDER BY id DESC");
        //modificado no sabemos si pueda causar un defectos hay que herce pruebas  
@@ -235,7 +236,6 @@ class BaseModel {
         return $resultSet;
     }
 
-
     //Tags
     public function TagsAll($Modelo){
         $resultSet= null;
@@ -246,6 +246,76 @@ class BaseModel {
         }
         
         return $resultSet;
+    }
+
+
+/* Contar cuanto hay  */
+    public function getVentas(){
+        $sql = "SELECT COUNT(*) AS con  FROM ventas ";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['con'];  
+    }
+
+    public function getVentasDia($fecha){
+        $sql = "SELECT COUNT(*) AS con  FROM ventas  WHERE `fecha`>= '$fecha' ";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['con']; 
+    }
+
+    
+    public function getContar($Tabla){
+        $sql = "SELECT COUNT(*) AS con  FROM $Tabla ";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['con'];  
+    }
+
+    public function estacion(){
+        $resultSet = 0;
+        $sql = "SELECT COUNT(*) AS con  ,`stock` FROM `productos` WHERE `stock`<= 25";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet;  
+    }
+
+    public function creditoActivo(){
+        $resultSet = 0;
+        $sql = "SELECT COUNT(*) AS con  ,`id` FROM `credito` WHERE `monto`> 0 ";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['con'];  
+    }
+
+    public function Venta8A12($fecha){
+        $resultSet = 0;
+        $sql = "SELECT SUM(`total`) AS Suma FROM `ventas` WHERE `fecha`>= '$fecha 5:00:00' && `fecha`<= '$fecha 12:00:00'";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['Suma'];  
+    }
+
+    public function Venta12A16($fecha){
+        $resultSet = 0;
+        $sql = "SELECT SUM(`total`) AS Suma FROM `ventas` WHERE `fecha`>= '$fecha 12:00:01' && `fecha`<= '$fecha 23:00:00'";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['Suma'];  
     }
 
 

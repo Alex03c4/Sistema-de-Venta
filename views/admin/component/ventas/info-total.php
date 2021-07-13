@@ -50,7 +50,7 @@
                         <span>$</span> <span id="Totalust"></span>
                     </div>
                     <div>
-                        <span>BSF</span> <span id="bsf"></span>
+                        <span>Bs</span> <span id="bsf"></span>
                     </div>
                 </div>
             </div>

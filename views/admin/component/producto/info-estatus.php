@@ -8,9 +8,8 @@
   <span class="w-7 h-7 right-7 absolute rounded-full transform transition-transform bg-gray-200" />
 </label>
 </div>
+
 <style>
-
-
   input:checked {
     background-color: #22c55e; /* bg-green-500 */
   }

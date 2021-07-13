@@ -130,8 +130,6 @@
     </div>
 </div>
 
-
-
 <div class="col-span-6 sm:col-span-4 m-5 ">
     <label for="last_name" class="block text-base font-bold text-gray-700">Descripcion:</label>
     <div class="flex justify-between">

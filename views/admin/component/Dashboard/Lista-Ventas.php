@@ -73,23 +73,25 @@ require_once "views\admin\component\layouts\sidebarTW.php";
             <table id="Table2" class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nombre
+                  <th scope="col" class="text-center px-6 py-3 font-bold text-xs  text-gray-500 uppercase tracking-wider">
+                    #
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Precio
+                    CLIENTE
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    .....
+                    VENDEDOR
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Stock
+                  FECHA
                   </th>
 
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Estatus
+                  TOTAL
                   </th>
-                  
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Tipo de pagoS
+                  </th>
 
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
@@ -102,7 +104,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                   foreach ($data['ventas'] as $key => $value) { ?>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                       
-                      <td class="px-6 py-4 whitespace-nowrap font-bold">
+                      <td class="px-6 py-4 whitespace-nowrap font-bold text-center">
                         <div class="text-sm text-gray-900">  <?php echo $value->id_venta ?> </div>
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap font-bold">
@@ -119,6 +121,19 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap font-bold">
                         <div class="text-sm text-gray-900">  <?php echo $value->tipo_pago ?> </div>
+                      </td>
+
+                      <td x-date class="flex px-6 py-4 whitespace-nowrap font-bold">
+                        <form class="carrito" action="index.php?controllers=Venta&a=IDVentas" method="post">   
+                          <input type="hidden" name="id_venta" value="<?php echo $value->id_venta ?>">
+                          <button x-on:click.prevent type="submit" x-on:click="btm=!btm" x-show="btm">
+
+                            <i class="hover:text-purple-600 animate-bounce far fa-arrow-alt-circle-down"></i>
+                    
+                          </button>                                             
+                        </form>
+                        
+                       
                       </td>
 
                     </tr>

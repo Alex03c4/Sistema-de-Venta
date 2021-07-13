@@ -21,7 +21,7 @@
                             class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">                           
                     </div>
 
-                            <div class="mt-7 flex">
+                            <!-- <div class="mt-7 flex">
                                 <label for="remember_me" class="inline-flex items-center w-full cursor-pointer">
                                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                                     <span class="ml-2 text-sm text-gray-600">
@@ -34,7 +34,7 @@
                                         ¿Olvido su contraseña?
                                     </a>                                  
                                </div>
-                            </div>
+                            </div> -->
                 
                             <div class="mt-7">
                                 <input type="hidden" name="login-User" value="Iniciar">                            
@@ -52,7 +52,7 @@
                                 <hr class="border-gray-300 border-1 w-full rounded-md">
                             </div>
                 
-                            <div class=" mt-7 flex justify-center w-full">
+                            <div class=" mb-7 mt-7 flex justify-center w-full">
                                 <button class="text-2xl mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">                         
                                     <i class="fab fa-facebook"></i>
                                 </button>                                
@@ -66,14 +66,14 @@
                                 </button>
                             </div>
                 
-                        <div class="mt-7">
+                        <!-- <div class="mt-7">
                             <div class="flex justify-center items-center">
                                 <label class="w-full text-sm text-gray-600">¿Eres nuevo?</label>
                                 <a href="index.php?controllers=Auth&a=ViewRegistro" class="w-full text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                                      Crea una cuenta
                                 </a>
                             </div>
-                    </div>
+                        </div> -->
                 </form>
             </div>
         </div>
