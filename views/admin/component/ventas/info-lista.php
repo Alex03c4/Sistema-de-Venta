@@ -201,7 +201,7 @@
                         <input type="hidden" name="stock" value="<?php echo $value->stock ?>">
                         <input type="hidden" name="imgURL" value="<?php echo $imgURL ?>">
                         <input type="hidden" name="descrip" value="<?php echo $value->descripcion ?>">
-                        <input type="hidden" name="Tipo_unidad" value="Saco">
+                        <input type="hidden" name="Tipo_unidad" value="Cantidad">
                         <button type="submit" x-on:click="btm2=!btm2" x-show="btm2">
                           <i class="fas fa-shopping-cart"></i>
                         </button>

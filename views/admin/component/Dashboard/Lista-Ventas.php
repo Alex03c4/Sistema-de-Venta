@@ -13,7 +13,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 
 
-<div class="ml-16 mt-4 mr-3 lg:ml-64 grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+<!-- <div class="ml-16 mt-4 mr-3 lg:ml-64 grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
     <a href="index.php?controllers=Venta&a=getVentas">
         <div id="ventas" class="cursor-pointer flex justify-around bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
 
@@ -52,7 +52,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
 
     </div>
-</div>
+</div> -->
 
 <div class="ml-16 mt-4 mr-3 lg:ml-64 mb-20">
   <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">

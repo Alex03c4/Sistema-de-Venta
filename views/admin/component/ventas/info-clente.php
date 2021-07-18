@@ -13,7 +13,7 @@
             <label for="last_name" class="block text-base font-bold text-gray-700">Cedula del Cliente:</label>
             <div class="flex justify-between">
                 <i class="far fa-id-card mt-3 mr-1"></i>
-                <input required type="number" id="Cedula-cliente" name="Cedula-cliente" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input required size=8 type="number" id="Cedula-cliente" name="Cedula-cliente" class="Limite8 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
         </div>
 
@@ -26,28 +26,28 @@
                     <label for="last_name" class="block text-base font-bold text-gray-700">Nombre:</label>
                     <div class="flex justify-between">
                         <i class="far fa-id-card mt-3 mr-1"></i>
-                        <input type="text" name="nombre" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input type="text" name="nombre" autocomplete="off" class="Limite20 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
                 <div class="m-2">
                     <label for="last_name" class="block text-base font-bold text-gray-700">Apellido:</label>
                     <div class="flex justify-between">
                         <i class="far fa-id-card mt-3 mr-1"></i>
-                        <input type="text" name="apellido" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input type="text" name="apellido" autocomplete="off" class="Limite20 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
                 <div class="m-2">
                     <label for="last_name" class="block text-base font-bold text-gray-700">teléfono:</label>
                     <div class="flex justify-between">
                         <i class="far fa-id-card mt-3 mr-1"></i>
-                        <input type="text" name="telefono" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input type="text" name="telefono" autocomplete="off" class="Limite20 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
                 <div class="m-2">
                     <label for="last_name" class="block text-base font-bold text-gray-700">Dirección:</label>
                     <div class="flex justify-between">
                         <i class="far fa-id-card mt-3 mr-1"></i>
-                        <input type="text" name="direccion" autocomplete="off" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input type="text" name="direccion" autocomplete="off" class="Limite20 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
         <div class="px-4 py-3  text-right sm:px-6">
             <input type="hidden" name="Ventas" value="actualizar">
             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Save
+                Guardar
             </button>
         </div>
     </div>

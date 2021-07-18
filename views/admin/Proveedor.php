@@ -18,7 +18,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <div class="ml-16 mt-4 mr-3 lg:ml-64 ">
   <div class="bg-green-500 text-white text-lg font-semibold transition-colors  shadow-lg rounded-2xl flex justify-between p-2">
     <div>
-      <h2>Lista de Crédito</h2>
+      <h2>Proveedor</h2>
     </div>
     <div class="cursor-pointer mx-4">
       <i class="fas fa-window-minimize"></i>
@@ -34,19 +34,19 @@ require_once "views\admin\component\layouts\sidebarTW.php";
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nombre Cliente
+                    Nombre
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Cedula
+                    Documento
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Teléfono
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Monto
+                    dirección
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Numero de factura
+                    descripción
                   </th>
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
@@ -109,12 +109,20 @@ require_once "views\admin\component\layouts\sidebarTW.php";
                       <td class="py-3 px-6 text-center">
 
 
+                        <!-- 
                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                           <a href="index.php?controllers=Proveedor&a=getByID&id=<?php echo $value->id ?>">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
 
-                        </div>
+                        </div> 
+                      -->
+                      <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                          <a href="#">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+
+                      </div>
 
 
 

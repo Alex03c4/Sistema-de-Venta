@@ -1,13 +1,13 @@
 <?php
     require_once "views\components\admin\header.php";
     require_once "views\admin\component\layouts\sidebarTW.php";
-    try {
+    /* try {
        $Dolar = json_decode(file_get_contents('https://s3.amazonaws.com/dolartoday/data.json'), true);
        $_SESSION['dolar'] =$Dolar['USD']['promedio_real'];
     } catch (Exception $e) {
-       $_SESSION['dolar'] = 3260677.85; 
-    }
-    
+      
+    } */
+     $_SESSION['dolar'] = 3600000; 
     
     $hora = (localtime(time(), true));
     $fecha =  "2021" . "-" . ($hora["tm_mon"] + 1) . "-" . ($hora["tm_mday"] + 1);
@@ -26,13 +26,13 @@
     <a href="https://www.bancodevenezuela.com/" target="_blank">
         <div id="ventas" class="h-28  cursor-pointer flex justify-around bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
 
-            <div class=" my-auto text-3xl p-4 rounded-full bg-blue-600 bg-opacity-75 text-gray-100">
+            <div class=" my-auto text-3xl p-4 rounded-full bg-green-500 bg-opacity-75 text-gray-100">
                 <i class="mx-3 fas fa-dollar-sign"></i>
             </div>
             <div class="w-2/3 px-3 text-center ">
                 <h2 class="text-center font-bold text-lg">Precio</h2>
                 <p class="font-bold"><?php echo number_format($_SESSION['dolar'], 2, ",", ".");  ?></p>
-                <p><?php echo $Dolar['_timestamp']['fecha_corta'];  ?></p>
+                <p><?php echo '19-07-2021' /* $Dolar['_timestamp']['fecha_corta'] */;  ?></p>
 
             </div>
 
@@ -84,7 +84,7 @@
         </div>
     </a>
 
-    <a href="index.php?controllers=Producto&a=ViewProducto">
+    <a href="index.php?controllers=Credito&a=ViewCredito">
         <div id="ventas" class="h-28 cursor-pointer flex justify-around bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
             <?php 
                 if ($data2['ceditoActivos'] > 0 ) {
@@ -105,7 +105,7 @@
                 <i class="fas fa-hand-holding-usd"></i>
             </div>
             <div class="w-2/3 px-3 ">
-                <h2 class="text-center font-bold text-lg">Ceditos</h2>
+                <h2 class="text-center font-bold text-lg">Créditos</h2>
                 <p class="font-bold"><span>Total : </span><?php echo $data2['cedito'] ?></p>
                 <p class="font-bold"><span>Activos : </span><?php echo $data2['ceditoActivos'] ?></p>
             </div>
@@ -113,6 +113,23 @@
         </div>
     </a>
 
+    <a href="#">
+        <div id="ventas" class="h-28 cursor-pointer flex justify-around bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
+
+            
+
+            <div class=" my-auto text-3xl p-4 rounded-full bg-indigo-600 bg-opacity-75 text-gray-100">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="w-2/3 px-3 ">
+                <h2 class="text-center font-bold text-lg">Monto total </h2>
+                
+                <p class="font-bold"><span>Del Dia : $ </span><?php echo 50.80 ?></p>
+               
+            </div>
+
+        </div>
+    </a>
 
 
 </div>
@@ -120,12 +137,12 @@
 
 <div class=" ml-16 mt-4 mr-3 lg:ml-64 ">
     <div class="grid grid-cols-5 gap-3 ">
-        <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full col-span-5 xl:col-span-3">
+        <div class="bg-white mt-10  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full col-span-5 xl:col-span-5">
             <div class="" id="Gráfica1" style="height: 250px;"></div>
         </div>
-        <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full col-span-5 xl:col-span-2">
+      <!--   <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full col-span-5 xl:col-span-2">
             <div class="" id="graph" style="height: 250px;"></div>
-        </div>
+        </div> -->
 </div>
 
 
@@ -177,7 +194,7 @@
 </script>
 
 <script>
-    Morris.Donut({
+/*     Morris.Donut({
     element: 'graph',
     data: [
         {value: 70, label: 'foo', formatted: 'at least 70%' },
@@ -187,5 +204,5 @@
     ],
     resize:true,
     formatter: function (x, data) { return data.formatted; }
-    });
+    }); */
 </script>

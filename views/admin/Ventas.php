@@ -21,6 +21,8 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 <!-- Carito -->
 <script src="public\js\MyScript\ventas\ventas.js" defer></script>
+<!-- Limitar NUmero  -->
+<script src="public\js\MyScript\Limitar\Limitar.js" defer></script>
 
 <!-- <a href="index.php?controllers=Perfil&a=edit">Perfil</a> -->
 

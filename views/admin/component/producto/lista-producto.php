@@ -29,13 +29,13 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Stock
                   </th>
-                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
                     STOCK ud
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Estatus
                   </th>
-                  
+
 
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
@@ -96,7 +96,7 @@
                               }
                               echo $aux;
                               ?>
-                              
+
                         </div>
                       </td>
 
@@ -121,22 +121,22 @@
                       </td>
 
                       <td class="px-6 py-4 whitespace-nowrap flex font-bold">
-                     
-                            <?php 
-                                foreach ($data['xUnidad'] as $ud) {
-                                    if ($ud->id_producto == $value->id ) {
-                                      ?> 
-                                        <div class="text-sm text-gray-900">  <?php echo $ud->stock   ?> </div>
-                                      <?php                                   
-                                    }       
-                                }
-                            
-                            ?>
-                            <div>
-                            <?php echo $aux  ?>
-                            </div>
-                            
-                        </td>
+
+                        <?php
+                        foreach ($data['xUnidad'] as $ud) {
+                          if ($ud->id_producto == $value->id) {
+                        ?>
+                            <div class="text-sm text-gray-900"> <?php echo $ud->stock   ?> </div>
+                        <?php
+                          }
+                        }
+
+                        ?>
+                        <div>
+                          <?php echo $aux  ?>
+                        </div>
+
+                      </td>
                       <?php
                       if ($value->estatus === '1') { ?>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -151,7 +151,7 @@
                       }
                       ?>
 
-                      
+
 
 
                       <td class="py-3 px-6 text-center">
@@ -162,14 +162,23 @@
                             </a>
                           </div> -->
 
+                        <?php
+                        if ($_SESSION['rol'] == 2) {
+                        ?>
                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <a href="index.php?controllers=Producto&a=getByID&id=<?php echo $value->id ?>">
                               <i class="fas fa-pencil-alt"></i>
                             </a>
 
                           </div>
+                        <?php
 
-                          <!-- 
+                        }
+                        ?>
+
+
+
+                        <!-- 
                             función  eliminar  se deshabilita por la razón de que no es recomendare eliminar un elemento 
                             <form class="Delete" location="index.php?controllers=Producto&a=ViewProducto" action="index.php?controllers=Producto&a=destroy&id=<?php echo $value->id ?>" method="post">
                             <div class="transform hover:text-purple-500 hover:scale-110">
@@ -183,19 +192,19 @@
                           </form> 
                           -->
 
-                        </div>
-                      </td>
-
-
-                    </tr>
-                <?php }
-                } ?>
-                <!-- More people... -->
-              </tbody>
-            </table>
           </div>
+          </td>
+
+
+          </tr>
+      <?php }
+                } ?>
+      <!-- More people... -->
+      </tbody>
+      </table>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

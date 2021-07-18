@@ -51,15 +51,6 @@ class PerfilController
         require_once "views\admin\Dashboard.php";   
     }
 
-
-
-    public function VentasDias(){
-
-    }
-
-
-
-
     public function ViewDashboard2(){
         $data['titulo'] = 'Dashboard';
         require_once "views\admin\Dashboard.php"; 
@@ -68,12 +59,23 @@ class PerfilController
 
     public function edit(){
         $user = new PerfilModel();
-        $data["titulo"] = 'Perfil | Admin';
+        $data["titulo"] = 'Perfil';
         $data['img'] = $user->img($this->id, 1);
         $data["profiles"] = $user->getById('profiles', $this->id);
         $data["user"] = $user->getById('users', $this->id);
         $user =null;
         require_once "views\admin\Perfil.php";  
+    }
+
+    public function editAdmin($id){
+        $user = new PerfilModel();
+        $data["titulo"] = 'Perfil';
+        $data['img'] = $user->img($id, 1);
+        $data["profiles"] = $user->getById('profiles', $id);
+        $data["user"] = $user->getById('users', $id);
+        $data["user_role"] = $user->getById('user_role',$id ,"id_user");
+        $user =null;
+        require_once "views\admin\User-edid.php";  
     }
 /* Update Tabla Perfil */
     public function update(){
@@ -92,6 +94,54 @@ class PerfilController
         		
     }
 
+    public function updateAdmin(){
+
+        
+        $dato = array(
+            'id' => $_POST['id'],
+            'nombre' =>  $_POST['nombre'],
+            'apellido' => $_POST['apellido'] ,
+            'cedula' =>  $_POST['cedula'],
+            'sexo' =>  $_POST['sexo'],
+            'telefono' =>  $_POST['telefono'],
+            'direccion' =>  $_POST['dire'],
+            'rol'=>  (int)$_POST['rol'],
+            
+        );
+
+        $perfil = new PerfilModel();
+        $perfil->updateRol($dato);
+        $perfil->update($dato);
+
+        		
+    }
+
+    public function updatePass(){
+        $perfil = new PerfilModel();
+        $passReal = $perfil->getByIdPass($_SESSION['id']);             
+        if (password_verify($_POST['pass'], $passReal )){
+
+            $opciones = array(
+                'cost' => 12
+            );
+            $password_hashed = password_hash($_POST['passNew'], PASSWORD_BCRYPT, $opciones);           
+            $dato = array(
+                'id'=>$_SESSION['id'],            
+                'passNew' =>  $password_hashed,
+                
+            );
+            $perfil->updatePass($dato);
+        } else{
+            $respuesta = array(
+                'respuesta' => 'error'
+            );  
+            die(json_encode($respuesta));
+        }
+        
+
+    }
+
+
     public function destroy() {
         $user = new PerfilModel();
         
@@ -101,6 +151,17 @@ class PerfilController
         $user->deleteImg($this->id , 1, 'User');
 
     }
+
+
+    public function ViewUser(){
+        $user = new PerfilModel();
+        $data['titulo'] = 'Usuarios';
+        $data['img'] = $user->imgAll(1); 
+        $data['profiles'] = $user->getAll('profiles');   
+        $user = null;
+        require_once "views\admin\User.php";  
+    }
+
 
 
 }

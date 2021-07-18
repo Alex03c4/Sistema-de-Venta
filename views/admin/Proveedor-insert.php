@@ -6,6 +6,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
 <script src="public\js\MyScript\ajax.js" defer></script>
 
+
 <!-- <a href="index.php?controllers=Perfil&a=edit">Perfil</a> -->
 <div class="ml-16 mt-4 mr-3 lg:ml-64">
     <div class="bg-white  overflow-hidden  shadow-lg rounded-2xl p-4  dark:bg-gray-700 w-full ">
@@ -33,7 +34,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 <div class="px-4 py-3  text-right sm:px-6">
     <input type="hidden" name="Update" value="actualizar">
     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Save
+        Guardar
     </button>
 </div>
 </form>

@@ -42,6 +42,32 @@ class PerfilModel extends BaseModel  {
        /*  return $resultado; */
     }
 
+    public function updateRol($dato){
+        $sql  = " UPDATE `user_role` SET  ";
+        $sql .= " `id_role`= ?";
+        $sql .= " WHERE id_user = ? ";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param ("ii",$dato["rol"], $dato["id"]);
+        $estado =   $stmt->execute();  
+    }
+
+    public function updatePass($dato){
+        $sql  = " UPDATE `users` SET ";
+        $sql .= " `pass`= ?";
+        $sql .= " WHERE id = ? ";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param ("si",$dato["passNew"], $dato["id"]);
+        $estado =   $stmt->execute();  
+        $respuesta = array(
+            'respuesta' => 'exito',
+            
+        );
+        die(json_encode($respuesta));
+    }
+
+
 
 
         

@@ -20,7 +20,10 @@ if ($_SESSION['rol'] <= 2) {
   $menuAdmin = array(
     'Usuarios' => array(
       'icono' =>  'fas fa-users',
-      'Sub'   =>  '#'
+      'Sub'   =>  array(
+        'insert' => 'index.php?controllers=Auth&a=ViewRegistro',
+        'select' => 'index.php?controllers=Perfil&a=ViewUser'
+      )
     ),
     'Productos' =>  array(
       'icono' =>  'fas fa-people-carry',
@@ -58,7 +61,7 @@ if ($_SESSION['rol'] <= 2) {
 
   <div id="sidebar-brand" class="flex justify-around p-4 bg-gray-800 text-lg border-b border-gray-500 ">
     <div class="hover:text-gray-100 cursor-pointer">
-      <h2>Larense<span>Supermar</span></h2>
+      <h2>Larense<span>Supermarket</span></h2>
     </div>
 
     <div class="hover:text-gray-100 text-xl cursor-pointer">
@@ -241,7 +244,7 @@ if ($_SESSION['rol'] <= 2) {
 
 </div><!-- #sidebar -->
 
-
+<!-- overflow-auto --> 
 
 <div id="sidebar-movil" class="bg-gray-600 h-full w-14 fixed text-gray-400 border-r-2 border-gray-700 visible  
 
@@ -251,13 +254,13 @@ if ($_SESSION['rol'] <= 2) {
   echo " lg:invisible ";
 }
 ?>">
-  <div class="text-center py-3 hover:text-gray-300 cursor-pointer bg-gray-800 text-2xl  shadow-lg">
+  <!-- <div class="text-center py-3 hover:text-gray-300 cursor-pointer bg-gray-800 text-2xl  shadow-lg">
     <i class="fas fa-arrow-circle-right"></i>
-  </div><!-- icono-movil -->
+  </div> --><!-- icono-movil -->
 
 
   <div id="general" class="text-center">
-    <h3 class="mt-4 p-0.5 text-lg">G</h3>
+    <!-- <h3 class="mt-4 p-0.5 text-lg">G</h3> -->
     <ul>
       <?php
       foreach ($menu as $key => $value) { ?>
@@ -282,7 +285,7 @@ if ($_SESSION['rol'] <= 2) {
   if (isset($menuAdmin)) {
   ?>
     <div id="admin-movil" class="text-center">
-      <h3 class="mt-4 p-0.5 text-lg">A</h3>
+      <!-- <h3 class="mt-4 p-0.5 text-lg">A</h3> -->
       <ul>
         <?php
 
@@ -423,8 +426,8 @@ if ($_SESSION['rol'] <= 2) {
       <div x-show="open" x-on:click.away="open = false" class="origin-top-right absolute right-0 mt-1 mr-3 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
         <!-- Active: "bg-gray-100", Not Active: "" -->
         <a href="index.php?controllers=Perfil&a=edit" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Profile</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+        <a href="index.php?controllers=Perfil&a=ViewDashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Dashboard</a>
+        <a href="index.php?controllers=Auth&a=ViewLogin" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</a>
       </div>
     </div>
   </header>

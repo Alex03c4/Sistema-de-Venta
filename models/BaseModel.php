@@ -7,13 +7,22 @@ class BaseModel {
     }    
     
 
-    public function getById($tabla, $id) {
-        $sql = "SELECT * FROM  $tabla  WHERE `id` = $id";
+    public function getById($tabla, $id , $columna='id' ) {
+        $sql = "SELECT * FROM  $tabla  WHERE `$columna` = $id";
         $query= $this->db->query($sql);
         if($row = $query->fetch_assoc()) {
             $resultSet=$row;
         } 
         return $resultSet;
+    }
+
+    public function getByIdPass($id) {
+        $sql = "SELECT  `pass` FROM `users`  WHERE `id` = $id";
+        $query= $this->db->query($sql);
+        if($row = $query->fetch_assoc()) {
+            $resultSet=$row;
+        } 
+        return $resultSet['pass'];
     }
 
 

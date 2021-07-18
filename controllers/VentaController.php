@@ -86,7 +86,7 @@ class VentaController {
                     $stockxUnidad   = $key['stockxUnidad'];
                     $idxSaco        = $key['idxSaco'];
                     
-                    if ( $Tipo_unidad == "Saco") {
+                    if ( $Tipo_unidad == "Cantidad") {
                        $model->StockUpdate("productos",$newStock, $id);
                     }else {
                         if ($stockxUnidad >= $cantida) {
@@ -259,7 +259,7 @@ class VentaController {
 
     public function getVentas(){
         $venta = new VentaModel();
-        $data['titulo'] = "Holas";
+        $data['titulo'] = "Factura";
         $data['ventas'] = $venta->AllVentas() ;
         require_once "views\admin\component\Dashboard\Lista-Ventas.php";  
             
