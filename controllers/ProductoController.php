@@ -2,6 +2,7 @@
 
 class ProductoController   {
     public $idProdruto;
+    
     public function __construct(){ 
         require_once 'models\ProductoModel.php';
              
@@ -122,8 +123,7 @@ class ProductoController   {
     }
 
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         $producto = new ProductoModel();     
         $producto->deleteById("productos", $id);
         $producto->deleteImg($this->id , 3 , 'Producto');

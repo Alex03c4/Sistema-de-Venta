@@ -124,7 +124,7 @@
             <div class="w-2/3 px-3 ">
                 <h2 class="text-center font-bold text-lg">Monto total </h2>
                 
-                <p class="font-bold"><span>Del Dia : $ </span><?php echo 50.80 ?></p>
+                <p class="font-bold"><span>Del Dia : $ </span><?php echo $Total[0]+$Total2[0] ?></p>
                
             </div>
 

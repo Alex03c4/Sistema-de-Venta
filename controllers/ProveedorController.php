@@ -1,7 +1,7 @@
 <?php
 class ProveedorController  {
-    public function __construct()
-    { 
+    
+    public function __construct(){ 
        require_once 'models\ProveedorModel.php';
        /* parent::__construct();         */
     } 

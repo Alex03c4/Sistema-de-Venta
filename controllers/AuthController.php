@@ -6,6 +6,7 @@
 */
 class AuthController {
     private $id;   
+
     public function __construct() {
         require_once 'models/AuthModel.php';
         if (isset($_SESSION['id'])) {
@@ -13,6 +14,12 @@ class AuthController {
         }
          
     }
+
+    public function Login(){
+        $login = new AuthModel();
+        $login->getUser();
+    }
+
     
     public function index(){
         $data['titulo'] = 'Login';
@@ -29,14 +36,7 @@ class AuthController {
     public function ViewRegistro(){
         $data['titulo'] = 'Registro';
         require_once "views\auth\Registro.php";   
-    }
-
-    
-    
-    public function Login(){
-        $login = new AuthModel();
-        $login->getUser();
-    }
+    }   
 
     public function Registro(){
         $registro =new AuthModel();

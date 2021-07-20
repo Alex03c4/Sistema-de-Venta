@@ -45,7 +45,7 @@ require_once "views\admin\component\layouts\sidebarTW.php";
 
       </div>
 
-      <div class="col-span-4">
+      <div class="col-span-4 overflow-auto">
 
         <?php require_once 'views\admin\component\ventas\info-lista.php'; ?>
 

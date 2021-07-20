@@ -250,7 +250,6 @@ class VentaController {
             
     }
 
-
     public function destaparSaco($tabla, $id){
         $ventas = new VentaModel();
         $stock = $ventas->getStock($tabla, $id);

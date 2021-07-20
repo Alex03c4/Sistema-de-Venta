@@ -36,13 +36,7 @@ class ClienteController  {
       return ($resultado);
    }
 
-    public function update(){
-      echo "hola";
-    }
 
-    public function destroy(){
-      echo "hola pep";
-    }
 }
 
 ?>

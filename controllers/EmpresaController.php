@@ -19,7 +19,7 @@ class EmpresaController  {
     }
 
     public function update(){  
-  /*       die(var_dump($_POST)); */
+         /*       die(var_dump($_POST)); */
          $Img_nombre= NULL;
          $Img_urlTMP= NULL;
          if (isset($_POST['checkbox'])) {

@@ -115,6 +115,7 @@ class PerfilController
 
         		
     }
+    
 
     public function updatePass(){
         $perfil = new PerfilModel();

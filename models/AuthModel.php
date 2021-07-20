@@ -17,7 +17,7 @@ class AuthModel {
             $stmt = $this->db->prepare($sql);
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            $stmt->bind_result($id, $email, $pass); // crear variables y asinar el valor de BDD
+            $stmt->bind_result($id, $email, $pass); 
             if ($stmt->affected_rows) {
             $exixte = $stmt->fetch();
             if ($exixte) {
